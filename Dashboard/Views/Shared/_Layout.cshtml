@@ -6,8 +6,9 @@
     <title>@ViewData["Title"] - Dashboard</title>
 
     <environment names="Development">
-        <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
-        <link rel="stylesheet" href="~/css/site.css" />
+        <link rel="icon" type="image/ico" href="~/favicon.ico" />
+        <link href="~/css/stylesheets.css" rel="stylesheet" type="text/css" />
+        <link rel='stylesheet' type='text/css' href='~/css/fullcalendar.print.css' media='print' />
     </environment>
     <environment names="Staging,Production">
         <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -48,8 +49,50 @@
 
     <environment names="Development">
         <script src="~/lib/jquery/dist/jquery.js"></script>
-        <script src="~/lib/bootstrap/dist/js/bootstrap.js"></script>
-        <script src="~/js/site.js" asp-append-version="true"></script>
+        <script src="~/lib/jquery/dist/jquery-ui.min.js"></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/jquery/jquery.mousewheel.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/cookie/jquery.cookies.2.2.0.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/bootstrap.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/charts/jquery.flot.js'></script>
+        <script type='text/javascript' src='~/scripts/plugins/charts/jquery.flot.stack.js'></script>
+        <script type='text/javascript' src='~/scripts/plugins/charts/jquery.flot.pie.js'></script>
+        <script type='text/javascript' src='~/scripts/plugins/charts/jquery.flot.resize.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/sparklines/jquery.sparkline.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/fullcalendar/fullcalendar.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/select2/select2.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/uniform/uniform.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/maskedinput/jquery.maskedinput-1.3.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/validation/languages/jquery.validationEngine-en.js' charset='utf-8'></script>
+        <script type='text/javascript' src='~/scripts/plugins/validation/jquery.validationEngine.js' charset='utf-8'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js'></script>
+        <script type='text/javascript' src='~/scripts/plugins/animatedprogressbar/animated_progressbar.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/qtip/jquery.qtip-1.0.0-rc3.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/cleditor/jquery.cleditor.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/dataTables/jquery.dataTables.min.js'></script>
+
+        <script type='text/javascript' src='~/scripts/plugins/fancybox/jquery.fancybox.pack.js'></script>
+
+        <script type='text/javascript' type='text/javascript' src='~/scripts/cookies.js'></script>
+        <script type='text/javascript' type='text/javascript' src='~/scripts/actions.js'></script>
+        <script type='text/javascript' type='text/javascript' src='~/scripts/charts.js'></script>
+        <script type='text/javascript' type='text/javascript' src='~/scripts/plugins.js'></script>
+        <script src="~/lib/editer/ckeditor/ckeditor.js"></script>
+        <script src="~/lib/editer/ckfinder/ckfinder.js"></script>
+        <script type='text/javascript' src="~/scripts/site.js" asp-append-version="true"></script>
     </environment>
     <environment names="Staging,Production">
         <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-2.2.0.min.js"
