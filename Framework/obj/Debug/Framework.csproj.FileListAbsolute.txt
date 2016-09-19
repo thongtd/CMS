@@ -1,0 +1,32 @@
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\Framework.dll
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\Framework.pdb
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\obj\Debug\Framework.csprojResolveAssemblyReference.cache
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\obj\Debug\Framework.dll
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\obj\Debug\Framework.pdb
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\Framework.dll.config
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\EntityFramework.dll
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\EntityFramework.xml
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\EntityFramework6.Npgsql.dll
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\Npgsql.dll
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\EntityFramework6.Npgsql.xml
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\Npgsql.xml
+E:\Dropbox\CMS\Framework\bin\Debug\Framework.dll.config
+E:\Dropbox\CMS\Framework\bin\Debug\Framework.dll
+E:\Dropbox\CMS\Framework\bin\Debug\Framework.pdb
+E:\Dropbox\CMS\Framework\bin\Debug\EntityFramework.dll
+E:\Dropbox\CMS\Framework\bin\Debug\EntityFramework.SqlServer.dll
+E:\Dropbox\CMS\Framework\bin\Debug\EntityFramework6.Npgsql.dll
+E:\Dropbox\CMS\Framework\bin\Debug\Npgsql.dll
+E:\Dropbox\CMS\Framework\bin\Debug\EntityFramework.xml
+E:\Dropbox\CMS\Framework\bin\Debug\EntityFramework.SqlServer.xml
+E:\Dropbox\CMS\Framework\bin\Debug\EntityFramework6.Npgsql.xml
+E:\Dropbox\CMS\Framework\bin\Debug\Npgsql.xml
+E:\Dropbox\CMS\Framework\obj\Debug\Framework.csprojResolveAssemblyReference.cache
+E:\Dropbox\CMS\Framework\obj\Debug\Framework.dll
+E:\Dropbox\CMS\Framework\obj\Debug\Framework.pdb
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Optiplex 790\Dropbox\CMS\Framework\bin\Debug\Newtonsoft.Json.xml
+E:\Dropbox\CMS\Framework\bin\Debug\Newtonsoft.Json.dll
+E:\Dropbox\CMS\Framework\bin\Debug\Newtonsoft.Json.xml

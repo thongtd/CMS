@@ -1,0 +1,35 @@
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\UnitTestProject.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\UnitTestProject.pdb
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Framework.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\nunit.framework.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Framework.pdb
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\nunit.framework.xml
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.xml
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\obj\Debug\UnitTestProject.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\obj\Debug\UnitTestProject.pdb
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\UnitTestProject.dll.config
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.SqlServer.xml
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\UnitTestProject.dll.config
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\UnitTestProject.dll
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\UnitTestProject.pdb
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.dll
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.SqlServer.dll
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\Framework.dll
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\nunit.framework.dll
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\Framework.pdb
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.xml
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\EntityFramework.SqlServer.xml
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\nunit.framework.xml
+E:\Dropbox\CMS\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+E:\Dropbox\CMS\UnitTestProject\obj\Debug\UnitTestProject.dll
+E:\Dropbox\CMS\UnitTestProject\obj\Debug\UnitTestProject.pdb
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.dll
+C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.xml
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.dll
+E:\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.xml
