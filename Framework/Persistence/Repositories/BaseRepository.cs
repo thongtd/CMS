@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 using Framework.Core.Repositories;
+using Microsoft.EntityFrameworkCore;
 
 namespace Framework.Persistence.Repositories
 {
@@ -15,10 +15,11 @@ namespace Framework.Persistence.Repositories
         {
             this.Context = context;
         }
-
+        
         public TEntity Get<T>(T Id)
         {
-            return Context.Set<TEntity>().Find(Id);
+            //return Context.Set<TEntity>().Find(Id);
+            throw new NotImplementedException();
         }
 
         public IEnumerable<TEntity> GetAll()

@@ -1,6 +1,5 @@
 ﻿using System.Collections.Generic;
 using Framework.Models;
-using System.Data.Entity.ModelConfiguration;
 
 namespace Framework.Core.Domain
 {
@@ -29,16 +28,16 @@ namespace Framework.Core.Domain
         }
     }
 
-    public class TagCategoryMap : EntityTypeConfiguration<TagCategory>
-    {
-        public TagCategoryMap()
-        {
-            ToTable("TagCategory");
-            HasKey(x => x.Id);
-            Property(x => x.Name).HasMaxLength(255).IsRequired();
-            Property(x => x.MetaTag).HasMaxLength(255).IsRequired();
+    //public class TagCategoryMap : EntityTypeConfiguration<TagCategory>
+    //{
+    //    public TagCategoryMap()
+    //    {
+    //        ToTable("TagCategory");
+    //        HasKey(x => x.Id);
+    //        Property(x => x.Name).HasMaxLength(255).IsRequired();
+    //        Property(x => x.MetaTag).HasMaxLength(255).IsRequired();
 
-            HasMany(x => x.Tags).WithRequired(x => x.TagCategory).HasForeignKey(x => x.TagCategoryId);
-        }
-    }
+    //        HasMany(x => x.Tags).WithRequired(x => x.TagCategory).HasForeignKey(x => x.TagCategoryId);
+    //    }
+    //}
 }

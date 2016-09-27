@@ -1,5 +1,5 @@
---temp-output:E:\Dropbox\CMS\WebApplication1\obj\Debug\netcoreapp1.0\
---out:E:\Dropbox\CMS\WebApplication1\bin\Debug\netcoreapp1.0\WebApplication1.dll
+--temp-output:E:\Work\Job\Project\CMS\WebApplication1\obj\Debug\netcoreapp1.0\
+--out:E:\Work\Job\Project\CMS\WebApplication1\bin\Debug\netcoreapp1.0\WebApplication1.dll
 --define:DEBUG
 --define:TRACE
 --define:NETCOREAPP1_0
@@ -196,8 +196,8 @@
 --reference:C:\Users\thongtd\.nuget\packages\System.Threading.Timer\4.0.1\ref\netstandard1.2\System.Threading.Timer.dll
 --reference:C:\Users\thongtd\.nuget\packages\System.Xml.ReaderWriter\4.0.11\ref\netstandard1.3\System.Xml.ReaderWriter.dll
 --reference:C:\Users\thongtd\.nuget\packages\System.Xml.XDocument\4.0.11\ref\netstandard1.3\System.Xml.XDocument.dll
---resource:"E:\Dropbox\CMS\WebApplication1\obj\Debug\netcoreapp1.0\WebApplication1dotnet-compile.deps.json",WebApplication1.deps.json
-E:\Dropbox\CMS\WebApplication1\Program.cs
-E:\Dropbox\CMS\WebApplication1\Startup.cs
-E:\Dropbox\CMS\WebApplication1\Controllers\DashBoardController.cs
-E:\Dropbox\CMS\WebApplication1\Controllers\HomeController.cs
+--resource:"E:\Work\Job\Project\CMS\WebApplication1\obj\Debug\netcoreapp1.0\WebApplication1dotnet-compile.deps.json",WebApplication1.deps.json
+E:\Work\Job\Project\CMS\WebApplication1\Program.cs
+E:\Work\Job\Project\CMS\WebApplication1\Startup.cs
+E:\Work\Job\Project\CMS\WebApplication1\Controllers\DashBoardController.cs
+E:\Work\Job\Project\CMS\WebApplication1\Controllers\HomeController.cs

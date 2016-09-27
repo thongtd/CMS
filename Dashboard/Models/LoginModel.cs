@@ -9,7 +9,7 @@ namespace Dashboard.Models
     public class LoginModel
     {
         [Display(Name = "Email")]
-        [Required(ErrorMessage = Constans)]
+        //[Required(ErrorMessage = Constants)]
         [EmailAddress(ErrorMessage = "Địa chỉ email không hợp lệ")]
         public string Email { get; set; }
 

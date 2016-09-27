@@ -18,7 +18,7 @@ namespace Framework.Core.Extension
             Regex regex = new Regex("\\p{IsCombiningDiacriticalMarks}+");
             name = name.Replace("-", " ");
             var slug = Regex.Replace(name, "[^\\w\\s]", string.Empty).Replace(" ", "-").ToLower();
-            string formD = slug.Normalize(System.Text.NormalizationForm.FormD);
+            string formD = slug.Normalize(NormalizationForm.FormD);
             slug = regex.Replace(formD, string.Empty).Replace("đ", "d");
             while (slug.IndexOf("--", StringComparison.Ordinal) > 0)
             {
@@ -109,14 +109,15 @@ namespace Framework.Core.Extension
         /// <returns></returns>
         public static string Md5Encrypt(string str)
         {
-            MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
-            byte[] bHash = md5.ComputeHash(Encoding.UTF8.GetBytes(str));
-            StringBuilder sbHash = new StringBuilder();
-            foreach (byte b in bHash)
-            {
-                sbHash.Append($"{b:x2}");
-            }
-            return sbHash.ToString();
+            //MD5CryptoServiceProvider md5 = new MD5CryptoServiceProvider();
+            //byte[] bHash = md5.ComputeHash(Encoding.UTF8.GetBytes(str));
+            //StringBuilder sbHash = new StringBuilder();
+            //foreach (byte b in bHash)
+            //{
+            //    sbHash.Append($"{b:x2}");
+            //}
+            //return sbHash.ToString();
+            throw new NotImplementedException();
         }
     }
 }

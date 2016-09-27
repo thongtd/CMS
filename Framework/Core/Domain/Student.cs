@@ -1,8 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
 using Framework.Models;
-using Newtonsoft.Json;
 
 namespace Framework.Core.Domain
 {
@@ -37,18 +35,18 @@ namespace Framework.Core.Domain
         }
     }
 
-    public class StudentMap : EntityTypeConfiguration<Student>
-    {
-        public StudentMap()
-        {
-            ToTable("Student");
-            HasKey(x => x.Id);
-            Property(x => x.FirstName).IsRequired().HasMaxLength(30);
-            Property(x => x.LastName).IsRequired().HasMaxLength(30);
-            Property(x => x.FullName).HasMaxLength(256);
-            Property(x => x.DateOfBirth);
-            Property(x => x.CreatedDate);
-            Property(x => x.ModeifiedDate);
-        }
-    }
+    //public class StudentMap : EntityTypeConfiguration<Student>
+    //{
+    //    public StudentMap()
+    //    {
+    //        ToTable("Student");
+    //        HasKey(x => x.Id);
+    //        Property(x => x.FirstName).IsRequired().HasMaxLength(30);
+    //        Property(x => x.LastName).IsRequired().HasMaxLength(30);
+    //        Property(x => x.FullName).HasMaxLength(256);
+    //        Property(x => x.DateOfBirth);
+    //        Property(x => x.CreatedDate);
+    //        Property(x => x.ModeifiedDate);
+    //    }
+    //}
 }

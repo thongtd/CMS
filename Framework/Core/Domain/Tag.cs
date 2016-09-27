@@ -1,5 +1,4 @@
 ﻿using Framework.Models;
-using System.Data.Entity.ModelConfiguration;
 using Newtonsoft.Json;
 
 namespace Framework.Core.Domain
@@ -36,16 +35,16 @@ namespace Framework.Core.Domain
         }
     }
 
-    public class TagMap : EntityTypeConfiguration<Tag>
-    {
-        public TagMap()
-        {
-            ToTable("Tag");
-            HasKey(x => x.Id);
-            Property(x => x.ObjectName).HasMaxLength(50).IsRequired();
-            Property(x => x.ObjectProperty).HasMaxLength(50).IsRequired();
-            Property(x => x.ObjectValue).HasMaxLength(50).IsRequired();
-            Property(x => x.TagCategoryId).IsRequired();
-        }
-    }
+    //public class TagMap : EntityTypeConfiguration<Tag>
+    //{
+    //    public TagMap()
+    //    {
+    //        ToTable("Tag");
+    //        HasKey(x => x.Id);
+    //        Property(x => x.ObjectName).HasMaxLength(50).IsRequired();
+    //        Property(x => x.ObjectProperty).HasMaxLength(50).IsRequired();
+    //        Property(x => x.ObjectValue).HasMaxLength(50).IsRequired();
+    //        Property(x => x.TagCategoryId).IsRequired();
+    //    }
+    //}
 }

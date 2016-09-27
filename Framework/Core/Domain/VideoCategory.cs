@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
 using Framework.Core.Extension;
 using Framework.Models;
 using Framework.Persistence;
@@ -83,28 +82,28 @@ namespace Framework.Core.Domain
         }
     }
 
-    public class VideoCategoryMap : EntityTypeConfiguration<VideoCategory>
-    {
-        public VideoCategoryMap()
-        {
-            ToTable("VideoCategory");
-            HasKey(x => x.Id);
-            Property(x => x.Name).HasMaxLength(255).IsRequired();
-            Property(x => x.Slug).HasMaxLength(255).IsRequired();
-            Property(x => x.ParentId).IsRequired();
-            Property(x => x.Thumbnail).HasMaxLength(512);
-            Property(x => x.OriginImage).HasMaxLength(512);
-            Property(x => x.CreatedDate).IsRequired();
-            Property(x => x.ModeifiedDate).IsRequired();
-            Property(x => x.Order).IsRequired();
-            Property(x => x.Level).HasMaxLength(255);
-            Property(x => x.Title).HasMaxLength(255);
-            Property(x => x.Description).HasMaxLength(512);
-            Property(x => x.Keyword).HasMaxLength(512);
-            Property(x => x.CultureCode).HasMaxLength(50);
-            Property(x => x.IsActive);
+    //public class VideoCategoryMap : EntityTypeConfiguration<VideoCategory>
+    //{
+    //    public VideoCategoryMap()
+    //    {
+    //        ToTable("VideoCategory");
+    //        HasKey(x => x.Id);
+    //        Property(x => x.Name).HasMaxLength(255).IsRequired();
+    //        Property(x => x.Slug).HasMaxLength(255).IsRequired();
+    //        Property(x => x.ParentId).IsRequired();
+    //        Property(x => x.Thumbnail).HasMaxLength(512);
+    //        Property(x => x.OriginImage).HasMaxLength(512);
+    //        Property(x => x.CreatedDate).IsRequired();
+    //        Property(x => x.ModeifiedDate).IsRequired();
+    //        Property(x => x.Order).IsRequired();
+    //        Property(x => x.Level).HasMaxLength(255);
+    //        Property(x => x.Title).HasMaxLength(255);
+    //        Property(x => x.Description).HasMaxLength(512);
+    //        Property(x => x.Keyword).HasMaxLength(512);
+    //        Property(x => x.CultureCode).HasMaxLength(50);
+    //        Property(x => x.IsActive);
 
-            HasMany(x => x.Videos).WithRequired(x => x.VideoCategory).HasForeignKey(x => x.VideoCategoryId);
-        }
-    }
+    //        HasMany(x => x.Videos).WithRequired(x => x.VideoCategory).HasForeignKey(x => x.VideoCategoryId);
+    //    }
+    //}
 }

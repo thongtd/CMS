@@ -33,3 +33,6 @@ C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.dll
 C:\Users\Optiplex 790\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.xml
 E:\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.dll
 E:\Dropbox\CMS\UnitTestProject\bin\Debug\Newtonsoft.Json.xml
+E:\Work\Job\Project\CMS\UnitTestProject\obj\Debug\UnitTestProject.csprojResolveAssemblyReference.cache
+E:\Work\Job\Project\CMS\UnitTestProject\obj\Debug\UnitTestProject.dll
+E:\Work\Job\Project\CMS\UnitTestProject\obj\Debug\UnitTestProject.pdb

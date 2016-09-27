@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
 using Framework.Core.Extension;
 using Framework.Models;
 using Newtonsoft.Json;
@@ -82,30 +81,30 @@ namespace Framework.Core.Domain
         }
     }
 
-    public class BlogMap : EntityTypeConfiguration<Blog>
-    {
-        public BlogMap()
-        {
-            ToTable("Blog");
-            HasKey(x => x.Id);
-            Property(x => x.Name).HasMaxLength(255).IsRequired();
-            Property(x => x.Slug).HasMaxLength(255).IsRequired();
-            Property(x => x.BlogCategoryId).IsRequired();
-            Property(x => x.Thumbnail).HasMaxLength(512);
-            Property(x => x.OriginImage).HasMaxLength(512);
-            Property(x => x.CreatedDate).IsRequired();
-            Property(x => x.ModeifiedDate).IsRequired();
-            Property(x => x.SubContent);
-            Property(x => x.BodyContent);
-            Property(x => x.Target).HasMaxLength(10);
-            Property(x => x.Click);
-            Property(x => x.Title).HasMaxLength(255);
-            Property(x => x.Description).HasMaxLength(512);
-            Property(x => x.Keyword).HasMaxLength(512);
-            Property(x => x.CultureCode).HasMaxLength(50);
-            Property(x => x.IsActive);
-            Property(x => x.IdentityCode).IsRequired();
-            Property(x => x.PinToTop).IsRequired();
-        }
-    }
+    //public class BlogMap : EntityTypeConfiguration<Blog>
+    //{
+    //    public BlogMap()
+    //    {
+    //        ToTable("Blog");
+    //        HasKey(x => x.Id);
+    //        Property(x => x.Name).HasMaxLength(255).IsRequired();
+    //        Property(x => x.Slug).HasMaxLength(255).IsRequired();
+    //        Property(x => x.BlogCategoryId).IsRequired();
+    //        Property(x => x.Thumbnail).HasMaxLength(512);
+    //        Property(x => x.OriginImage).HasMaxLength(512);
+    //        Property(x => x.CreatedDate).IsRequired();
+    //        Property(x => x.ModeifiedDate).IsRequired();
+    //        Property(x => x.SubContent);
+    //        Property(x => x.BodyContent);
+    //        Property(x => x.Target).HasMaxLength(10);
+    //        Property(x => x.Click);
+    //        Property(x => x.Title).HasMaxLength(255);
+    //        Property(x => x.Description).HasMaxLength(512);
+    //        Property(x => x.Keyword).HasMaxLength(512);
+    //        Property(x => x.CultureCode).HasMaxLength(50);
+    //        Property(x => x.IsActive);
+    //        Property(x => x.IdentityCode).IsRequired();
+    //        Property(x => x.PinToTop).IsRequired();
+    //    }
+    //}
 }

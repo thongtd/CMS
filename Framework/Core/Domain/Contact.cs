@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Data.Entity.ModelConfiguration;
 
 namespace Framework.Core.Domain
 {
@@ -24,19 +23,19 @@ namespace Framework.Core.Domain
         public string IsReaded { get; set; }
     }
 
-    public class ContactMap:EntityTypeConfiguration<Contact>
-    {
-        public ContactMap()
-        {
-            ToTable("Contact");
-            HasKey(x => x.Id);
-            Property(x => x.Title).HasMaxLength(255).IsRequired();
-            Property(x => x.EmailAddress).HasMaxLength(255).IsRequired();
-            Property(x => x.PhoneNumber).IsRequired();
-            Property(x => x.AddressLine).HasMaxLength(512);
-            Property(x => x.BodyContent).HasMaxLength(512).IsRequired();
-            Property(x => x.CreatedDate).IsRequired();
-            Property(x => x.IsReaded).IsRequired();
-        }
-    }
+    //public class ContactMap:EntityTypeConfiguration<Contact>
+    //{
+    //    public ContactMap()
+    //    {
+    //        ToTable("Contact");
+    //        HasKey(x => x.Id);
+    //        Property(x => x.Title).HasMaxLength(255).IsRequired();
+    //        Property(x => x.EmailAddress).HasMaxLength(255).IsRequired();
+    //        Property(x => x.PhoneNumber).IsRequired();
+    //        Property(x => x.AddressLine).HasMaxLength(512);
+    //        Property(x => x.BodyContent).HasMaxLength(512).IsRequired();
+    //        Property(x => x.CreatedDate).IsRequired();
+    //        Property(x => x.IsReaded).IsRequired();
+    //    }
+    //}
 }

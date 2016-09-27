@@ -34,3 +34,6 @@ C:\Users\Optiplex 790\Dropbox\CMS\ConsoleApplication1\bin\Debug\Newtonsoft.Json.
 C:\Users\Optiplex 790\Dropbox\CMS\ConsoleApplication1\bin\Debug\Newtonsoft.Json.xml
 E:\Dropbox\CMS\ConsoleApplication1\bin\Debug\Newtonsoft.Json.dll
 E:\Dropbox\CMS\ConsoleApplication1\bin\Debug\Newtonsoft.Json.xml
+E:\Work\Job\Project\CMS\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+E:\Work\Job\Project\CMS\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+E:\Work\Job\Project\CMS\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
