@@ -5,9 +5,9 @@ namespace Framework.Persistence
 {
     public class WorkContext : DbContext
     {
-        public WorkContext(DbContextOptions<WorkContext> options)
-            : base(options)
-        { }
+        //public WorkContext(DbContextOptions<WorkContext> options)
+        //    : base(options)
+        //{ }
 
         public DbSet<Student> Students { get; set; }
 
@@ -28,6 +28,11 @@ namespace Framework.Persistence
         public DbSet<Video> Videos { get; set; }
 
         public DbSet<VideoCategory> VideoCategorys { get; set; }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseSqlServer("Filename=./blog.db");
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
