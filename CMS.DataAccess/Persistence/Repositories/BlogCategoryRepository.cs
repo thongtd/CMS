@@ -41,16 +41,16 @@ namespace CMS.DataAccess.Persistence.Repositories
 
         public IEnumerable<SelectedList> BlogCategoryTree()
         {
+            var blogCategorys = new List<SelectedList> { new SelectedList { Value = "0", Text = "[Danh mục gốc]" } };
+
             using (var unitOfWork = new UnitOfWork(new WorkContext()))
             {
                 var predicate = PredicateBuilder.Create<BlogCategory>(s => s.IsActive);
 
                 var records = unitOfWork.BlogCategory.Find(predicate).ToList();
-
+                
                 if (records.Any())
                 {
-                    var blogCategorys = new List<SelectedList> { new SelectedList { Value = "0", Text = "[Danh mục gốc]" } };
-
                     if (records.Any())
                     {
                         for (int i = 0; i < records.Count(); i++)
@@ -73,10 +73,14 @@ namespace CMS.DataAccess.Persistence.Repositories
                             }
                         }
                     }
-                    return blogCategorys;
                 }
             }
-            return new List<SelectedList>();
+            return blogCategorys;
+        }
+
+        public void SaveChange()
+        {
+            Context.SaveChanges();
         }
     }
 }

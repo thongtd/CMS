@@ -43,6 +43,7 @@ namespace Test
 
             var blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
             blogCategoryRepository.Add(blogCategory);
+            blogCategoryRepository.SaveChange();
 
             //using (var unitOfWork = new UnitOfWork(new WorkContext()))
             //{

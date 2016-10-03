@@ -3,6 +3,39 @@
   "version": 2,
   "targets": {
     ".NETFramework,Version=v4.5.2": {
+      "Autofac/3.5.2": {
+        "type": "package",
+        "compile": {
+          "lib/net40/Autofac.dll": {}
+        },
+        "runtime": {
+          "lib/net40/Autofac.dll": {}
+        }
+      },
+      "CKSource.CKFinder.Connector.Core/3.4.0": {
+        "type": "package",
+        "dependencies": {
+          "Autofac": "3.5.2",
+          "CKSource.FileSystem": "1.0.0",
+          "ImageProcessor": "2.3.3",
+          "Newtonsoft.Json": "8.0.3"
+        },
+        "compile": {
+          "lib/net45/CKSource.CKFinder.Connector.Core.dll": {}
+        },
+        "runtime": {
+          "lib/net45/CKSource.CKFinder.Connector.Core.dll": {}
+        }
+      },
+      "CKSource.FileSystem/1.0.0": {
+        "type": "package",
+        "compile": {
+          "lib/net45/CKSource.FileSystem.dll": {}
+        },
+        "runtime": {
+          "lib/net45/CKSource.FileSystem.dll": {}
+        }
+      },
       "EntityFramework/6.1.3": {
         "type": "package",
         "frameworkAssemblies": [
@@ -15,6 +48,15 @@
         "runtime": {
           "lib/net45/EntityFramework.SqlServer.dll": {},
           "lib/net45/EntityFramework.dll": {}
+        }
+      },
+      "ImageProcessor/2.3.3": {
+        "type": "package",
+        "compile": {
+          "lib/net45/ImageProcessor.dll": {}
+        },
+        "runtime": {
+          "lib/net45/ImageProcessor.dll": {}
         }
       },
       "Libuv/1.9.0": {
@@ -1957,6 +1999,41 @@
     }
   },
   "libraries": {
+    "Autofac/3.5.2": {
+      "sha512": "pGR5LjY8T/16x6SkJNd7u6EjQnE4C7JS0BZJ7Yl7pt313gIUZ/2ZnPSOIM5eaIA7ArxaudlyyLvAT4ayX5UJ/A==",
+      "type": "package",
+      "path": "Autofac/3.5.2",
+      "files": [
+        "Autofac.3.5.2.nupkg.sha512",
+        "Autofac.nuspec",
+        "lib/net40/Autofac.dll",
+        "lib/net40/Autofac.xml",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.dll",
+        "lib/portable-net4+sl5+netcore45+wpa81+wp8+MonoAndroid1+MonoTouch1/Autofac.xml"
+      ]
+    },
+    "CKSource.CKFinder.Connector.Core/3.4.0": {
+      "sha512": "IpkSKOc8qEg5x/KNN4nA7lGccm1lScTHaXp8880csKF+8/Bgv5cGAFFPIfJ9JUOEPTDxFCRDrvwp0+0RIwRA9Q==",
+      "type": "package",
+      "path": "CKSource.CKFinder.Connector.Core/3.4.0",
+      "files": [
+        "CKSource.CKFinder.Connector.Core.3.4.0.nupkg.sha512",
+        "CKSource.CKFinder.Connector.Core.nuspec",
+        "lib/net45/CKSource.CKFinder.Connector.Core.XML",
+        "lib/net45/CKSource.CKFinder.Connector.Core.dll"
+      ]
+    },
+    "CKSource.FileSystem/1.0.0": {
+      "sha512": "Pi7EyDIrOfyMFJn2vW+2cq2m8g85s2QvOiW+nFved5wac2QdAZT1++S878dDcLrH7gZ8+xhkDRw6reQWUgHudg==",
+      "type": "package",
+      "path": "CKSource.FileSystem/1.0.0",
+      "files": [
+        "CKSource.FileSystem.1.0.0.nupkg.sha512",
+        "CKSource.FileSystem.nuspec",
+        "lib/net45/CKSource.FileSystem.XML",
+        "lib/net45/CKSource.FileSystem.dll"
+      ]
+    },
     "EntityFramework/6.1.3": {
       "sha512": "2xzFHAF3VVdmTR3//MygtQpwfbDjeaq+nQwCcokLzen7MKHOojPaxNPQPa4diHY1QtcR7zlHAJHNRqPB7W2Syw==",
       "type": "package",
@@ -1982,6 +2059,17 @@
         "tools/init.ps1",
         "tools/install.ps1",
         "tools/migrate.exe"
+      ]
+    },
+    "ImageProcessor/2.3.3": {
+      "sha512": "xSEprsFu42v7NaTEhn4ENou4iPgQB5n5ohvy5tuHzsXY/kt8HZYm4OhK257deGrJfBnefkbsGgLDJIr+8gFXFw==",
+      "type": "package",
+      "path": "ImageProcessor/2.3.3",
+      "files": [
+        "ImageProcessor.2.3.3.nupkg.sha512",
+        "ImageProcessor.nuspec",
+        "lib/net40/ImageProcessor.dll",
+        "lib/net45/ImageProcessor.dll"
       ]
     },
     "Libuv/1.9.0": {
@@ -5119,6 +5207,7 @@
   },
   "projectFileDependencyGroups": {
     "": [
+      "CKSource.CKFinder.Connector.Core >= 3.4.0",
       "EntityFramework >= 6.1.3",
       "Microsoft.ApplicationInsights.AspNetCore >= 1.0.0",
       "Microsoft.AspNet.Mvc >= 5.2.3",

@@ -16,5 +16,7 @@ namespace CMS.DataAccess.Core.Repositories
         IEnumerable<BlogCategory> GetByTop(int top, Expression<Func<BlogCategory, bool>> predicate);
 
         IEnumerable<SelectedList> BlogCategoryTree();
+
+        void SaveChange();
     }
 }

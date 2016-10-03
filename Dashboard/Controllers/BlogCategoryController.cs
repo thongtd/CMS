@@ -1,12 +1,11 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
 using Microsoft.AspNetCore.Mvc;
 using MvcConnerstore.Collections;
-
-// For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace Dashboard.Controllers
 {
@@ -31,11 +30,10 @@ namespace Dashboard.Controllers
 
         public IActionResult Create()
         {
-            ViewBag.News = "active";
             var predicate = PredicateBuilder.Create<BlogCategory>(s => s.Order > 0);
 
             var maxOrderNum = _blogCategoryRepository.Find(predicate).OrderByDescending(s=>s.Order).Select(s=>s.Order).FirstOrDefault();
-            ViewBag.OrderNum = int.Parse(maxOrderNum.ToString()) + 1;
+            ViewBag.OrderNum = maxOrderNum + 1;
             return View();
         }
 
@@ -45,7 +43,10 @@ namespace Dashboard.Controllers
             if (ModelState.IsValid)
             {
                 var blogCategory = (BlogCategory) model;
-                
+                blogCategory.CreatedDate = DateTime.UtcNow;
+
+                _blogCategoryRepository.Add(blogCategory);
+                _blogCategoryRepository.SaveChange();
             }
 
             return View("Index");

@@ -12,15 +12,7 @@ namespace Dashboard.Code
         {
             var blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
             var blogCategoryTrees = blogCategoryRepository.BlogCategoryTree().ToList();
-            var result = new List<SelectListItem>
-            {
-                new SelectListItem
-                {
-                    Text = "[Chọn nhóm tin]",
-                    Value = "0"
-                }
-            };
-
+            var result = new List<SelectListItem>();
 
             if (blogCategoryTrees.Any())
             {
