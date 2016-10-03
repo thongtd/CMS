@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CMS.DataAccess.Persistence.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using CMS.DataAccess.Core.Repositories;
+using CMS.DataAccess.Persistence;
 
 namespace Dashboard
 {
@@ -37,6 +40,10 @@ namespace Dashboard
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddMvc();
+            services.AddSession();
+
+            IBlogCategoryRepository blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
+            services.AddSingleton(provider => blogCategoryRepository);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

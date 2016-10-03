@@ -1,0 +1,17 @@
+E:\Work\Job\Project\CMS\Test\bin\Debug\Test.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\Test.pdb
+E:\Work\Job\Project\CMS\Test\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+E:\Work\Job\Project\CMS\Test\obj\Debug\Test.csprojResolveAssemblyReference.cache
+E:\Work\Job\Project\CMS\Test\obj\Debug\Test.dll
+E:\Work\Job\Project\CMS\Test\obj\Debug\Test.pdb
+E:\Work\Job\Project\CMS\Test\bin\Debug\CMS.DataAccess.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\MvcConnerstore.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\EntityFramework.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\Newtonsoft.Json.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\CMS.DataAccess.pdb
+E:\Work\Job\Project\CMS\Test\bin\Debug\MvcConnerstore.pdb
+E:\Work\Job\Project\CMS\Test\bin\Debug\EntityFramework.xml
+E:\Work\Job\Project\CMS\Test\bin\Debug\Newtonsoft.Json.xml
+E:\Work\Job\Project\CMS\Test\bin\Debug\Test.dll.config
+E:\Work\Job\Project\CMS\Test\bin\Debug\EntityFramework.SqlServer.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\EntityFramework.SqlServer.xml

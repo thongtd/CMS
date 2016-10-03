@@ -1,0 +1,5 @@
+E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\MvcConnerstore.dll
+E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\MvcConnerstore.pdb
+E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.csprojResolveAssemblyReference.cache
+E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.dll
+E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.pdb
