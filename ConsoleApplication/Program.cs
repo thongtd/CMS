@@ -27,9 +27,6 @@ namespace ConsoleApplication
             using (var unitOfWork = new UnitOfWork(new WorkContext()))
             {
                 unitOfWork.BlogCategory.Add(blogCategory);
-                var x = 10;
-                var y = 0;
-                var z = x / y;
                 unitOfWork.Complete();
             }
         }
