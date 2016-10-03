@@ -1,0 +1,14 @@
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\ConsoleApplication.exe.config
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\ConsoleApplication.exe
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\ConsoleApplication.pdb
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\CMS.DataAccess.dll
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\EntityFramework.dll
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\EntityFramework.SqlServer.dll
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\Newtonsoft.Json.dll
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\CMS.DataAccess.pdb
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\EntityFramework.xml
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\EntityFramework.SqlServer.xml
+E:\Work\Job\Project\CMS\ConsoleApplication\bin\Debug\Newtonsoft.Json.xml
+E:\Work\Job\Project\CMS\ConsoleApplication\obj\Debug\ConsoleApplication.csprojResolveAssemblyReference.cache
+E:\Work\Job\Project\CMS\ConsoleApplication\obj\Debug\ConsoleApplication.exe
+E:\Work\Job\Project\CMS\ConsoleApplication\obj\Debug\ConsoleApplication.pdb

@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CMS.DataAccess.Models;
+using CMS.DataAccess.Persistence;
 
 namespace ConsoleApplication
 {
@@ -10,6 +8,30 @@ namespace ConsoleApplication
     {
         static void Main(string[] args)
         {
+            var blogCategory = new BlogCategoryRequest
+            {
+                Thumbnail = "",
+                Name = "Name",
+                Description = "",
+                Level = "00001",
+                Order = 1,
+                OriginImage = "",
+                CultureCode = "vn-VI",
+                IsActive = true,
+                CreatedDate = DateTime.Now,
+                Keyword = "",
+                ModeifiedDate = DateTime.Now,
+                ParentId = 0
+            };
+
+            using (var unitOfWork = new UnitOfWork(new WorkContext()))
+            {
+                unitOfWork.BlogCategory.Add(blogCategory);
+                var x = 10;
+                var y = 0;
+                var z = x / y;
+                unitOfWork.Complete();
+            }
         }
     }
 }
