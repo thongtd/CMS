@@ -1,0 +1,12 @@
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\CMS.DataAccess.dll.config
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\CMS.DataAccess.dll
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\CMS.DataAccess.pdb
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\EntityFramework.dll
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\EntityFramework.SqlServer.dll
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\Newtonsoft.Json.dll
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\EntityFramework.xml
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\EntityFramework.SqlServer.xml
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\Newtonsoft.Json.xml
+E:\Work\Job\Project\CMS\CMS.DataAccess\obj\Debug\CMS.DataAccess.csprojResolveAssemblyReference.cache
+E:\Work\Job\Project\CMS\CMS.DataAccess\obj\Debug\CMS.DataAccess.dll
+E:\Work\Job\Project\CMS\CMS.DataAccess\obj\Debug\CMS.DataAccess.pdb
