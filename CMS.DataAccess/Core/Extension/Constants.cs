@@ -26,6 +26,10 @@
             public const string English = "en-US";
             
             public const string Vietnamese = "vi-VN";
+
+            public const string EnglishName = "English";
+
+            public const string VietnameseName = "Vietnamese";
         }
 
         public static class Validation

@@ -18,9 +18,12 @@ namespace MvcConnerstore.Collections
 
         public PagedList(IEnumerable<T> source, int itemCount)
         {
-            AddRange(source);
-            PageIndex = 1;
-            ItemCount = itemCount;
+            if (source != null)
+            {
+                AddRange(source);
+                PageIndex = 1;
+                ItemCount = itemCount;
+            }
         }
 
         public PagedList(IEnumerable<T> source, int pageIndex, int pageSize, int itemCount)

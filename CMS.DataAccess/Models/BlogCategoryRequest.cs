@@ -7,7 +7,7 @@ namespace CMS.DataAccess.Models
     public class BlogCategoryRequest
     {
         [Required(ErrorMessage = Constants.Validation.Required)]
-        [StringLength(255, ErrorMessage = Constants.Validation.MaxLength, MinimumLength = 30)]
+        [StringLength(255, ErrorMessage = Constants.Validation.MaxLength)]
         public string Name { get; set; }
 
         public string Slug { get; set; }
@@ -18,7 +18,7 @@ namespace CMS.DataAccess.Models
         public string Thumbnail { get; set; }
 
         public string OriginImage { get; set; }
-
+        
         public DateTime CreatedDate { get; set; }
 
         public DateTime? ModeifiedDate { get; set; }

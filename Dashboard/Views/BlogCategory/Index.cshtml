@@ -13,74 +13,75 @@
     <div class="row-fluid">
         <form action="" method="post">
             <div class="span12">
-                @*<input type="hidden" value="@Request.QueryString["page"]" name="page" id="page" />*@
+                <input type="hidden" value="@Model.PageIndex" name="page" id="page" />
                 <div class="block-fluid table-sorting" style="display: inline-block; width: 100%;">
                     <div class="head">
-                        <a href="@Url.Action("Create", "GroupBlog", new {area = "Admin"})" class="btn btn-flat btn-create">Thêm mới</a>
+                        <a href="@Url.Action("Deletes", "BlogCategory")" class="btn btn-flat btn-delete">Xóa</a>
+                        <a href="@Url.Action("Create", "BlogCategory")" class="btn btn-flat btn-create fancybox fancybox.iframe">Thêm mới</a>
                     </div>
-                    <table cellpadding="0" cellspacing="0" width="100%" class="table" id="tSortable_2">
+                    <table class="table" id="tSortable_2">
                         <thead>
-                        <tr>
-                            <th width="5%">
-                                <input type="checkbox" name="checkall"/>
-                            </th>
-                            <th width="7%">ID</th>
-                            <th width="">Tên nhóm tin</th>
-                            <th width="">Hình ảnh</th>
-                            <th width="">Số bài viết</th>
-                            <th width="10%">Chức năng</th>
-                        </tr>
+                            <tr>
+                                <th width="5%">
+                                    <input type="checkbox" name="checkall" />
+                                </th>
+                                <th width="7%">ID</th>
+                                <th width="">Tên nhóm tin</th>
+                                <th width="">Hình ảnh</th>
+                                <th width="">Số bài viết</th>
+                                <th width="10%">Chức năng</th>
+                            </tr>
                         </thead>
                         <tbody>
-                        @foreach (var item in Model)
-                        {
-                            var Count = 0; //OfWorkContext.Blogs.All(where: "GroupBlogId = @0", parms: item.Id).Count();
-                            string strLevel = "";
-                            int iLen = 0;
-                            iLen = item.Level.Length;
-                            while (iLen > 5 && iLen%5 == 0)
+                            @foreach (var item in Model)
                             {
-                                strLevel += "_____";
-                                iLen = iLen - 5;
-                            }
-                            <tr>
-                                <td>
-                                    <input type="checkbox" name="cbItems" value="@item.Id"/>
-                                </td>
-                                <td>@item.Id</td>
-                                <td>@strLevel@item.Name</td>
-                                <td>
-                                    <img src="@item.Thumbnail" style="width: 50px"/>
-                                </td>
-                                <td>
-                                    @{
-                                        @Html.Raw("<b style=\"font-site: 15px\">[ " + Count + " ]</b>")
-                                        <a href="@Url.Action("Create", "Blog", new {area = "Admin", gr = item.Id})">Thêm mới bài viết</a>
-                                    }
-                                </td>
-                                <td class="td-func">
-                                    @if (item.IsActive == true)
-                                    {
-                                        <a href="@Url.Action("Active", "GroupBlog", new {area = "Admin", id = item.Id})">
-                                            <img src="~/Content/Admin/img/icons/func/active.png"/>
+                                var blogCount = item.Blogs?.Count(s => s.BlogCategoryId == item.Id) ?? 0;
+                                string strLevel = "";
+                                int iLen = 0;
+                                iLen = item.Level.Length;
+                                while (iLen > 5 && iLen % 5 == 0)
+                                {
+                                    strLevel += "_____";
+                                    iLen = iLen - 5;
+                                }
+                                <tr>
+                                    <td>
+                                        <input type="checkbox" name="cbItems" value="@item.Id" />
+                                    </td>
+                                    <td>@item.Id</td>
+                                    <td>@strLevel@item.Name</td>
+                                    <td>
+                                        <img src="@item.Thumbnail" style="width: 50px" />
+                                    </td>
+                                    <td>
+                                        @{
+                                            @Html.Raw("<b style=\"font-site: 15px\">[ " + blogCount + " ]</b>")
+                                            <a href="@Url.Action("Create", "Blog", new {area = "Admin", gr = item.Id})">Thêm mới bài viết</a>
+                                        }
+                                    </td>
+                                    <td class="td-func">
+                                        @if (item.IsActive == true)
+                                        {
+                                            <a href="@Url.Action("Active", "GroupBlog", new {area = "Admin", id = item.Id})">
+                                                <img src="~/Dashboard/img/icons/func/active.png" />
+                                            </a>
+                                        }
+                                        else
+                                        {
+                                            <a href="@Url.Action("Active", "GroupBlog", new {area = "Admin", id = item.Id})">
+                                                <img src="~/Dashboard/img/icons/func/not-active.png" />
+                                            </a>
+                                        }
+                                        <a href="@Url.Action("Edit", "GroupBlog", new {area = "Admin", id = item.Id})">
+                                            <img src="~/Dashboard/img/icons/func/note-edit.png" />
                                         </a>
-                                    }
-                                    else
-                                    {
-                                        <a href="@Url.Action("Active", "GroupBlog", new {area = "Admin", id = item.Id})">
-                                            <img src="~/Content/Admin/img/icons/func/not-active.png"/>
+                                        <a href="@Url.Action("Delete", "GroupBlog", new {area = "Admin", id = item.Id})"
+                                           onclick="javascript:return confirm('Bạn có chắc chắc muốn xóa bản ghi này? Nếu bản ghi là nhóm cha thì các nhóm con của nó cũng sẽ bị xóa');return false; ">
+                                            <img src="~/Dashboard/img/icons/func/trash.png" />
                                         </a>
-                                    }
-                                    <a href="@Url.Action("Edit", "GroupBlog", new {area = "Admin", id = item.Id})">
-                                        <img src="~/Content/Admin/img/icons/func/note-edit.png"/>
-                                    </a>
-                                    <a href="@Url.Action("Delete", "GroupBlog", new {area = "Admin", id = item.Id})"
-                                       onclick=" javascript:return confirm('Bạn có chắc chắc muốn xóa bản ghi này? Nếu bản ghi là nhóm cha thì các nhóm con của nó cũng sẽ bị xóa');return false; ">
-                                        <img src="~/Content/Admin/img/icons/func/trash.png"/>
-                                    </a>
-                                </td>
-                            </tr>
-                        }
+                                    </td>
+                                </tr>
+                                            }
                         </tbody>
                     </table>
                     <div class="clear"></div>

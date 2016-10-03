@@ -1,0 +1,110 @@
+﻿@using System.Threading.Tasks
+@using Dashboard.Code
+@using Dashboard.Extentions
+@model CMS.DataAccess.Models.BlogCategoryRequest
+@{
+    ViewBag.Title = "Thêm mới nhóm tin";
+    Layout = "/Views/Shared/_LayoutIframe.cshtml";
+}
+<div class="iframe-content">
+    <form class="form-horizontal" action="@Url.Action("Create", "BlogCategory")" method="post">
+        @Html.ValidationSummary(true)
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="head">
+                    <span class="title">Thêm Mới Nhóm Tin</span>
+                </div>
+                <div class="block-fluid">
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Tên nhóm tin:<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Name, new {@placeholder = "Tên nhóm tin"})
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Slug:</label>
+                            @Html.TextBoxFor(model => model.Slug, new {@placeholder = "Slug"})
+                            @Html.ValidationMessageFor(model => model.Slug)
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Ngôn ngữ:</label>
+                            @Html.DropDownList("CultureCode", ListExtentions.BinDdlLang())
+                            @Html.ValidationMessageFor(model => model.CultureCode)
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Nhóm cha:</label>
+                            @Html.DropDownList("ParentId", Unititys.BlogCategoryTree())
+                            @Html.ValidationMessageFor(model => model.ParentId)
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Meta Description:</label>
+                            @Html.TextAreaFor(model => model.Description, new {@placeholder = "Meta Description"})
+                            @Html.ValidationMessageFor(model => model.Description)
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Meta Keyword:</label>
+                            @Html.TextAreaFor(model => model.Keyword, new {@placeholder = "Meta Keyword"})
+                            @Html.ValidationMessageFor(model => model.Keyword)
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <label for="">Nhập số thứ tự:</label>
+                        @Html.TextBoxFor(model => model.Order, new {@placeholder = "Nhập số thứ tự", @Value = @ViewBag.OrderNum})
+                        @Html.ValidationMessageFor(m => m.Order)
+                    </div>
+                    <div class="row-form">
+                        <label for="">Ảnh đại diện:</label>
+                        <div class="span12 no-padding no-margin">
+                            <div class="span8">
+                                @Html.TextBoxFor(model => model.Thumbnail, new { @placeholder = "Ảnh đại diện" })
+                                @Html.ValidationMessageFor(m => m.Thumbnail)
+                            </div>
+                            <div class="span4">
+                                <a href="#" id="btImgBrowse" class="btn btn-flat btn-create">Chọn ảnh đại diện</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                    <div class="row-form">
+                        <label class="checkbox inline lb-checkbox no-padding">
+                            @Html.CheckBox("Active")
+                            Cho phép hiển thị
+                        </label>
+                    </div>
+                    <div class="row-form">
+                        <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<script type="text/javascript">
+    $(function () {
+        $("#btImgBrowse").click(function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $("#Image").val(fileUrl);
+                $("#idImage").attr('src', fileUrl);
+                $('#idImage').css('display', 'block');
+            };
+            finder.popup();
+        });
+    });
+</script>

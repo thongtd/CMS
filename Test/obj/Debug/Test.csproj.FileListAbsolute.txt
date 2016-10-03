@@ -15,3 +15,14 @@ E:\Work\Job\Project\CMS\Test\bin\Debug\Newtonsoft.Json.xml
 E:\Work\Job\Project\CMS\Test\bin\Debug\Test.dll.config
 E:\Work\Job\Project\CMS\Test\bin\Debug\EntityFramework.SqlServer.dll
 E:\Work\Job\Project\CMS\Test\bin\Debug\EntityFramework.SqlServer.xml
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.Mvc.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.Razor.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.WebPages.Razor.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.WebPages.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\Microsoft.Web.Infrastructure.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.WebPages.Deployment.dll
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.Mvc.xml
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.Razor.xml
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.WebPages.Razor.xml
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.WebPages.xml
+E:\Work\Job\Project\CMS\Test\bin\Debug\System.Web.WebPages.Deployment.xml

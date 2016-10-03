@@ -11,6 +11,7 @@
 @import "fancybox/jquery.fancybox.css";
 @import "login.css";
 @import "stylesheet.css";
+@import "custom.css";
 
 html { height: 100%; }
 body { min-height: 100%; font-family: Arial, Helvetica, sans-serif; font-size: 12px; line-height: 22px; position: relative; background: #d9e0e7;}

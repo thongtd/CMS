@@ -26,7 +26,10 @@ namespace ConsoleApplication
 
             using (var unitOfWork = new UnitOfWork(new WorkContext()))
             {
-                unitOfWork.BlogCategory.Add(blogCategory);
+                for (int i = 0; i < 100; i++)
+                {
+                    unitOfWork.BlogCategory.Add(blogCategory);
+                }
                 unitOfWork.Complete();
             }
         }
