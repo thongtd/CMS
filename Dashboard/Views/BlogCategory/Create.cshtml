@@ -7,18 +7,18 @@
     Layout = "/Views/Shared/_LayoutIframe.cshtml";
 }
 <div class="iframe-content">
-    <form class="form-horizontal" action="@Url.Action("Create", "BlogCategory")" method="post">
+    <form class="form-horizontal form-popup" action="@Url.Action("Create", "BlogCategory")" method="post">
         @Html.ValidationSummary(true)
         <div class="row-fluid">
             <div class="span12">
                 <div class="head">
                     <span class="title">Thêm Mới Nhóm Tin</span>
                 </div>
-                <div class="block-fluid">
+                <div class="block-fluid form-body">
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Tên nhóm tin:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Name, new {@placeholder = "Tên nhóm tin"})
+                            @Html.TextBoxFor(m => m.Name, new { @placeholder = "Tên nhóm tin" })
                             @Html.ValidationMessageFor(model => model.Name)
                         </div>
                         <div class="clear"></div>
@@ -26,7 +26,7 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Slug:</label>
-                            @Html.TextBoxFor(model => model.Slug, new {@placeholder = "Slug"})
+                            @Html.TextBoxFor(model => model.Slug, new { @placeholder = "Slug" })
                             @Html.ValidationMessageFor(model => model.Slug)
                         </div>
                         <div class="clear"></div>
@@ -63,7 +63,7 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Meta Description:</label>
-                            @Html.TextAreaFor(model => model.Description, new {@placeholder = "Meta Description"})
+                            @Html.TextAreaFor(model => model.Description, new { @placeholder = "Meta Description" })
                             @Html.ValidationMessageFor(model => model.Description)
                         </div>
                         <div class="clear"></div>
@@ -71,7 +71,7 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Meta Keyword:</label>
-                            @Html.TextAreaFor(model => model.Keyword, new {@placeholder = "Meta Keyword"})
+                            @Html.TextAreaFor(model => model.Keyword, new { @placeholder = "Meta Keyword" })
                             @Html.ValidationMessageFor(model => model.Keyword)
                         </div>
                         <div class="clear"></div>
@@ -98,16 +98,28 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        $("#btImgBrowse").click(function () {
-            
+        //CKEDITOR.replace('Description', {
+        //    toolbar: 'Full'
+        //});
 
-            //var finder = new CKFinder();
-            //finder.selectActionFunction = function (fileUrl) {
-            //    $("#Image").val(fileUrl);
-            //    $("#idImage").attr('src', fileUrl);
-            //    $('#idImage').css('display', 'block');
-            //};
-            //finder.popup();
-        });
+        //CKEDITOR.replace('Description',
+        //{
+        //    filebrowserBrowseUrl: '/Dashboard/plugins/ckfinder/ckfinder.html',
+        //    filebrowserImageBrowseUrl: '/Dashboard/plugins/ckfinder/ckfinder.html?type=Images',
+        //    filebrowserUploadUrl: '/Dashboard/plugins/ckfinder/connector?command=QuickUpload&type=Files&currentFolder=/archive/',
+        //    filebrowserImageUploadUrl: '/Dashboard/plugins/ckfinder/connector?command=QuickUpload&type=Images&currentFolder=/cars/'
+        //});
+
+        //$("#btImgBrowse").click(function () {
+
+
+        //    //var finder = new CKFinder();
+        //    //finder.selectActionFunction = function (fileUrl) {
+        //    //    $("#Image").val(fileUrl);
+        //    //    $("#idImage").attr('src', fileUrl);
+        //    //    $('#idImage').css('display', 'block');
+        //    //};
+        //    //finder.popup();
+        //});
     });
 </script>
