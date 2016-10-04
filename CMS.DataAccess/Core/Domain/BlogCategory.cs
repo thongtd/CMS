@@ -6,6 +6,7 @@ using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Models;
 using CMS.DataAccess.Persistence;
+using Newtonsoft.Json;
 
 namespace CMS.DataAccess.Core.Domain
 {
@@ -42,6 +43,7 @@ namespace CMS.DataAccess.Core.Domain
 
         public bool IsActive { get; set; }
 
+        [JsonIgnore]
         public virtual ICollection<Blog> Blogs { get; set; }
 
         public static implicit operator BlogCategory(BlogCategoryRequest model)

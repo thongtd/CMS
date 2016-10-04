@@ -25,7 +25,7 @@ namespace Test
         {
             var blogCategoryRequest = new BlogCategoryRequest
             {
-                Thumbnail = "",
+                Thumbnail = "http://i.ebayimg.com/images/g/oUMAAOSwu1VW3iEj/s-l300.jpg",
                 Name = "Name",
                 Description = "",
                 Level = "00001",
@@ -41,18 +41,18 @@ namespace Test
 
             var blogCategory = (BlogCategory)blogCategoryRequest;
 
-            var blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
-            blogCategoryRepository.Add(blogCategory);
-            blogCategoryRepository.SaveChange();
+            //var blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
+            //blogCategoryRepository.Add(blogCategory);
+            //blogCategoryRepository.SaveChange();
 
-            //using (var unitOfWork = new UnitOfWork(new WorkContext()))
-            //{
-            //    for (int i = 0; i < 100; i++)
-            //    {
-            //        unitOfWork.BlogCategory.Add(blogCategory);
-            //    }
-            //    unitOfWork.Complete();
-            //}
+            using (var unitOfWork = new UnitOfWork(new WorkContext()))
+            {
+                for (int i = 0; i < 100; i++)
+                {
+                    unitOfWork.BlogCategory.Add(blogCategory);
+                    unitOfWork.Complete();
+                }
+            }
         }
     }
 }

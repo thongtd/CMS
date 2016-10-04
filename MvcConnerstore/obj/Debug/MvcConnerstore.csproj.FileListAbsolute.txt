@@ -1,8 +1,5 @@
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\MvcConnerstore.dll
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\MvcConnerstore.pdb
-E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.csprojResolveAssemblyReference.cache
-E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.dll
-E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.pdb
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\Microsoft.Web.Infrastructure.dll
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\Newtonsoft.Json.dll
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.Helpers.dll
@@ -18,3 +15,6 @@ E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.Razor.xml
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.WebPages.xml
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.WebPages.Deployment.xml
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.WebPages.Razor.xml
+E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.csprojResolveAssemblyReference.cache
+E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.dll
+E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.pdb

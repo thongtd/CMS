@@ -16,10 +16,62 @@
                 <input type="hidden" value="@Model.PageIndex" name="page" id="page" />
                 <div class="block-fluid table-sorting" style="display: inline-block; width: 100%;">
                     <div class="head">
-                        <a href="@Url.Action("Deletes", "BlogCategory")" class="btn btn-flat btn-delete">Xóa</a>
                         <a href="@Url.Action("Create", "BlogCategory")" class="btn btn-flat btn-create iframe-fancybox">Thêm mới</a>
                     </div>
-                    <table class="table" id="tSortable_2">
+                    <div id="example">
+                        <div id="grid"></div>
+                        @section scripts{
+                            <script>
+                                $(document).ready(function () {
+                                    $("#grid").kendoGrid({
+                                        dataSource: {
+                                            transport: {
+                                                read: "/get"
+                                            },
+                                            pageSize: 20
+                                        },
+                                        maxheight: 550,
+                                        scrollable: true,
+                                        sortable: true,
+                                        filterable: true,
+                                        pageable: {
+                                            input: true,
+                                            numeric: false
+                                        },
+                                        columns: [
+                                            {
+                                                 field: "id", title: "ID", width: "50px", filterable: false
+                                            },
+                                            {
+                                                 field: "name", title: "Tên nhóm tin"
+                                            },
+                                            {
+                                                field: "createdDate", title: "Ngày tạo", filterable: false, width: "200px"
+                                            },
+                                            //{
+                                            //    field: "thumbnail", title: "Hình ảnh",
+                                            //    template: "<img src='#=thumbnail#' style='width: 50px' />",
+                                            //    filterable: false,
+                                            //    width: "100px"
+                                            //},
+                                            {
+                                                title: "Chức năng",
+                                                template: "<a href=''><img src='/Dashboard/img/icons/func/active.png' /></a>" +
+                                                    "<a href=''><img src='/Dashboard/img/icons/func/note-edit.png' /></a>" +
+                                                    "<a href=''><img src='/Dashboard/img/icons/func/trash.png' /></a>",
+                                                attributes: {
+                                                    "class": "td-func"
+                                                },
+                                                width: "110px",
+                                                filterable: false
+                                            }
+                                        ]
+                                    });
+                                });
+                            </script>
+                        }
+                    </div>
+                    @*<table class="table" id="tSortable_2">
                         <thead>
                             <tr>
                                 <th width="5%">
@@ -83,7 +135,7 @@
                                 </tr>
                                             }
                         </tbody>
-                    </table>
+                    </table>*@
                     <div class="clear"></div>
                     @Html.Raw(ViewBag.Paging)
                 </div>

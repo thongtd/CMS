@@ -28,6 +28,15 @@ namespace Dashboard.Controllers
             return View(blogCategorys);
         }
 
+        [Route("/get")]
+        public IActionResult Gets()
+        {
+            int total = 0;
+            var blogCategorys = _blogCategoryRepository.Paging(PagedExtention.TryGetPageIndex("1"), PagedExtention.PageSize, out total, null);
+
+            return Json(blogCategorys);
+        }
+
         public IActionResult Create()
         {
             var predicate = PredicateBuilder.Create<BlogCategory>(s => s.Order > 0);
