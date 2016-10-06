@@ -1,4 +1,5 @@
-﻿using System.Data.Entity.ModelConfiguration;
+﻿using System;
+using System.Data.Entity.ModelConfiguration;
 using CMS.DataAccess.Models;
 using Newtonsoft.Json;
 
@@ -12,7 +13,7 @@ namespace CMS.DataAccess.Core.Domain
 
         public string ObjectProperty { get; set; }
 
-        public string ObjectValue { get; set; }
+        public Guid ObjectIdentityId { get; set; }
 
         public int TagCategoryId { get; set; }
 
@@ -30,7 +31,7 @@ namespace CMS.DataAccess.Core.Domain
             {
                 ObjectName = model.ObjectName,
                 ObjectProperty = model.ObjectProperty,
-                ObjectValue = model.ObjectValue,
+                ObjectIdentityId = model.ObjectIdentityId,
                 TagCategoryId = model.TagCategory,
             };
         }
@@ -44,7 +45,7 @@ namespace CMS.DataAccess.Core.Domain
             HasKey(x => x.Id);
             Property(x => x.ObjectName).HasMaxLength(50).IsRequired();
             Property(x => x.ObjectProperty).HasMaxLength(50).IsRequired();
-            Property(x => x.ObjectValue).HasMaxLength(50).IsRequired();
+            Property(x => x.ObjectIdentityId).IsRequired();
             Property(x => x.TagCategoryId).IsRequired();
         }
     }

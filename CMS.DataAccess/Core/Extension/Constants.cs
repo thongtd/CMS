@@ -51,5 +51,11 @@
             public const string LettersOnly = "Vui lòng chỉ nhập ký tự.";
             public const string PhoneNumberFormat = "{0:###-###-####}";
         }
+
+        public static class ObjectName
+        {
+            public static string Blog = "Blog";
+            public static string BlogIdenityCode = "IdenityCode";
+        }
     }
 }

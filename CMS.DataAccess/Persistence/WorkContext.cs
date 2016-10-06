@@ -23,7 +23,7 @@ namespace CMS.DataAccess.Persistence
 
         public DbSet<TagCategory> TagCategorys { get; set; }
 
-        public DbSet<Tag> Tags { get; set; }
+        public virtual DbSet<Tag> Tags { get; set; }
 
         public DbSet<Video> Videos { get; set; }
 
@@ -31,9 +31,8 @@ namespace CMS.DataAccess.Persistence
         
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            //Database.SetInitializer<WorkContext>(null);
-            base.OnModelCreating(modelBuilder);
-            
+            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WorkContext>());
+
             modelBuilder.Configurations.Add(new BlogCategoryMap());
             modelBuilder.Configurations.Add(new BlogMap());
             modelBuilder.Configurations.Add(new ContactMap());
@@ -43,6 +42,8 @@ namespace CMS.DataAccess.Persistence
             modelBuilder.Configurations.Add(new TagCategoryMap());
             modelBuilder.Configurations.Add(new VideoMap());
             modelBuilder.Configurations.Add(new VideoCategoryMap());
+
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

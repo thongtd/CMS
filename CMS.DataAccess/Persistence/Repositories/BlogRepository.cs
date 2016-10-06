@@ -39,35 +39,53 @@ namespace CMS.DataAccess.Persistence.Repositories
             blog.PinToTop = model.PinToTop;
         }
 
-        public IEnumerable<Blog> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Blog, bool>> predicate)
+        public IEnumerable<BlogResponse> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Blog, bool>> predicate)
         {
-            var blog = WorkContext.Blogs.Include(s => s.BlogCategory);
+            var blogs = WorkContext.Blogs
+                .Include(s => s.BlogCategory);
 
-            using (var unitOfWork = new UnitOfWork(new WorkContext()))
+            if (blogs.Any())
             {
-                var records = unitOfWork.Blog.Find(predicate).ToList();
-
-                if (records.Any())
+                var blogResponses = blogs.Select(s => new BlogResponse
                 {
-                    totalRecord = records.Count();
-                    records = records.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-                    return new PagedList<Blog>(records, totalRecord);
-                }
+                    BlogCategory = s.BlogCategory,
+                    IsActive = s.IsActive,
+                    BlogCategoryId = s.BlogCategoryId,
+                    Name = s.Name,
+                    BodyContent = s.BodyContent,
+                    Click = s.Click,
+                    ModeifiedDate = s.ModeifiedDate,
+                    CreatedDate = s.CreatedDate,
+                    CultureCode = s.CultureCode,
+                    Description = s.Description,
+                    Id = s.Id,
+                    Title = s.Title,
+                    Slug = s.Slug,
+                    OriginImage = s.OriginImage,
+                    Keyword = s.Keyword,
+                    Thumbnail = s.Thumbnail,
+                    PinToTop = s.PinToTop,
+                    SubContent = s.SubContent,
+                    IdentityCode = s.IdentityCode,
+                    Target = s.Target,
+                    Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList()
+                }).ToList();
+
+                totalRecord = blogResponses.Count();
+                blogResponses = blogResponses.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+                return new PagedList<BlogResponse>(blogResponses, totalRecord);
             }
-
-            totalRecord = 0;
-
             
-
-            return new PagedList<Blog>(null, 0);
+            totalRecord = 0;
+            return new PagedList<BlogResponse>(null, 0);
         }
 
-        public IEnumerable<Blog> GetByTop(int top, Expression<Func<Blog, bool>> predicate)
+        public IEnumerable<BlogResponse> GetByTop(int top, Expression<Func<Blog, bool>> predicate)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<Blog> GetTagByBlogId(int blogId)
+        public IEnumerable<BlogResponse> GetTagByBlogId(int blogId)
         {
             throw new NotImplementedException();
         }

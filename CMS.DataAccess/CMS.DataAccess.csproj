@@ -108,7 +108,9 @@
     <Compile Include="Core\Repositories\IVideoCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IVideoRepository.cs" />
     <Compile Include="IDependency.cs" />
+    <Compile Include="Models\BlogCategoryResponse.cs" />
     <Compile Include="Models\BlogCategoryRequest.cs" />
+    <Compile Include="Models\BlogResponse.cs" />
     <Compile Include="Models\BlogRequest.cs" />
     <Compile Include="Models\ContactRequest.cs" />
     <Compile Include="Models\GalleryCategoryRequest.cs" />

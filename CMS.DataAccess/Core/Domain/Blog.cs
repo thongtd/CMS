@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using CMS.DataAccess.Core.Domain;
@@ -51,7 +53,7 @@ namespace CMS.DataAccess.Core.Domain
 
         [JsonIgnore]
         public virtual BlogCategory BlogCategory { get; set; }
-
+        
         public static implicit operator Blog(BlogRequest model)
         {
             if (model == null)

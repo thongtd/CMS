@@ -222,6 +222,7 @@ function onDelete(e, itemId) {
         $.ajax({
             url: action,
             data: JSON.stringify(values),
+            datatype: "json",
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             success: function (data) {

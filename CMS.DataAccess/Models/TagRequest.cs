@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 using CMS.DataAccess.Core.Extension;
 
 namespace CMS.DataAccess.Models
@@ -12,7 +13,7 @@ namespace CMS.DataAccess.Models
         public string ObjectProperty { get; set; }
 
         [Required(ErrorMessage = Constants.Validation.Required)]
-        public string ObjectValue { get; set; }
+        public Guid ObjectIdentityId { get; set; }
 
         [Required(ErrorMessage = Constants.Validation.Required)]
         public int TagCategory { get; set; }

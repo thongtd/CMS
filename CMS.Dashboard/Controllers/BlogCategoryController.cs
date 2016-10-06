@@ -52,7 +52,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [Route("BlogCategory/Create")]
+        [HttpGet, Route("BlogCategory/Create")]
         public ActionResult Create()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -65,7 +65,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, Route("BlogCategory/Create")]
         public ActionResult Create(BlogCategoryRequest model)
         {
             if (ModelState.IsValid)
@@ -83,7 +83,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [Route("BlogCategory/Edit/{id}")]
+        [HttpGet, Route("BlogCategory/Edit/{id}")]
         public ActionResult Edit(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -94,7 +94,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost]
+        [HttpPost, Route("BlogCategory/Edit")]
         public ActionResult Edit(BlogCategoryRequest model)
         {
             if (ModelState.IsValid)
@@ -114,8 +114,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [Route("BlogCategory/Active")]
-        [HttpPost]
+        [HttpPost, Route("BlogCategory/Active")]
         public ActionResult Active(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -131,9 +130,8 @@ namespace CMS.Dashboard.Controllers
                 });
             }
         }
-
-        [Route("BlogCategory/Delete")]
-        [HttpPost]
+        
+        [HttpPost, Route("BlogCategory/Delete")]
         public ActionResult Delete(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))

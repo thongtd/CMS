@@ -3,7 +3,6 @@ using System.Collections.Generic;
 
 namespace MvcConnerstore.Collections
 {
-
     [Serializable]
     public class PagedList<T> : List<T>, IPagedList<T>
     {

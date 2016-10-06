@@ -48,9 +48,12 @@
                                                 template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
                                             },
                                             {
+                                                field: "BlogCategory.Name", title: "Nhóm tin", filterable: true, width: "200px"
+                                            },
+                                            {
                                                 title: "Chức năng",
                                                 template: "<a data-href=\"@Url.Action("Active", "Blog")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
-                                                    "<a href='@Url.Action("Edit", "Blog")/#= Id #' class='iframe-fancybox'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                    "<a href='@Url.Action("Edit", "Blog")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
                                                     "<a data-href=\"@Url.Action("Delete", "Blog")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
                                                 attributes: {
                                                     "class": "td-func"
