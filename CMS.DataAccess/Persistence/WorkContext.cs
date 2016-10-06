@@ -6,7 +6,7 @@ namespace CMS.DataAccess.Persistence
     public class WorkContext : DbContext
     {
         public WorkContext()
-            : base("Server=DESKTOP-12R76KJ\\SQLEXPRESS;Database=CMS;User Id=sa;Password=1;Connection Timeout=30;Min Pool Size=0;Max Pool Size=100;Pooling=true;")
+            : base("DefaultConnection")
         {
             Configuration.LazyLoadingEnabled = false;
         }
