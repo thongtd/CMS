@@ -6,6 +6,7 @@ using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
+using CMS.DataAccess.Models;
 using MvcConnerstore.Collections;
 
 namespace CMS.DataAccess.Persistence.Repositories
@@ -16,7 +17,39 @@ namespace CMS.DataAccess.Persistence.Repositories
         {
         }
 
-        public IPagedList<BlogCategory> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<BlogCategory, bool>> predicate)
+        public BlogCategory ConvertToModel(ref BlogCategory blogCategory, BlogCategoryRequest model)
+        {
+            var parentLevel = string.Empty;
+            if (model.ParentId != 0)
+            {
+                using (var unitOfWork = new UnitOfWork(new WorkContext()))
+                {
+                    var parent = unitOfWork.BlogCategory.Get(model.ParentId);
+                    if (parent != null)
+                    {
+                        parentLevel = parent.Level;
+                    }
+                }
+            }
+            blogCategory.Name = model.Name;
+            blogCategory.Slug = string.IsNullOrEmpty(model.Slug) ? model.Name.NameToSlug() : model.Slug;
+            blogCategory.Order = model.Order;
+            blogCategory.CultureCode = model.CultureCode;
+            blogCategory.Description = model.Description;
+            blogCategory.IsActive = model.IsActive;
+            blogCategory.Keyword = model.Keyword;
+            blogCategory.OriginImage = string.IsNullOrEmpty(model.OriginImage) ? model.Thumbnail : model.OriginImage;
+            blogCategory.Thumbnail = model.Thumbnail;
+            blogCategory.ParentId = model.ParentId;
+            blogCategory.Level = StringExtension.MakeLevel(model.Order, parentLevel);
+            blogCategory.Title = string.IsNullOrEmpty(model.Title) ? model.Name : model.Title;
+            blogCategory.Level = StringExtension.MakeLevel(model.Order, parentLevel);
+
+            return blogCategory;
+        }
+
+        public IPagedList<BlogCategory> Paging(int pageIndex, int pageSize, out int totalRecord,
+            Expression<Func<BlogCategory, bool>> predicate)
         {
             using (var unitOfWork = new UnitOfWork(new WorkContext()))
             {
@@ -48,7 +81,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 var predicate = PredicateBuilder.Create<BlogCategory>(s => s.IsActive);
 
                 var records = unitOfWork.BlogCategory.Find(predicate).ToList();
-                
+
                 if (records.Any())
                 {
                     if (records.Any())
@@ -58,7 +91,11 @@ namespace CMS.DataAccess.Persistence.Repositories
                             int len = records[i].Level.Length;
                             if (len == 5)
                             {
-                                blogCategorys.Add(new SelectedList { Value = records[i].Id.ToString(), Text = records[i].Name });
+                                blogCategorys.Add(new SelectedList
+                                {
+                                    Value = records[i].Id.ToString(),
+                                    Text = records[i].Name
+                                });
                             }
                             else
                             {
@@ -69,18 +106,17 @@ namespace CMS.DataAccess.Persistence.Repositories
                                     len = len - 5;
                                 }
 
-                                blogCategorys.Add(new SelectedList { Value = records[i].Id.ToString(), Text = strTemp + records[i].Name });
+                                blogCategorys.Add(new SelectedList
+                                {
+                                    Value = records[i].Id.ToString(),
+                                    Text = strTemp + records[i].Name
+                                });
                             }
                         }
                     }
                 }
             }
             return blogCategorys;
-        }
-
-        public void SaveChange()
-        {
-            Context.SaveChanges();
         }
     }
 }

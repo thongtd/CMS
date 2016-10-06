@@ -48,7 +48,7 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Nhóm cha:</label>
-                            @Html.DropDownList("ParentId", Unititys.BlogCategoryTree())
+                            @Html.DropDownList("ParentId", Unitities.BlogCategoryTree())
                             @Html.ValidationMessageFor(model => model.ParentId)
                         </div>
                         <div class="clear"></div>
@@ -85,7 +85,7 @@
                     </div>
                     <div class="row-form">
                         <label class="checkbox inline lb-checkbox no-padding">
-                            @Html.CheckBox("IsActive")
+                            @Html.CheckBoxFor(model => model.IsActive)
                             Cho phép hiển thị
                         </label>
                     </div>

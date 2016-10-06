@@ -38,7 +38,7 @@
                                 @Html.ValidationMessageFor(m => m.Thumbnail)
                             </div>
                             <div class="span4">
-                                <a href="#" id="btImgBrowse" class="btn btn-flat btn-create">Chọn ảnh đại diện</a>
+                                <a href="#" id="btImgBrowse" class="btn btn-flat btn-create" onclick= "browseImage('Thumbnail');"s>Chọn ảnh đại diện</a>
                             </div>
                         </div>
                     </div>
@@ -46,7 +46,7 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Nhóm cha:</label>
-                            @Html.DropDownList("ParentId", Unititys.BlogCategoryTree())
+                            @Html.DropDownList("ParentId", Unitities.BlogCategoryTree())
                             @Html.ValidationMessageFor(model => model.ParentId)
                         </div>
                         <div class="clear"></div>
@@ -95,14 +95,3 @@
         </div>
     </form>
 </div>
-<script type="text/javascript">
-    $(function () {
-        $("#btImgBrowse").click(function () {
-            var finder = new CKFinder();
-            finder.selectActionFunction = function (fileUrl) {
-                $("#Thumbnail").val(fileUrl);
-            };
-            finder.popup();
-        });
-    });
-</script>

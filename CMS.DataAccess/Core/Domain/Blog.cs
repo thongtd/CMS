@@ -63,6 +63,7 @@ namespace CMS.DataAccess.Core.Domain
             {
                 Name = model.Name,
                 Slug = string.IsNullOrEmpty(model.Slug) ? model.Name.NameToSlug() : model.Slug,
+                Title = string.IsNullOrEmpty(model.Title) ? model.Name : model.Title,
                 BlogCategoryId = model.BlogCategoryId,
                 Thumbnail = model.Thumbnail,
                 OriginImage = string.IsNullOrEmpty(model.OriginImage) ? model.Thumbnail : model.OriginImage,
@@ -72,7 +73,6 @@ namespace CMS.DataAccess.Core.Domain
                 BodyContent = model.BodyContent,
                 Target = model.Target,
                 Click = model.Click,
-                Title = model.Title,
                 Description = model.Description,
                 Keyword = model.Keyword,
                 CultureCode = model.CultureCode,

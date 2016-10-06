@@ -24,7 +24,7 @@ namespace CMS.DataAccess.Core.Extension
             {
                 slug = slug.Replace("--", "-");
             }
-            return slug;
+            return slug.ToLower();
         }
         
         /// <summary>

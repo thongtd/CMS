@@ -1,17 +1,22 @@
 ﻿using System;
 using System.Linq;
 using System.Web.Mvc;
-using System.Web.Services.Description;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Linqkit;
+using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
 using CMS.DataAccess.Persistence;
+using CMS.DataAccess.Persistence.Repositories;
 using MvcConnerstore.Collections;
 
 namespace CMS.Dashboard.Controllers
 {
+    [RoutePrefix("Dashboard")]
     public class BlogCategoryController : Controller
     {
+        private readonly IBlogCategoryRepository _blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
+
+        [Route("BlogCategory/Gets")]
         public ActionResult Gets()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -39,6 +44,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
+        [Route("BlogCategory/Index")]
         public ActionResult Index(string pageIndex)
         {
             ViewBag.News = "active";
@@ -46,6 +52,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
+        [Route("BlogCategory/Create")]
         public ActionResult Create()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -76,6 +83,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
+        [Route("BlogCategory/Edit/{id}")]
         public ActionResult Edit(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -95,7 +103,8 @@ namespace CMS.Dashboard.Controllers
                 {
                     var category = uow.BlogCategory.Get(model.Id);
 
-                    category = (BlogCategory)model;
+                    _blogCategoryRepository.ConvertToModel(ref category, model);
+
                     category.ModeifiedDate = DateTime.UtcNow;
 
                     uow.Complete();
@@ -105,6 +114,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
+        [Route("BlogCategory/Active")]
         [HttpPost]
         public ActionResult Active(int id)
         {
@@ -122,14 +132,15 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
+        [Route("BlogCategory/Delete")]
         [HttpPost]
         public ActionResult Delete(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
                 var category = uow.BlogCategory.Get(id);
-                
-                uow.BlogCategory.Remove(category);                
+
+                uow.BlogCategory.Remove(category);
                 uow.Complete();
                 return Json(new
                 {
@@ -140,3 +151,4 @@ namespace CMS.Dashboard.Controllers
         }
     }
 }
+

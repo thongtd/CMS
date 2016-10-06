@@ -13,7 +13,7 @@ namespace CMS.DataAccess.Persistence
 
         public DbSet<BlogCategory> BlogCategorys { get; set; }
 
-        public DbSet<Blog> Blogs { get; set; }
+        public virtual DbSet<Blog> Blogs { get; set; }
 
         public DbSet<Contact> Contacts { get; set; }
 

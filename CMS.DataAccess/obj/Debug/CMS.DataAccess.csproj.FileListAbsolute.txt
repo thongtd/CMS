@@ -23,3 +23,5 @@ E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\System.Web.WebPages.Deployment.
 E:\Work\Job\Project\CMS\CMS.DataAccess\obj\Debug\CMS.DataAccess.csprojResolveAssemblyReference.cache
 E:\Work\Job\Project\CMS\CMS.DataAccess\obj\Debug\CMS.DataAccess.dll
 E:\Work\Job\Project\CMS\CMS.DataAccess\obj\Debug\CMS.DataAccess.pdb
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\System.Web.Helpers.dll
+E:\Work\Job\Project\CMS\CMS.DataAccess\bin\Debug\System.Web.Helpers.xml

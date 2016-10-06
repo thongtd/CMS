@@ -13,7 +13,7 @@
     if ($(".adminControl").hasClass('active')) {
         $('.admin').fadeIn(300);
     }
-    
+
     $(".adminControl").click(function () {
         if ($(this).hasClass('active')) {
 
@@ -134,22 +134,22 @@
         e.preventDefault();
         var dataForm = $(".ajaxSumitForm").serializeArray();
         var action = $(this).attr('action');
-
-        $.ajax({
-            url: action,
-            data: dataForm,
-            type: 'POST',
-            success: function (data) {
-                javascript: parent.jQuery.fancybox.close();
-                $('#gridBlogCategory').data('kendoGrid').dataSource.read();
-                $('#gridBlogCategory').data('kendoGrid').refresh();
-            },
-            error: function (e) {
-                console.log(e.message);
-            }
-        });
+        if ($(this).valid()) {
+            $.ajax({
+                url: action,
+                data: dataForm,
+                type: 'POST',
+                success: function (data) {
+                    javascript: parent.jQuery.fancybox.close();
+                    $('#gridSource').data('kendoGrid').dataSource.read();
+                    $('#gridSource').data('kendoGrid').refresh();
+                },
+                error: function (e) {
+                    console.log(e.message);
+                }
+            });
+        }
     });
-
 });
 
 $(document).resize(function () {
@@ -196,7 +196,7 @@ function gallery() {
 
 function setActive(e, itemId) {
     var action = $(e).attr('data-href');
-    var values = { id: itemId};
+    var values = { id: itemId };
 
     $.ajax({
         url: action,
@@ -204,8 +204,8 @@ function setActive(e, itemId) {
         type: 'POST',
         contentType: 'application/json; charset=utf-8',
         success: function (data) {
-            $('#gridBlogCategory').data('kendoGrid').dataSource.read();
-            $('#gridBlogCategory').data('kendoGrid').refresh();
+            $('#gridSource').data('kendoGrid').dataSource.read();
+            $('#gridSource').data('kendoGrid').refresh();
         },
         error: function (e) {
             console.log(e.message);
@@ -225,14 +225,28 @@ function onDelete(e, itemId) {
             type: 'POST',
             contentType: 'application/json; charset=utf-8',
             success: function (data) {
-                $('#gridBlogCategory').data('kendoGrid').dataSource.read();
-                $('#gridBlogCategory').data('kendoGrid').refresh();
+                $('#gridSource').data('kendoGrid').dataSource.read();
+                $('#gridSource').data('kendoGrid').refresh();
             },
             error: function (e) {
                 console.log(e.message);
             }
         });
     } else {
-        
+
     }
+}
+
+function browseImage(textField) {
+    var finder = new CKFinder();
+    finder.selectActionFunction = function (fileUrl) {
+        $("#" + textField + "").val(fileUrl);
+    };
+    finder.popup();
+}
+
+function initFullCkEditor(id) {
+    CKEDITOR.replace(id, {
+        toolbar: 'Full'
+    });
 }

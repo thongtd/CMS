@@ -6,7 +6,7 @@ using CMS.DataAccess.Persistence.Repositories;
 
 namespace CMS.Dashboard.Code
 {
-    public static class Unititys
+    public static class Unitities
     {
         public static List<SelectListItem> BlogCategoryTree()
         {

@@ -68,10 +68,10 @@
 .iframe-content .row-fluid {
     margin-bottom: 0;
 }
-.iframe-content .row-fluid label {
+.iframe-content .row-fluid label, .form-content .row-fluid label {
     font-size: 13px;
 }
-.iframe-content .row-fluid label em {
+.iframe-content .row-fluid label em, .form-content .row-fluid label em {
     color: red;
 }
 .iframe-content .row-form {
@@ -119,4 +119,18 @@ span.field-validation-error span{
 }
 .k-filter-row>th:first-child, .k-grid tbody td:first-child, .k-grid tfoot td:first-child, .k-grid-header th.k-header:first-child {
     padding-left: 10px;
+}
+.page-header {
+    font-size: 24px;
+    margin: 0 0 20px;
+    padding: 0;
+    border: none;
+    line-height: 28px;
+    font-weight: normal;
+}
+.content .workplace .head-custom {
+    border: 1px solid #ccc;
+    border-bottom: none;
+    background: none repeat scroll 0 0 #2a72b5;
+    padding: 0;
 }
