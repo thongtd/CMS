@@ -1,9 +1,5 @@
-$(document).ready(function () {
-
-
-
+﻿$(document).ready(function () {
     $(".header_menu .list_icon").click(function () {
-
         var menu = $("body > .menu");
 
         if (menu.is(":visible"))
@@ -17,10 +13,8 @@ $(document).ready(function () {
     if ($(".adminControl").hasClass('active')) {
         $('.admin').fadeIn(300);
     }
-
-
+    
     $(".adminControl").click(function () {
-
         if ($(this).hasClass('active')) {
 
             $.cookies.set('b_Admin_visibility', 'hidden');
@@ -28,9 +22,7 @@ $(document).ready(function () {
             $('.admin').fadeOut(200);
 
             $(this).removeClass('active');
-
         } else {
-
             $.cookies.set('b_Admin_visibility', 'visible');
 
             $('.admin').fadeIn(300);
@@ -39,7 +31,6 @@ $(document).ready(function () {
         }
 
     });
-
 
     $(".navigation .openable > a").click(function () {
         var par = $(this).parent('.openable');
@@ -64,7 +55,6 @@ $(document).ready(function () {
     });
 
     $(".buttons li > a").click(function () {
-
         var parent = $(this).parent();
 
         if (parent.find(".dd-list").length > 0) {
@@ -80,14 +70,10 @@ $(document).ready(function () {
             }
 
             return false;
-
         }
-
     });
 
-
     $("#menuDatepicker").datepicker();
-
 
     $(".link_navPopMessages").click(function () {
         if ($("#navPopMessages").is(":visible")) {
@@ -125,7 +111,6 @@ $(document).ready(function () {
 
     });
 
-
     $(".fancybox").fancybox({
         padding: 0
     });
@@ -141,22 +126,30 @@ $(document).ready(function () {
         }
     });
 
-    //$(".iframe-fancybox").fancybox({
-    //    padding: 0,
-    //    type: "iframe",
-    //    fitToView: false, // we need this
-    //    autoSize: false, // and this
-    //    maxWidth: "95%", // and this too
-    //    beforeShow: function () {
-    //        // find the inner height of the iframe contents
-    //        var newHeight = $(".fancybox-iframe").contents().find("html").innerHeight();
-    //        this.height = newHeight;
-    //    }
-    //});
-
     gallery();
     thumbs();
     headInfo();
+
+    $('.ajaxSumitForm').on('submit', function (e) {
+        e.preventDefault();
+        var dataForm = $(".ajaxSumitForm").serializeArray();
+        var action = $(this).attr('action');
+
+        $.ajax({
+            url: action,
+            data: dataForm,
+            type: 'POST',
+            success: function (data) {
+                javascript: parent.jQuery.fancybox.close();
+                $('#gridBlogCategory').data('kendoGrid').dataSource.read();
+                $('#gridBlogCategory').data('kendoGrid').refresh();
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    });
+
 });
 
 $(document).resize(function () {
@@ -177,11 +170,9 @@ function headInfo() {
     var button = block.find("button");
 
     input.width(block.width() - button.width() - 44);
-
 }
 
 function thumbs() {
-
     var w_block = $(".block.thumbs").width() - 20;
     var w_item = $(".block.thumbs .thumbnail").width() + 10;
 
@@ -190,11 +181,9 @@ function thumbs() {
     var m_items = Math.floor((w_block - w_item * c_items) / (c_items * 2));
 
     $(".block.thumbs .thumbnail").css('margin', m_items);
-
 }
 
 function gallery() {
-
     var w_block = $(".block.gallery").width() - 20;
     var w_item = $(".block.gallery a").width();
 
@@ -203,4 +192,47 @@ function gallery() {
     var m_items = Math.round((w_block - w_item * c_items) / (c_items * 2));
 
     $(".block.gallery a").css('margin', m_items);
+}
+
+function setActive(e, itemId) {
+    var action = $(e).attr('data-href');
+    var values = { id: itemId};
+
+    $.ajax({
+        url: action,
+        data: JSON.stringify(values),
+        type: 'POST',
+        contentType: 'application/json; charset=utf-8',
+        success: function (data) {
+            $('#gridBlogCategory').data('kendoGrid').dataSource.read();
+            $('#gridBlogCategory').data('kendoGrid').refresh();
+        },
+        error: function (e) {
+            console.log(e.message);
+        }
+    });
+}
+
+function onDelete(e, itemId) {
+    var confirm = window.confirm('Bạn có chắc chắn muốn xóa bản ghi này?');
+    if (confirm === true) {
+        var action = $(e).attr('data-href');
+        var values = { id: itemId };
+
+        $.ajax({
+            url: action,
+            data: JSON.stringify(values),
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            success: function (data) {
+                $('#gridBlogCategory').data('kendoGrid').dataSource.read();
+                $('#gridBlogCategory').data('kendoGrid').refresh();
+            },
+            error: function (e) {
+                console.log(e.message);
+            }
+        });
+    } else {
+        
+    }
 }

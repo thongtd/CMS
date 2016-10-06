@@ -53,9 +53,6 @@ namespace Dashboard.Controllers
             {
                 var blogCategory = (BlogCategory) model;
                 blogCategory.CreatedDate = DateTime.UtcNow;
-
-                _blogCategoryRepository.Add(blogCategory);
-                _blogCategoryRepository.SaveChange();
             }
 
             return View("Index");

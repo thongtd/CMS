@@ -17,11 +17,11 @@
                         <a href="@Url.Action("Create", "BlogCategory")" class="btn btn-flat btn-create iframe-fancybox">Thêm mới</a>
                     </div>
                     <div id="example">
-                        <div id="grid"></div>
+                        <div id="gridBlogCategory"></div>
                         @section scripts{
                             <script>
                                 $(document).ready(function () {
-                                    $("#grid").kendoGrid({
+                                    $("#gridBlogCategory").kendoGrid({
                                         dataSource: {
                                             transport: {
                                                 read: "/BlogCategory/Gets"
@@ -47,17 +47,11 @@
                                                 field: "CreatedDate", title: "Ngày tạo", filterable: false, width: "200px",
                                                 template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
                                             },
-                                            //{
-                                            //    field: "Thumbnail", title: "Hình ảnh",
-                                            //    template: "<img src='#=Thumbnail#' style='width: 50px' />",
-                                            //    filterable: false,
-                                            //    width: "100px"
-                                            //},
                                             {
                                                 title: "Chức năng",
-                                                template: "<a href=''><img src='/Content/Dashboard/img/icons/func/active.png' /></a>" +
-                                                    "<a href=''><img src='/Content/Dashboard/img/icons/func/note-edit.png' /></a>" +
-                                                    "<a href=''><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
+                                                template: "<a data-href=\"@Url.Action("Active", "BlogCategory")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
+                                                    "<a href='@Url.Action("Edit", "BlogCategory")/#= Id #' class='iframe-fancybox'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                    "<a data-href=\"@Url.Action("Delete", "BlogCategory")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
                                                 attributes: {
                                                     "class": "td-func"
                                                 },

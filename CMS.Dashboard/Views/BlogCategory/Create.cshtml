@@ -6,7 +6,7 @@
     Layout = "/Views/Shared/_LayoutIframe.cshtml";
 }
 <div class="iframe-content">
-    <form class="form-horizontal form-popup" action="@Url.Action("Create", "BlogCategory")" method="post">
+    <form class="form-horizontal form-popup ajaxSumitForm" action="@Url.Action("Create", "BlogCategory")" method="post" id="blogCategory">
         @Html.ValidationSummary(true)
         <div class="row-fluid">
             <div class="span12">
@@ -62,7 +62,7 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Meta Description:</label>
-                            @Html.TextAreaFor(model => model.Description, new { @placeholder = "Meta Description" })
+                            @Html.TextAreaFor(model => model.Description, new { @placeholder = "Meta Description"})
                             @Html.ValidationMessageFor(model => model.Description)
                         </div>
                         <div class="clear"></div>
@@ -97,20 +97,12 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        CKEDITOR.replace('Description', {
-            toolbar: 'Full'
+        $("#btImgBrowse").click(function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $("#Thumbnail").val(fileUrl);
+            };
+            finder.popup();
         });
-
-        //$("#btImgBrowse").click(function () {
-
-
-        //    //var finder = new CKFinder();
-        //    //finder.selectActionFunction = function (fileUrl) {
-        //    //    $("#Image").val(fileUrl);
-        //    //    $("#idImage").attr('src', fileUrl);
-        //    //    $('#idImage').css('display', 'block');
-        //    //};
-        //    //finder.popup();
-        //});
     });
 </script>

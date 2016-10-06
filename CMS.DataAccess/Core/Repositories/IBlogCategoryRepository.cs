@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
-using System.Security.Cryptography.X509Certificates;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
-using MvcConnerstore;
 using MvcConnerstore.Collections;
 
 namespace CMS.DataAccess.Core.Repositories
@@ -16,7 +14,5 @@ namespace CMS.DataAccess.Core.Repositories
         IEnumerable<BlogCategory> GetByTop(int top, Expression<Func<BlogCategory, bool>> predicate);
 
         IEnumerable<SelectedList> BlogCategoryTree();
-
-        void SaveChange();
     }
 }

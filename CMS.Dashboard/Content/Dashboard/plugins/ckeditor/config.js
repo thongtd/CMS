@@ -9,12 +9,12 @@ CKEDITOR.editorConfig = function (config) {
     // config.uiColor = '#AADC6E';
     config.enterMode = CKEDITOR.ENTER_P;
     config.toolbar = 'Full';
-    config.filebrowserBrowseUrl = '/Dashboard/plugins/ckfinder/ckfinder.html';
-    config.filebrowserImageBrowseUrl = '/Dashboard/plugins/ckfinder/ckfinder.html?type=Images';
-    config.filebrowserFlashBrowseUrl = '/Dashboard/plugins/ckfinder/ckfinder.html?type=Flash';
-    config.filebrowserUploadUrl = '/Dashboard/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
-    config.filebrowserImageUploadUrl = '/Dashboard/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images';
-    config.filebrowserFlashUploadUrl = '/Dashboard/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
+    config.filebrowserBrowseUrl = '/Content/Dashboard/plugins/ckfinder/ckfinder.html';
+    config.filebrowserImageBrowseUrl = '/Content/Dashboard/plugins/ckfinder/ckfinder.html?type=Images';
+    config.filebrowserFlashBrowseUrl = '/Content/Dashboard/plugins/ckfinder/ckfinder.html?type=Flash';
+    config.filebrowserUploadUrl = '/Content/Dashboard/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files';
+    config.filebrowserImageUploadUrl = '/Content/Dashboard/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images';
+    config.filebrowserFlashUploadUrl = '/Content/Dashboard/plugins/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash';
     config.filebrowserWindowWidth = '1000';
     config.filebrowserWindowHeight = '700';
 };

@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKFinder, Version=2.3.1.2492, Culture=neutral, PublicKeyToken=579e7adc719a1423, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\..\..\Commom DLL\CKFinder.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -369,7 +373,7 @@
     <Content Include="Content\Dashboard\img\icons\func\icon-inbox-actived.png" />
     <Content Include="Content\Dashboard\img\icons\func\icon-inbox.png" />
     <Content Include="Content\Dashboard\img\icons\func\not-active.png" />
-    <Content Include="Content\Dashboard\img\icons\func\note-edit.png" />
+    <Content Include="Content\Dashboard\img\icons\func\edit.png" />
     <Content Include="Content\Dashboard\img\icons\func\trash.png" />
     <Content Include="Content\Dashboard\img\icons\wb\ic_archive.png" />
     <Content Include="Content\Dashboard\img\icons\wb\ic_attachment.png" />
@@ -1702,6 +1706,7 @@
     <Content Include="Content\Dashboard\plugins\ckfinder\skins\v1\skin.js" />
     <Content Include="Content\Dashboard\plugins\ckfinder\skins\v1\uipanel.css" />
     <Content Include="Content\Dashboard\plugins\ckfinder\translations.txt" />
+    <Content Include="Content\Dashboard\plugins\kendo\css\default\loading-image.gif" />
     <Content Include="Content\Dashboard\plugins\kendo\css\default\sprite.png" />
     <Content Include="Content\Dashboard\plugins\kendo\css\kendo.common.min.css" />
     <Content Include="Content\Dashboard\plugins\kendo\css\kendo.default.min.css" />
@@ -1753,10 +1758,10 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Shared\_LayoutIframe.cshtml" />
+    <Content Include="Views\BlogCategory\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Views\Views\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff" />

@@ -1,14 +1,15 @@
-﻿@using System.Threading.Tasks
-@using Dashboard.Code
-@using Dashboard.Extentions
-@model CMS.DataAccess.Models.BlogCategoryRequest
+﻿@using CMS.Dashboard.Code
+@using CMS.Dashboard.Extentions
+@model CMS.DataAccess.Core.Domain.BlogCategory
 @{
     ViewBag.Title = "Thêm mới nhóm tin";
     Layout = "/Views/Shared/_LayoutIframe.cshtml";
 }
 <div class="iframe-content">
-    <form class="form-horizontal form-popup" action="@Url.Action("Create", "BlogCategory")" method="post">
+    <form class="form-horizontal form-popup ajaxSumitForm" action="@Url.Action("Edit", "BlogCategory")" method="post" id="blogCategory">
         @Html.ValidationSummary(true)
+        @Html.HiddenFor(m=> m.Id)
+        @Html.HiddenFor(m=> m.CreatedDate)
         <div class="row-fluid">
             <div class="span12">
                 <div class="head">
@@ -79,7 +80,7 @@
                     <div class="clearfix"></div>
                     <div class="row-form">
                         <label for="">Nhập số thứ tự:</label>
-                        @Html.TextBoxFor(model => model.Order, new { @placeholder = "Nhập số thứ tự", @Value = @ViewBag.OrderNum })
+                        @Html.TextBoxFor(model => model.Order, new { @placeholder = "Nhập số thứ tự" })
                         @Html.ValidationMessageFor(m => m.Order)
                     </div>
                     <div class="row-form">
@@ -98,20 +99,12 @@
 </div>
 <script type="text/javascript">
     $(function () {
-        CKEDITOR.replace('Description', {
-            toolbar: 'Full'
+        $("#btImgBrowse").click(function () {
+            var finder = new CKFinder();
+            finder.selectActionFunction = function (fileUrl) {
+                $("#Thumbnail").val(fileUrl);
+            };
+            finder.popup();
         });
-
-        //$("#btImgBrowse").click(function () {
-
-
-        //    //var finder = new CKFinder();
-        //    //finder.selectActionFunction = function (fileUrl) {
-        //    //    $("#Image").val(fileUrl);
-        //    //    $("#idImage").attr('src', fileUrl);
-        //    //    $('#idImage').css('display', 'block');
-        //    //};
-        //    //finder.popup();
-        //});
     });
 </script>

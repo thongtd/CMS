@@ -6,6 +6,8 @@ namespace CMS.DataAccess.Models
 {
     public class BlogCategoryRequest
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = Constants.Validation.Required)]
         [StringLength(255, ErrorMessage = Constants.Validation.MaxLength)]
         public string Name { get; set; }

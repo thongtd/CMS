@@ -84,3 +84,5 @@ E:\Work\Job\Project\CMS\CMS.Dashboard\bin\Microsoft.Owin.Security.MicrosoftAccou
 E:\Work\Job\Project\CMS\CMS.Dashboard\obj\Debug\CMS.Dashboard.csprojResolveAssemblyReference.cache
 E:\Work\Job\Project\CMS\CMS.Dashboard\obj\Debug\CMS.Dashboard.dll
 E:\Work\Job\Project\CMS\CMS.Dashboard\obj\Debug\CMS.Dashboard.pdb
+E:\Work\Job\Project\CMS\CMS.Dashboard\bin\CKFinder.dll
+E:\Work\Job\Project\CMS\CMS.Dashboard\bin\CKFinder.pdb
