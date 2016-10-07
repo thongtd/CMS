@@ -1,11 +1,11 @@
 ﻿@{
-    ViewBag.Title = "Danh sách tin tức";
+    ViewBag.Title = "Danh sách nhóm sản phẩm";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
 <div class="breadLine">
     <ul class="breadcrumb">
         <li><a href="#">Trang chủ</a> <span class="divider">></span></li>
-        <li class="active">Danh sách tin</li>
+        <li class="active">Danh sách nhóm tin</li>
     </ul>
 </div>
 <div class="workplace">
@@ -14,7 +14,7 @@
             <div class="span12">
                 <div class="block-fluid table-sorting" style="display: inline-block; width: 100%;">
                     <div class="head">
-                        <a href="@Url.Action("Create", "Blog")" class="btn btn-flat btn-create">Thêm mới</a>
+                        <a href="@Url.Action("Create", "ProductCategory")" class="btn btn-flat btn-create iframe-fancybox">Thêm mới</a>
                     </div>
                     <div id="example">
                         <div id="gridSource"></div>
@@ -24,7 +24,7 @@
                                     $("#gridSource").kendoGrid({
                                         dataSource: {
                                             transport: {
-                                                read: "@Url.Action("Gets","Blog")"
+                                                read: "@Url.Action("Gets", "ProductCategory")"
                                             },
                                             pageSize: 20
                                         },
@@ -48,13 +48,10 @@
                                                 template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
                                             },
                                             {
-                                                field: "BlogCategory.Name", title: "Nhóm tin", filterable: true, width: "200px"
-                                            },
-                                            {
                                                 title: "Chức năng",
-                                                template: "<a data-href=\"@Url.Action("Active", "Blog")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
-                                                    "<a href='@Url.Action("Edit", "Blog")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
-                                                    "<a data-href=\"@Url.Action("Delete", "Blog")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
+                                                template: "<a data-href=\"@Url.Action("Active", "ProductCategory")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
+                                                    "<a href='@Url.Action("Edit", "ProductCategory")/#= Id #' class='iframe-fancybox'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                    "<a data-href=\"@Url.Action("Delete", "ProductCategory")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
                                                 attributes: {
                                                     "class": "td-func"
                                                 },

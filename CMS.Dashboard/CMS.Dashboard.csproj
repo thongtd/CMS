@@ -203,6 +203,8 @@
     <Compile Include="Code\Unitities.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\ProductController.cs" />
+    <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\BlogCategoryController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\TagController.cs" />
@@ -1765,6 +1767,12 @@
     <Content Include="Views\Blog\Create.cshtml" />
     <Content Include="Views\Shared\_MetaTags.cshtml" />
     <Content Include="Views\Blog\Edit.cshtml" />
+    <Content Include="Views\ProductCategory\Create.cshtml" />
+    <Content Include="Views\ProductCategory\Edit.cshtml" />
+    <Content Include="Views\ProductCategory\Index.cshtml" />
+    <Content Include="Views\Product\Create.cshtml" />
+    <Content Include="Views\Product\Edit.cshtml" />
+    <Content Include="Views\Product\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -23,5 +23,21 @@ namespace CMS.Dashboard.Code
             }
             return result;
         }
+
+        public static List<SelectListItem> ProductCategoryTree()
+        {
+            var productCategoryRepository = new ProductCategoryRepository(new WorkContext());
+            var productCategoryTrees = productCategoryRepository.BlogCategoryTree().ToList();
+            var result = new List<SelectListItem>();
+
+            if (productCategoryTrees.Any())
+            {
+                foreach (var item in productCategoryTrees)
+                {
+                    result.Add(new SelectListItem { Text = item.Text, Value = item.Value });
+                }
+            }
+            return result;
+        }
     }
 }

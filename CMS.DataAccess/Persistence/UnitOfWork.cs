@@ -20,6 +20,8 @@ namespace CMS.DataAccess.Persistence
             Tag = new TagRepository(WorkContext);
             VideoCategory = new VideoCategoryRepository(WorkContext);
             Video = new VideoRepository(WorkContext);
+            ProductCategory = new ProductCategoryRepository(WorkContext);
+            //Product = new Product(WorkContext);
         }
 
         public IBlogCategoryRepository BlogCategory { get; private set; }
@@ -39,6 +41,10 @@ namespace CMS.DataAccess.Persistence
         public IVideoCategoryRepository VideoCategory { get; private set; }
 
         public IVideoRepository Video { get; private set; }
+
+        public IProductCategoryRepository ProductCategory { get; private set; }
+
+        public IProductRepository Product { get; private set; }
 
         public int Complete()
         {

@@ -35,7 +35,8 @@ namespace ConsoleApplication
 
             using (var unitOfWork = new UnitOfWork(new WorkContext()))
             {
-                unitOfWork.Tag.GetAll();
+                unitOfWork.Product.GetAll();
+                unitOfWork.ProductCategory.GetAll();
                 unitOfWork.Complete();
             }
         }

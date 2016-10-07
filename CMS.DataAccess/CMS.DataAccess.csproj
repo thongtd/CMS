@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.3\lib\net45\System.Web.Helpers.dll</HintPath>
       <Private>True</Private>
@@ -82,7 +83,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Configurations\ConnectionStrings.cs" />
+    <Compile Include="Core\Domain\Product.cs" />
     <Compile Include="Core\Domain\Blog.cs" />
+    <Compile Include="Core\Domain\ProductCategory.cs" />
     <Compile Include="Core\Domain\BlogCategory.cs" />
     <Compile Include="Core\Domain\Contact.cs" />
     <Compile Include="Core\Domain\Gallery.cs" />
@@ -98,6 +101,8 @@
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Linqkit\PredicateBuilder.cs" />
     <Compile Include="Core\Repositories\IBaseRepository.cs" />
+    <Compile Include="Core\Repositories\IProductRepository.cs" />
+    <Compile Include="Core\Repositories\IProductCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IBlogCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IBlogRepository.cs" />
     <Compile Include="Core\Repositories\IContactRepository.cs" />
@@ -108,6 +113,9 @@
     <Compile Include="Core\Repositories\IVideoCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IVideoRepository.cs" />
     <Compile Include="IDependency.cs" />
+    <Compile Include="Models\ProductResponse.cs" />
+    <Compile Include="Models\ProductRequest.cs" />
+    <Compile Include="Models\ProductCategoryRequest.cs" />
     <Compile Include="Models\BlogCategoryResponse.cs" />
     <Compile Include="Models\BlogCategoryRequest.cs" />
     <Compile Include="Models\BlogResponse.cs" />
@@ -122,6 +130,8 @@
     <Compile Include="Models\VideoCategoryRequest.cs" />
     <Compile Include="Models\VideoRequest.cs" />
     <Compile Include="Persistence\Repositories\BaseRepository.cs" />
+    <Compile Include="Persistence\Repositories\ProductRepository.cs" />
+    <Compile Include="Persistence\Repositories\ProductCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\BlogCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\BlogRepository.cs" />
     <Compile Include="Persistence\Repositories\ContactRepository.cs" />
