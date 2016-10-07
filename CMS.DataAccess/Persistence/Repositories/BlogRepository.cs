@@ -8,6 +8,7 @@ using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
 using MvcConnerstore.Collections;
 using System.Data.Entity;
+using CMS.DataAccess.Core.Linqkit;
 
 namespace CMS.DataAccess.Persistence.Repositories
 {
@@ -35,7 +36,6 @@ namespace CMS.DataAccess.Persistence.Repositories
             blog.Keyword = model.Keyword;
             blog.CultureCode = model.CultureCode;
             blog.IsActive = model.IsActive;
-            blog.IdentityCode = model.IdentityCode == Guid.Empty ? Guid.NewGuid() : model.IdentityCode;
             blog.PinToTop = model.PinToTop;
         }
 
@@ -88,6 +88,88 @@ namespace CMS.DataAccess.Persistence.Repositories
         public IEnumerable<BlogResponse> GetTagByBlogId(int blogId)
         {
             throw new NotImplementedException();
+        }
+
+        public void Add(BlogRequest model, string collectionTags)
+        {
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var identity = Guid.NewGuid();
+
+                var blog = (Blog)model;
+                blog.CreatedDate = DateTime.UtcNow;
+
+                var blogCategory = uow.BlogCategory.Get(model.BlogCategoryId);
+
+                blog.CultureCode = blogCategory.CultureCode;
+
+                blog.IdentityCode = identity;
+                uow.Blog.Add(blog);
+
+                #region Add tags for blog
+                if (!string.IsNullOrEmpty(collectionTags))
+                {
+                    string[] arrTags = collectionTags.Split(',');
+                    var tags = uow.TagCategory.GetAll();
+                    var tagIds = (from s in tags where arrTags.Contains(s.Name) select s).ToList();
+
+                    foreach (var item in tagIds)
+                    {
+                        int tagId = int.Parse(item.Id.ToString());
+                        var tag = new Tag()
+                        {
+                            ObjectName = Constants.ObjectName.Blog,
+                            ObjectProperty = Constants.ObjectName.BlogIdenityCode,
+                            ObjectIdentityId = identity,
+                            TagCategoryId = tagId
+                        };
+                        uow.Tag.Add(tag);
+                    }
+                }
+                #endregion
+
+                uow.Complete();
+            }
+        }
+
+        public void Update(BlogRequest model, string tags)
+        {
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var blog = uow.Blog.Get(model.Id);
+
+                ConvertToModel(ref blog, model);
+                blog.ModeifiedDate = DateTime.UtcNow;
+
+                var predicate = PredicateBuilder.Create<Tag>(s => s.ObjectIdentityId == blog.IdentityCode && s.ObjectName == Constants.ObjectName.Blog
+                    && s.ObjectProperty == Constants.ObjectName.BlogIdenityCode);
+                var oldTags = uow.Tag.Find(predicate).ToList();
+
+                uow.Tag.RemoveRange(oldTags);
+
+                if (!string.IsNullOrEmpty(tags))
+                {
+                    string[] arrTags = tags.Split(',');
+                    var tagCategories = uow.TagCategory.GetAll();
+
+                    var tagIds = (from s in tagCategories where arrTags.Contains(s.Name) select s).ToList();
+
+                    foreach (var item in tagIds)
+                    {
+                        int tagId = int.Parse(item.Id.ToString());
+                        var tag = new Tag
+                        {
+                            ObjectName = Constants.ObjectName.Blog,
+                            ObjectProperty = Constants.ObjectName.BlogIdenityCode,
+                            ObjectIdentityId = blog.IdentityCode,
+                            TagCategoryId = tagId
+                        };
+                        uow.Tag.Add(tag);
+                    }
+                }
+
+                uow.Complete();
+            }
         }
 
         public WorkContext WorkContext

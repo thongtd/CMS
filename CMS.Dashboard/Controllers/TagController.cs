@@ -3,6 +3,8 @@ using System.Linq;
 using System.Web.Mvc;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
+using CMS.DataAccess.Core.Linqkit;
+using CMS.DataAccess.Models;
 using CMS.DataAccess.Persistence;
 
 namespace CMS.Dashboard.Controllers
@@ -10,8 +12,7 @@ namespace CMS.Dashboard.Controllers
     [RoutePrefix("Dashboard")]
     public class TagController : Controller
     {
-        [HttpPost]
-        [Route("Tag/GetAllTag")]
+        [HttpPost, Route("Tag/GetAllTag")]
         public ActionResult GetAllTag(string tag)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -27,8 +28,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost]
-        [Route("Tag/AddTag")]
+        [HttpPost, Route("Tag/AddTag")]
         public JsonResult AddTag(string tag)
         {
             try
@@ -50,8 +50,11 @@ namespace CMS.Dashboard.Controllers
                         if (item.Trim().Length > 0)
                         {
                             string strTags = item.NameToSlug();
-                            var tags = uow.Tag.GetAll().ToList();
-                            if (!tags.Any())
+
+                            var predicate = PredicateBuilder.Create<TagCategory>(s => s.Name.Equals(item));
+
+                            var tagCategorys = uow.TagCategory.Find(predicate).ToList();
+                            if (!tagCategorys.Any())
                             {
                                 var objTag = new TagCategory { Name = item.ToLower().Trim(), MetaTag = strTags };
                                 uow.TagCategory.Add(objTag);

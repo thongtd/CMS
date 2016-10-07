@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using CMS.DataAccess.Core.Domain;
+using CMS.DataAccess.Models;
 
 namespace CMS.DataAccess.Core.Repositories
 {
@@ -12,5 +13,7 @@ namespace CMS.DataAccess.Core.Repositories
         IEnumerable<Tag> GetByTop(int top, Expression<Func<Tag, bool>> predicate);
 
         IEnumerable<Tag> GetTagByBlogId(int blogId);
+
+        TagHtmlResponse GetTagsForObject(Guid objectValue, string objectName, string objectProperty);
     }
 }

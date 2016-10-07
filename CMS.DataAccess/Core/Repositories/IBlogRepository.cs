@@ -15,5 +15,9 @@ namespace CMS.DataAccess.Core.Repositories
         IEnumerable<BlogResponse> GetByTop(int top, Expression<Func<Blog, bool>> predicate);
 
         IEnumerable<BlogResponse> GetTagByBlogId(int blogId);
+
+        void Add(BlogRequest model, string tags);
+
+        void Update(BlogRequest model, string tags);
     }
 }

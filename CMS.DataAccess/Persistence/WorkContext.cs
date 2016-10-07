@@ -21,7 +21,7 @@ namespace CMS.DataAccess.Persistence
 
         public DbSet<GalleryCategory> GalleryCategorys { get; set; }
 
-        public DbSet<TagCategory> TagCategorys { get; set; }
+        public virtual DbSet<TagCategory> TagCategorys { get; set; }
 
         public virtual DbSet<Tag> Tags { get; set; }
 

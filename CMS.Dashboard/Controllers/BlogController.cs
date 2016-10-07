@@ -19,6 +19,8 @@ namespace CMS.Dashboard.Controllers
     {
         private readonly IBlogRepository _blogRepository = new BlogRepository(new WorkContext());
 
+        private readonly ITagRepository _tagRepository = new TagRepository(new WorkContext());
+
         [Route("Blog/Gets")]
         public ActionResult Gets()
         {
@@ -42,51 +44,20 @@ namespace CMS.Dashboard.Controllers
         [Route("Blog/Create")]
         public ActionResult Create()
         {
+            ViewBag.News = "active";
+
             return View();
         }
 
-        [HttpPost, Route("Blog/Create")]
+        [HttpPost, ValidateInput(false), Route("Blog/Create")]
         public ActionResult Create(BlogRequest model, FormCollection frmCollect)
         {
             if (ModelState.IsValid)
             {
-                var blog = (Blog)model;
-                blog.CreatedDate = DateTime.UtcNow;
-                var strTags = frmCollect["hidden-tags"];
+                var tags = frmCollect["hidden-tags"];
 
-                using (var uow = new UnitOfWork(new WorkContext()))
-                {
-                    var blogCategory = uow.BlogCategory.Get(model.BlogCategoryId);
-
-                    blog.CultureCode = blogCategory.CultureCode;
-                    var identity = model.IdentityCode = new Guid();
-                    uow.Blog.Add(blog);
-
-                    #region Add tags for blog
-                    if (!string.IsNullOrEmpty(strTags))
-                    {
-                        string[] arrTags = strTags.Split(',');
-                        var tags = uow.TagCategory.GetAll();
-                        var tagIds = (from s in tags where arrTags.Contains(s.Name) select s).ToList();
-
-                        foreach (var item in tagIds)
-                        {
-                            int tagId = int.Parse(item.Id.ToString());
-                            var tag = new Tag()
-                            {
-                                ObjectName = Constants.ObjectName.Blog,
-                                ObjectProperty = Constants.ObjectName.BlogIdenityCode,
-                                ObjectIdentityId = identity,
-                                TagCategoryId = tagId
-                            };
-                            uow.Tag.Add(tag);
-                        }
-                    }
-                    #endregion
-
-                    uow.Complete();
-                    return RedirectToAction("Index");
-                }
+                _blogRepository.Add(model, tags);
+                return RedirectToAction("Index");
             }
             return View();
         }
@@ -94,58 +65,29 @@ namespace CMS.Dashboard.Controllers
         [Route("Blog/Edit/{id}")]
         public ActionResult Edit(int id)
         {
+            ViewBag.News = "active";
+
             using (var uow = new UnitOfWork(new WorkContext()))
             {
                 var blog = uow.Blog.Get(id);
+
+                var lstTags = _tagRepository.GetTagsForObject(blog.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
+                ViewBag.ActiveTags = lstTags.HtmlTag;
+                ViewBag.HiddenTags = lstTags.TagValue;
 
                 return View(blog);
             }
         }
 
-        [HttpPost, Route("Blog/Edit")]
+        [HttpPost, ValidateInput(false), Route("Blog/Edit")]
         public ActionResult Edit(BlogRequest model, FormCollection frmCollect)
         {
             if (ModelState.IsValid)
             {
                 var tags = frmCollect["hidden-tags"];
 
-                using (var uow = new UnitOfWork(new WorkContext()))
-                {
-                    var blog = uow.Blog.Get(model.Id);
-
-                    _blogRepository.ConvertToModel(ref blog, model);
-                    blog.ModeifiedDate = DateTime.UtcNow;
-                    
-                    var predicate = PredicateBuilder.Create<Tag>(
-                        s => s.ObjectIdentityId == model.IdentityCode && s.ObjectName == Constants.ObjectName.Blog
-                        && s.ObjectProperty == Constants.ObjectName.BlogIdenityCode);
-                    var oldTags = uow.Tag.Find(predicate).ToList();
-
-                    uow.Tag.RemoveRange(oldTags);
-
-                    if (!string.IsNullOrEmpty(tags))
-                    {
-                        string[] arrTags = tags.Split(',');
-                        var tagCategories = uow.TagCategory.GetAll();
-                        var tagIds = (from s in tagCategories where arrTags.Contains(s.Name) select s).ToList();
-
-                        foreach (var item in tagIds)
-                        {
-                            int tagId = int.Parse(item.Id.ToString());
-                            var tag = new Tag
-                            {
-                                ObjectName = Constants.ObjectName.Blog,
-                                ObjectProperty = Constants.ObjectName.BlogIdenityCode,
-                                ObjectIdentityId = model.IdentityCode,
-                                TagCategoryId = tagId
-                            };
-                            uow.Tag.Add(tag);
-                        }
-                    }
-                    
-                    uow.Complete();
-                    return RedirectToAction("Index");
-                }
+                _blogRepository.Update(model, tags);
+                return RedirectToAction("Index");
             }
             return View();
         }

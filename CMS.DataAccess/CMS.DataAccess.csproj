@@ -117,6 +117,7 @@
     <Compile Include="Models\GalleryRequest.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\TagCategoryRequest.cs" />
+    <Compile Include="Models\TagHtmlResponse.cs" />
     <Compile Include="Models\TagRequest.cs" />
     <Compile Include="Models\VideoCategoryRequest.cs" />
     <Compile Include="Models\VideoRequest.cs" />

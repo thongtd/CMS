@@ -15,6 +15,5 @@ E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.Razor.xml
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.WebPages.xml
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.WebPages.Deployment.xml
 E:\Work\Job\Project\CMS\MvcConnerstore\bin\Debug\System.Web.WebPages.Razor.xml
-E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.csprojResolveAssemblyReference.cache
 E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.dll
 E:\Work\Job\Project\CMS\MvcConnerstore\obj\Debug\MvcConnerstore.pdb

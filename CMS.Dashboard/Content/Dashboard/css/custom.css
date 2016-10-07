@@ -78,7 +78,7 @@
     border: none;
     padding: 10px 16px;
 }
-span.field-validation-error span{
+span.field-validation-error span, .field-validation-error{
     color: #f00;
     padding-left: 0;
     margin-bottom: 5px;

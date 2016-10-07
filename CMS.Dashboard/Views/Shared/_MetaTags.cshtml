@@ -42,7 +42,7 @@
         for (var i = 0; i < vHidden.length; i++) {
             if (vHidden[i].toUpperCase() === vId.toUpperCase()) {
                 vHidden.splice(i, 1);
-                $('.tagchecklist span a#' + vId + '').parent().remove();
+                $('.tagchecklist span a[id="' + vId + '"]').parent().remove();
             }
         }
         $('#hidden-tags').val(vHidden);
