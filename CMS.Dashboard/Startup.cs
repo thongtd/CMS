@@ -1,10 +1,10 @@
 ﻿using Microsoft.Owin;
 using Owin;
 
-[assembly: OwinStartupAttribute(typeof(CMS.Dashboard.Startup))]
+[assembly: OwinStartupAttribute(typeof(CMS.Dashboard._Startup))]
 namespace CMS.Dashboard
 {
-    public partial class Startup
+    public partial class _Startup
     {
         public void Configuration(IAppBuilder app)
         {

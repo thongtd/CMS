@@ -9,7 +9,7 @@ using CMS.Dashboard.Models;
 
 namespace CMS.Dashboard
 {
-    public partial class Startup
+    public partial class _Startup
     {
         // For more information on configuring authentication, please visit http://go.microsoft.com/fwlink/?LinkId=301864
         public void ConfigureAuth(IAppBuilder app)
