@@ -38,17 +38,17 @@
                                         },
                                         columns: [
                                             {
-                                                 field: "Id", title: "ID", width: "50px", filterable: false
+                                                field: "Id", title: "ID", width: "50px", filterable: false
                                             },
                                             {
-                                                 field: "Name", title: "Tên nhóm sản phẩm"
+                                                field: "Name", title: "Tên nhóm sản phẩm"
                                             },
                                             {
                                                 field: "CreatedDate", title: "Ngày tạo", filterable: false, width: "200px",
                                                 template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
                                             },
                                             {
-                                                field: "BlogCategory.Name", title: "Nhóm tin", filterable: true, width: "200px"
+                                                field: "ProductCategory.Name", title: "Nhóm tin", filterable: true, width: "200px"
                                             },
                                             {
                                                 title: "Chức năng",

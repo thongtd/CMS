@@ -70,7 +70,7 @@ namespace CMS.DataAccess.Core.Domain
             var images = new List<string> { model.Thumbnail };
             var jsonSerialiser = new JavaScriptSerializer();
 
-            var json = jsonSerialiser.Serialize(images);
+            var json = images.Any() ? jsonSerialiser.Serialize(images) : string.Empty;
 
             return new Product
             {
@@ -79,7 +79,7 @@ namespace CMS.DataAccess.Core.Domain
                 Title = string.IsNullOrEmpty(model.Title) ? model.Name : model.Title,
                 ProductCategoryId = model.ProductCategoryId,
                 Thumbnail = model.Thumbnail,
-                Images = !model.Images.Any() ? json : model.Images,
+                Images = json,
                 CreatedDate = model.CreatedDate,
                 ModeifiedDate = DateTime.UtcNow,
                 SubContent = model.SubContent,
