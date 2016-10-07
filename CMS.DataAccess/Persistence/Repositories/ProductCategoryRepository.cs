@@ -78,9 +78,9 @@ namespace CMS.DataAccess.Persistence.Repositories
 
             using (var unitOfWork = new UnitOfWork(new WorkContext()))
             {
-                var predicate = PredicateBuilder.Create<BlogCategory>(s => s.IsActive);
+                var predicate = PredicateBuilder.Create<ProductCategory>(s => s.IsActive);
 
-                var records = unitOfWork.BlogCategory.Find(predicate).ToList();
+                var records = unitOfWork.ProductCategory.Find(predicate).ToList();
 
                 if (records.Any())
                 {

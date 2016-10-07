@@ -19,7 +19,7 @@
         <div class="row-fluid">
             <div class="span12 no-margin">
                 <h1 class="page-header">
-                    Thêm mới bài viết
+                    Thêm mới sản phẩm
                     <small style="display: block; margin-top: 5px;"></small>
                 </h1>
             </div>
@@ -28,18 +28,18 @@
                 <div class="span8">
                     <div class="block-fluid">
                         <div class="row-form">
-                            <label for="">Tên nhóm tin:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Name, new { placeholder = "Tên bài viết" })
+                            <label for="">Tên nhóm sản phẩm:<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Name, new { placeholder = "Tên sản phẩm" })
                             @Html.ValidationMessageFor(model => model.Name)
                         </div>
                         <div class="row-form">
-                            <label for="">Mô tả ngắn bài viết:<em>*</em></label>
-                            @Html.TextAreaFor(m => m.SubContent, new { placeholder = "Mô tả ngắn bài viết" })
+                            <label for="">Mô tả ngắn sản phẩm:<em>*</em></label>
+                            @Html.TextAreaFor(m => m.SubContent, new { placeholder = "Mô tả ngắn sản phẩm" })
                             @Html.ValidationMessageFor(model => model.SubContent)
                         </div>
                         <div class="row-form">
-                            <label for="">Nội dung bài viết:<em>*</em></label>
-                            @Html.TextAreaFor(m => m.BodyContent, new { placeholder = "Nội dung bài viết", style = "height: 500px;" })
+                            <label for="">Nội dung sản phẩm:<em>*</em></label>
+                            @Html.TextAreaFor(m => m.BodyContent, new { placeholder = "Nội dung sản phẩm", style = "height: 500px;" })
                             @Html.ValidationMessageFor(model => model.BodyContent)
                         </div>
                         <h4 style="margin-left: 20px; text-decoration: underline;">Cấu hình SEO</h4>
@@ -69,7 +69,7 @@
                 <div class="span4">
                     <div class="block-fluid">
                         <div class="row-form">
-                            <label for="">Chọn nhóm tin:<em>*</em></label>
+                            <label for="">Chọn nhóm sản phẩm:<em>*</em></label>
                             @Html.DropDownList("BlogCategoryId", Unitities.ProductCategoryTree())
                             @Html.ValidationMessageFor(model => model.ProductCategoryId)
                         </div>
