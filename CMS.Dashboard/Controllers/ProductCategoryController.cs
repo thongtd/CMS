@@ -47,7 +47,7 @@ namespace CMS.Dashboard.Controllers
         [Route("ProductCategory/Index")]
         public ActionResult Index(string pageIndex)
         {
-            ViewBag.ProductCategory = "active";
+            ViewBag.Product = "active";
 
             return View();
         }
@@ -55,7 +55,7 @@ namespace CMS.Dashboard.Controllers
         [HttpGet, Route("ProductCategory/Create")]
         public ActionResult Create()
         {
-            ViewBag.ProductCategory = "active";
+            ViewBag.Product = "active";
 
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -88,7 +88,7 @@ namespace CMS.Dashboard.Controllers
         [HttpGet, Route("ProductCategory/Edit/{id}")]
         public ActionResult Edit(int id)
         {
-            ViewBag.ProductCategory = "active";
+            ViewBag.Product = "active";
 
             using (var uow = new UnitOfWork(new WorkContext()))
             {
