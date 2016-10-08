@@ -203,6 +203,7 @@
     <Compile Include="Code\Unitities.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\BlogCategoryController.cs" />
@@ -219,6 +220,24 @@
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\Frontend\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Frontend\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Frontend\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Frontend\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Frontend\bootstrap\js\npm.js" />
+    <Content Include="Content\Frontend\css\font-awesome.min.css" />
+    <Content Include="Content\Frontend\css\reset.css" />
+    <Content Include="Content\Frontend\css\responsive.css" />
+    <Content Include="Content\Frontend\css\style.css" />
+    <Content Include="Content\Frontend\fonts\fontawesome-webfont.svg" />
+    <Content Include="Content\Frontend\fonts\utmavo.png" />
+    <Content Include="Content\Frontend\images\background.png" />
+    <Content Include="Content\Frontend\images\cows.png" />
+    <Content Include="Content\Frontend\images\icon-cart.png" />
+    <Content Include="Content\Frontend\images\meat.png" />
+    <Content Include="Content\Frontend\images\thumbs.jpg" />
+    <Content Include="Content\Frontend\js\jquery-1.10.2.min.js" />
+    <Content Include="Content\Frontend\js\jquery-1.11.1.min.js" />
     <Content Include="Content\Dashboard\css\bootstrap-responsive.css" />
     <Content Include="Content\Dashboard\css\bootstrap.css" />
     <Content Include="Content\Dashboard\css\cleditor.css" />
@@ -1718,6 +1737,19 @@
     <Content Include="Content\Dashboard\plugins\kendo\js\jszip.min.js" />
     <Content Include="Content\Dashboard\plugins\kendo\js\kendo.all.min.js" />
     <Content Include="Content\Dashboard\plugins\kendo\js\products.js" />
+    <Content Include="Content\Frontend\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Frontend\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Frontend\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Frontend\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Frontend\fonts\fontawesome-webfont.eot" />
+    <Content Include="Content\Frontend\fonts\fontawesome-webfont.ttf" />
+    <Content Include="Content\Frontend\fonts\fontawesome-webfont.woff" />
+    <Content Include="Content\Frontend\fonts\fontawesome-webfont.woff2" />
+    <Content Include="Content\Frontend\fonts\FontAwesome.otf" />
+    <Content Include="Content\Frontend\fonts\utmavo.eot" />
+    <Content Include="Content\Frontend\fonts\utmavo.ttf" />
+    <Content Include="Content\Frontend\fonts\utmavo.woff" />
+    <Content Include="Content\Frontend\fonts\UVNSangSong_N.TTF" />
     <None Include="Content\Dashboard\_references.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -1773,6 +1805,11 @@
     <Content Include="Views\Product\Create.cshtml" />
     <Content Include="Views\Product\Edit.cshtml" />
     <Content Include="Views\Product\Index.cshtml" />
+    <None Include="Properties\PublishProfiles\WebPublish.pubxml" />
+    <Content Include="Views\Shared\_LayoutFrontend.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Home\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Dashboard</title>
+
+    <meta charset="utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <title>@ViewData["Title"] - Dashboard</title>
+
+    <title>@ViewBag.Title</title>
+    <link rel="icon" type="image/ico" href="~/Content/Dashboard/favicon.ico" />
+    <link href="~/Content/Dashboard/css/stylesheets.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/Dashboard/plugins/kendo/css/kendo.common.min.css" rel="stylesheet" />
+    <link href="~/Content/Dashboard/plugins/kendo/css/kendo.default.min.css" rel="stylesheet" />
+    <link href="~/Content/Dashboard/css/custom.css" rel="stylesheet" />
+
+    <script src="~/Content/Dashboard/js/jquery-1.8.3.js"></script>
+    <script src="~/Content/Dashboard/js/jquery-ui.min.js"></script>
+    <script src="~/Content/Dashboard/js/plugins/bootstrap.min.js"></script>
+    <script src="~/Content/Dashboard/js/plugins/fancybox/jquery.fancybox.pack.js"></script>
+    <script src="~/Content/Dashboard/plugins/ckeditor/ckeditor.js"></script>
+    <script src="~/Content/Dashboard/plugins/ckfinder/ckfinder.js" type="text/javascript"></script>
+    <script src="~/Content/Dashboard/lib/jquery.validate.min.js" type="text/javascript"></script>
+    <script src="~/Content/Dashboard/lib/jquery.validate.unobtrusive.min.js" type="text/javascript"></script>
+    <script src="~/Content/Dashboard/plugins/kendo/js/kendo.all.min.js"></script>
+    <script src="~/Content/Dashboard/plugins/kendo/js/console.js"></script>
+    <script src="~/Content/Dashboard/plugins/kendo/js/products.js"></script>
+    <script src="~/Content/Dashboard/js/actions.js"></script>
+</head>
+<body>
+    @RenderBody()
+
+    @RenderSection("scripts", required: false)
+</body>
+</html>

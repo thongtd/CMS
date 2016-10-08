@@ -101,6 +101,32 @@
                     </div>
                 </div>
                 <div class="span4" style="margin-top: 10px;">
+                    <div class="head head-custom" style="margin-top: 10px;">
+                        <div class="isw-tag"></div>
+                        <h1>Thông tin giá</h1>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid">
+                        <div class="row-form">
+                            <label for="">Đơn giá:<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Price, new { placeholder = "Đơn giá" })
+                            @Html.ValidationMessageFor(model => model.Price)
+                        </div>
+                        <div class="row-form">
+                            <label for="">Giảm giá:<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá"})
+                            @Html.ValidationMessageFor(model => model.Discount)
+                        </div>
+                        <div class="row-form">
+                            <label for="">Loại giảm giá:<em>*</em></label>
+                            @Html.RadioButtonFor(model => model.DiscountType, 1, new { id = "Value", @checked = "checked" })
+                            <label for="Value">Giá trị</label>
+                            @Html.RadioButtonFor(model => model.DiscountType, 2, new { id = "Percent" })
+                            <label for="Percent">Phần trăm</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4" style="margin-top: 10px;">
                     @{
                         Html.RenderPartial("_MetaTags");
                     }

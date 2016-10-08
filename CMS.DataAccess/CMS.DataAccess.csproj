@@ -96,6 +96,7 @@
     <Compile Include="Core\Domain\Video.cs" />
     <Compile Include="Core\Domain\VideoCategory.cs" />
     <Compile Include="Core\Extension\Constants.cs" />
+    <Compile Include="Core\Extension\DiscountType.cs" />
     <Compile Include="Core\Extension\IStringExtension.cs" />
     <Compile Include="Core\Extension\SelectedList.cs" />
     <Compile Include="Core\IUnitOfWork.cs" />

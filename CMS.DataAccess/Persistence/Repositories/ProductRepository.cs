@@ -18,31 +18,34 @@ namespace CMS.DataAccess.Persistence.Repositories
         {
         }
 
-        public void ConvertToModel(ref Product blog, ProductRequest model)
+        public void ConvertToModel(ref Product product, ProductRequest model)
         {
-            blog.Name = model.Name;
-            blog.Slug = string.IsNullOrEmpty(model.Slug) ? model.Name.NameToSlug() : model.Slug;
-            blog.ProductCategoryId = model.ProductCategoryId;
-            blog.Thumbnail = model.Thumbnail;
-            blog.Images = string.IsNullOrEmpty(model.Images) ? model.Thumbnail : model.Images;
-            blog.CreatedDate = model.CreatedDate;
-            blog.ModeifiedDate = DateTime.UtcNow;
-            blog.SubContent = model.SubContent;
-            blog.BodyContent = model.BodyContent;
-            blog.Target = model.Target;
-            blog.Click = model.Click;
-            blog.Title = model.Title;
-            blog.Description = model.Description;
-            blog.Keyword = model.Keyword;
-            blog.CultureCode = model.CultureCode;
-            blog.IsActive = model.IsActive;
-            blog.PinToTop = model.PinToTop;
+            product.Name = model.Name;
+            product.Slug = string.IsNullOrEmpty(model.Slug) ? model.Name.NameToSlug() : model.Slug;
+            product.ProductCategoryId = model.ProductCategoryId;
+            product.Thumbnail = model.Thumbnail;
+            product.Images = string.IsNullOrEmpty(model.Images) ? model.Thumbnail : model.Images;
+            product.CreatedDate = model.CreatedDate;
+            product.ModeifiedDate = DateTime.UtcNow;
+            product.SubContent = model.SubContent;
+            product.BodyContent = model.BodyContent;
+            product.Target = model.Target;
+            product.Click = model.Click;
+            product.Title = model.Title;
+            product.Description = model.Description;
+            product.Keyword = model.Keyword;
+            product.CultureCode = model.CultureCode;
+            product.IsActive = model.IsActive;
+            product.PinToTop = model.PinToTop;
+            product.Price = model.Price;
+            product.Discount = model.Discount;
+            product.DiscountType = model.DiscountType;
         }
 
         public IEnumerable<ProductResponse> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Product, bool>> predicate)
         {
             var products = WorkContext.Products
-                .Include(s => s.ProductCategory);
+                .Include(s => s.ProductCategory).OrderByDescending(s => s.Id);
 
             if (products.Any())
             {
@@ -68,14 +71,17 @@ namespace CMS.DataAccess.Persistence.Repositories
                     SubContent = s.SubContent,
                     IdentityCode = s.IdentityCode,
                     Target = s.Target,
-                    Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList()
+                    Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList(),
+                    Price = s.Price,
+                    Discount = s.Discount,
+                    DiscountType = s.DiscountType
                 }).ToList();
 
                 totalRecord = productResponses.Count();
                 productResponses = productResponses.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
                 return new PagedList<ProductResponse>(productResponses, totalRecord);
             }
-            
+
             totalRecord = 0;
             return new PagedList<ProductResponse>(null, 0);
         }
@@ -85,9 +91,47 @@ namespace CMS.DataAccess.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<ProductResponse> GetTagByBlogId(int blogId)
+        public IEnumerable<ProductResponse> GetTagByProductId(int blogId)
         {
             throw new NotImplementedException();
+        }
+
+        public ProductResponse GetBySlug(string slug)
+        {
+            var predicate = PredicateBuilder.Create<Product>(s => s.Slug.Equals(slug));
+
+            var product = WorkContext.Products.SingleOrDefault(predicate);
+
+            if (product == null)
+            {
+                return new ProductResponse();
+            }
+            return new ProductResponse
+            {
+                ProductCategory = product.ProductCategory,
+                Name = product.Name,
+                Id = product.Id,
+                IsActive = product.IsActive,
+                Description = product.Description,
+                ProductCategoryId = product.ProductCategoryId,
+                //Images = product.Images,
+                BodyContent = product.BodyContent,
+                Click = product.Click,
+                CreatedDate = product.CreatedDate,
+                CultureCode = product.CultureCode,
+                Discount = product.Discount,
+                DiscountType = product.DiscountType,
+                IdentityCode = product.IdentityCode,
+                Keyword = product.Keyword,
+                ModeifiedDate = product.ModeifiedDate,
+                PinToTop = product.PinToTop,
+                Price = product.Price,
+                Slug = product.Slug,
+                SubContent = product.SubContent,
+                Target = product.Target,
+                Thumbnail = product.Thumbnail,
+                Title = product.Title
+            };
         }
 
         public void Add(ProductRequest model, string collectionTags)

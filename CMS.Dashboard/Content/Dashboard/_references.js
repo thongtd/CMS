@@ -481,3 +481,7 @@
 /// <reference path="plugins/kendo/js/jszip.min.js" />
 /// <reference path="plugins/kendo/js/kendo.all.min.js" />
 /// <reference path="plugins/kendo/js/products.js" />
+/// <reference path="../frontend/bootstrap/js/bootstrap.js" />
+/// <reference path="../frontend/bootstrap/js/npm.js" />
+/// <reference path="../frontend/js/jquery-1.10.2.min.js" />
+/// <reference path="../frontend/js/jquery-1.11.1.min.js" />

@@ -1,0 +1,72 @@
+﻿@{
+    ViewBag.Title = "Danh sách nhóm sản phẩm";
+    Layout = "/Views/Shared/_Layout.cshtml";
+}
+<div class="breadLine">
+    <ul class="breadcrumb">
+        <li><a href="#">Trang chủ</a> <span class="divider">></span></li>
+        <li class="active">Danh sách nhóm tin</li>
+    </ul>
+</div>
+<div class="workplace">
+    <div class="row-fluid">
+        <form action="" method="post">
+            <div class="span12">
+                <div class="block-fluid table-sorting" style="display: inline-block; width: 100%;">
+                    <div class="head">
+                        <a href="@Url.Action("Create", "ProductCategory")" class="btn btn-flat btn-create iframe-fancybox">Thêm mới</a>
+                    </div>
+                    <div id="example">
+                        <div id="gridSource"></div>
+                        @section scripts{
+                            <script>
+                                $(document).ready(function () {
+                                    $("#gridSource").kendoGrid({
+                                        dataSource: {
+                                            transport: {
+                                                read: "@Url.Action("Gets", "ProductCategory")"
+                                            },
+                                            pageSize: 20
+                                        },
+                                        maxheight: 550,
+                                        scrollable: true,
+                                        sortable: true,
+                                        filterable: true,
+                                        pageable: {
+                                            input: true,
+                                            numeric: false
+                                        },
+                                        columns: [
+                                            {
+                                                 field: "Id", title: "ID", width: "50px", filterable: false
+                                            },
+                                            {
+                                                 field: "Name", title: "Tên nhóm tin"
+                                            },
+                                            {
+                                                field: "CreatedDate", title: "Ngày tạo", filterable: false, width: "200px",
+                                                template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
+                                            },
+                                            {
+                                                title: "Chức năng",
+                                                template: "<a data-href=\"@Url.Action("Active", "ProductCategory")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
+                                                    "<a href='@Url.Action("Edit", "ProductCategory")/#= Id #' class='iframe-fancybox'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                    "<a data-href=\"@Url.Action("Delete", "ProductCategory")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
+                                                attributes: {
+                                                    "class": "td-func"
+                                                },
+                                                width: "110px",
+                                                filterable: false
+                                            }
+                                        ]
+                                    });
+                                });
+                            </script>
+                        }
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

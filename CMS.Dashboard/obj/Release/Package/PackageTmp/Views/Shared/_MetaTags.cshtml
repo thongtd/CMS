@@ -1,0 +1,109 @@
+﻿<div class="head head-custom" style="margin-top: 10px;">
+    <div class="isw-tag"></div>
+    <h1>Meta Tags</h1>
+    <div class="clear"></div>
+</div>
+<div class="block-fluid" style=" min-height: 150px; padding-bottom: 10px; overflow-y: scroll; overflow-x: hidden;">
+    <div class="row-form" style="display: block; float: left; padding-bottom: 5px; width: 100%;">
+        <i>Các tags ngăn cách nhau bằng dấu phẩy ","</i>
+        <input type="text" id="txtTag" style="width: 70%; margin-right: 5px;">
+        <input type="button" class="btn btn-create btn-flat" id="btAddTags" value="Thêm" />
+        <div class="form-tags" id="input-tags" style="padding: 7px 0px;">
+            <div class="tagchecklist">
+                @Html.Raw(ViewBag.ActiveTags)
+            </div>
+        </div>
+        <input type="hidden" id="hidden-tags" name="hidden-tags" value="@ViewBag.HiddenTags" />
+        <input type="hidden" id="hidden-tags-edit" name="hidden-tags-edit" />
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#btAddTags').click(function () {
+            var vTag = $('#txtTag').val();
+            jsAddNewTag(vTag);
+        });
+        $("#txtTag").bind('keyup', function (e) {
+            var keycode = (event.keyCode ? event.keyCode : event.which);
+            if (keycode === '13') {
+                var vTag = $('#txtTag').val();
+                jsAddNewTag(vTag);
+                return event.defaultPrevented || event.returnValue == true;
+            }
+            return event.defaultPrevented || event.returnValue == false;
+        });
+        $('#div-tags a').click(function () {
+            AddTags(this.id, this.text);
+        });
+    });
+
+    function RemoveTags(vId) {
+        var vHidden = $('#hidden-tags').val().split(',');
+        for (var i = 0; i < vHidden.length; i++) {
+            if (vHidden[i].toUpperCase() === vId.toUpperCase()) {
+                vHidden.splice(i, 1);
+                $('.tagchecklist span a[id="' + vId + '"]').parent().remove();
+            }
+        }
+        $('#hidden-tags').val(vHidden);
+        $('#hidden-tags-edit').val(vHidden);
+    }
+
+    function jsAddNewTag(vTag) {
+        if (vTag.length === 0)
+            return;
+        $.post("@Url.Action("AddTag","Tag")", { tag: "" + vTag + "" },
+            function (data) {
+                var arr = vTag.split(",");
+                for (var i = 0; i < arr.length; i++) {
+                    var vContent = "<span><a onclick=\"$(this).closest('span').remove(); RemoveTags('" + arr[i] + "');\" class=\"ntdelbutton remove-tag\">[x]&nbsp;</a>" + arr[i] + "</span>&nbsp;";
+                    $('.tagchecklist').append(vContent);
+                    var vHiddenTags = $('#hidden-tags').val() + "," + arr[i];
+                    $('#hidden-tags').val(vHiddenTags);
+                    $('#hidden-tags-edit').val(vHiddenTags);
+                }
+                $('#txtTag').val("");
+            });
+    }
+
+    function AddTags(vId, vTag) {
+        if (vTag.length !== 0) {
+            var vBool = 0;
+            var vHiddenTags = $('#hidden-tags').val();
+            var arr = vHiddenTags.split(',');
+            for (var i = 0; i < arr.length; i++) {
+                if (vId.toUpperCase() === arr[i].toUpperCase()) {
+                    vBool = 1;
+                    break;
+                }
+            }
+            if (vBool == 0) {
+                var vContent = '<span><a onclick=RemoveTags("' + vTag + '") id=' + vTag + ' class=\"ntdelbutton remove-tag\">[x]&nbsp;</a>' + vTag + '&nbsp;</span>';
+                $('.tagchecklist').append(vContent);
+                var vHiddenTags = $('#hidden-tags').val() + "," + vTag;
+                $('#hidden-tags').val(vHiddenTags);
+                $('#txtTag').val("");
+            }
+        }
+    }
+
+    $(document).ready(function () {
+        $("#txtTag").autocomplete({
+            width: 300,
+            max: 10,
+            delay: 100,
+            minLength: 1,
+            autoFocus: true,
+            cacheLength: 1,
+            scroll: true,
+            highlight: false,
+            source: function (request, response) {
+                $.post('@Url.Action("GetAllTag","Tag")', { tag: request.term },
+                    function (data) {
+                        var items = data;
+                        response(items);
+                    });
+            }
+        });
+    });
+</script>
