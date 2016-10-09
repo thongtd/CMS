@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
 using CMS.DataAccess.Core.Extension;
@@ -21,7 +22,7 @@ namespace CMS.DataAccess.Models
         [Required(ErrorMessage = Constants.Validation.Required)]
         public string Thumbnail { get; set; }
 
-        public string Images { get; set; }
+        public IList<string> Images { get; set; }
 
         public DateTime CreatedDate { get; set; }
 

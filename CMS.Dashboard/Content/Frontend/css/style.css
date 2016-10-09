@@ -523,12 +523,6 @@ footer .panel.social ul li i {
     padding: 20px 0;
     font-size: 16px;
 }
-.discount .span12 .span6 input[type="checkbox"]{
-    margin-top: 0;
-}
-.discount .span12 .span6 label{
-    display: inline-block;
-}
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
 /* Styles */
