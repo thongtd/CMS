@@ -1,0 +1,280 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta name="viewport" width="device-width">
+    <link href="~/Content/Frontend/bootstrap/css/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/Frontend/css/responsive.css" type="text/css" rel="stylesheet" media="screen" />
+    <link href="~/Content/Frontend/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet"> <!-- 3 KB -->
+    <link href="~/Content/Frontend/css/reset.css" rel="stylesheet" />
+    <link href="~/Content/Frontend/css/style.css" rel="stylesheet" type="text/css" media="screen" />
+    @RenderSection("styles", false)
+    <title>@ViewBag.Title</title>
+</head>
+<body ng-app="cows" ng-controller="cowsController">
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=665773710245538";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));</script>
+    <div class="container-fluid header" ng-init="getCartItems()">
+        <div class="container">
+            <div class="top-header">
+                <div class="row">
+                    <div class="col-md-4">
+                        <div class="hotline">
+                            Hotline: <strong>1900 6666</strong>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <h1 class="logo-text">
+                            <a href="/" title="BEEF JAPAN">BEEF JAPAN</a>
+                        </h1>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="btn-group cart-panel">
+                            <p class="cart dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <label>Giỏ hàng của tôi</label>
+                                <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                                <img class="store" src="~/Content/Frontend/images/icon-cart.png" />
+                                <span id="CartAmount">{{cartItems.length}}</span>
+                            </p>
+                            <ul class="dropdown-menu cart-item dropdown-menu-right" ng-if="cartItems.lenght > 0">
+                                <li ng-repeat="item in cartItems">
+                                    <p class="thumbs">
+                                        <img src="{{item.Product.Thumbnail}}" />
+                                    </p>
+                                    <p>
+                                        <a href="#">
+                                            {{item.Product.Name}}
+                                        </a>
+                                        <label class="price">
+                                            {{item.Product.Price | number}}
+                                        </label>
+                                    </p>
+                                    <a href="javascript:void(0)" class="remove-item" ng-click="removeFromCart(item.Product.Id)">
+                                        <label>&#9747;</label>
+                                    </a>
+                                </li>
+                                @*<li>
+                                    <p class="thumbs">
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
+                                    </p>
+                                    <p>
+                                        <a href="#">Thịt bò VIP</a>
+                                        <label class="price">1.200.000 đ</label>
+                                    </p>
+                                    <a href="#" class="remove-item">
+                                        <label>&#9747;</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <p class="thumbs">
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
+                                    </p>
+                                    <p>
+                                        <a href="#">Thịt bò VIP</a>
+                                        <label class="price">1.200.000 đ</label>
+                                    </p>
+                                    <a href="#" class="remove-item">
+                                        <label>&#9747;</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <p class="thumbs">
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
+                                    </p>
+                                    <p>
+                                        <a href="#">Thịt bò VIP</a>
+                                        <label class="price">1.200.000 đ</label>
+                                    </p>
+                                    <a href="#" class="remove-item">
+                                        <label>&#9747;</label>
+                                    </a>
+                                </li>
+                                <li>
+                                    <p class="thumbs">
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
+                                    </p>
+                                    <p>
+                                        <a href="#">Thịt bò VIP</a>
+                                        <label class="price">1.200.000 đ</label>
+                                    </p>
+                                    <a href="#" class="remove-item">
+                                        <label>&#9747;</label>
+                                    </a>
+                                </li>*@
+                                <li>
+                                    <a href="#" class="btn bt-checkout">Mua Hàng</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <nav class="navbar navbar-default">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="/" title="TRANG CHỦ">
+                            Trang chủ
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Sản phẩm
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Món ngon
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Mua hàng
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Liên hệ
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    @RenderBody()
+    <div class="clearfix"></div>
+    <div class="container-fluid get-promotion no-padding">
+        <div class="line">
+            <span>NHẬN THÔNG TIN KHUYẾN MÃI</span>
+        </div>
+        <div class="clearfix"></div>
+        <div class="email-promotion">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="circle">
+                            <p>Giảm ngay</p>
+                            <p><span class="percent">20%</span></p>
+                            <p>khi mua thịt bò</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4 mail-text">
+                        <p>
+                            Điền địa chỉ mail để nhận những chương trình hấp dẫn
+                        </p>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nhập địa chỉ email" />
+                            <a href="#" class="add-email">
+                                <i class="fa fa-plus" aria-hidden="true"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="container-fluid no-padding">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="col-md-4">
+                        <div class="panel">
+                            <h3 class="title">Menu</h3>
+                            <ul>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i> Sản phẩm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i> Sản phẩm
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#">
+                                        <i class="fa fa-angle-right" aria-hidden="true"></i> Sản phẩm
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel address">
+                            <h3 class="title">Liên hệ</h3>
+                            <p>
+                                <strong>
+                                    Công ty cổ phần D&A Việt Nam
+                                </strong>
+                            </p>
+                            <p>
+                                Tầng 8, 18 Lý Thường Kiệt Hà Nội
+                            </p>
+                            <p>
+                                Điện thoại: 0123.456.789
+                            </p>
+                            <p>
+                                Email: <a href="mailto:thitbo123@gmail.com">thitbo123@gmail.com</a>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="panel social">
+                            <h3 class="title">Kết nối</h3>
+                            <ul>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-facebook" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-twitter" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="">
+                                        <i class="fa fa-google-plus" aria-hidden="true"></i>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            © BEEF JAPAN 2016.  Bản quyền thuộc về
+        </div>
+    </footer>
+    <script src="~/Content/Frontend/js/jquery-1.10.2.min.js"></script>
+    <script src="~/Content/Frontend/bootstrap/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <script src="~/Content/Frontend/js/apps.js"></script>
+    @RenderSection("scripts", false)
+</body>
+</html>

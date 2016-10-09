@@ -17,6 +17,8 @@ namespace CMS.Dashboard.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.Title = "Trang chủ";
+
             var predicate = PredicateBuilder.Create<Product>(s => s.IsActive);
             var products = _productRepository.GetByTop(6, predicate);
 
@@ -27,6 +29,8 @@ namespace CMS.Dashboard.Controllers
         public ActionResult ProductCategory(string page)
         {
             int totalRows = 0;
+            ViewBag.Title = "Danh sách sản phẩm";
+
             var predicate = PredicateBuilder.Create<Product>(s => s.IsActive);
 
             var products =  _productRepository.Paging(PagedExtention.TryGetPageIndex(page), 9, out totalRows, predicate);
@@ -38,6 +42,8 @@ namespace CMS.Dashboard.Controllers
         public ActionResult ProductDetail(string slug)
         {
             var product = _productRepository.GetBySlug(slug);
+
+            ViewBag.Title = product.Name;
 
             var predicate = PredicateBuilder.Create<Product>(s => s.IsActive && s.ProductCategoryId == product.ProductCategoryId);
             var relatedProducts = _productRepository.GetByTop(3, predicate).ToList();

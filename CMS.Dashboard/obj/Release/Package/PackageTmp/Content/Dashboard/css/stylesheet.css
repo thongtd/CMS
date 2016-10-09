@@ -34,7 +34,8 @@
 
     .header .logo {
         display: block;
-        float: left; /*padding: 8px 3px;*/
+        float: left; 
+        padding: 8px 3px;
     }
 
     .header .header_menu {

@@ -24,7 +24,9 @@
     <script src="~/Content/Dashboard/plugins/kendo/js/kendo.all.min.js"></script>
     <script src="~/Content/Dashboard/plugins/kendo/js/console.js"></script>
     <script src="~/Content/Dashboard/plugins/kendo/js/products.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>ssss
     <script src="~/Content/Dashboard/js/actions.js"></script>
+    <script src="~/Content/Dashboard/js/controller/dashboardController.js"></script>
 </head>
 <body>
     <div class="header">
@@ -197,7 +199,7 @@
         </ul>
         <div class="dr"><span></span></div>
     </div>
-    <div class="content">
+    <div class="content" ng-controller="dashboardController">
         @RenderBody()
     </div>
     <div class="ui-widget-overlay" style="width: 100%; height: 1141px; z-index: 1001; display: none"></div>

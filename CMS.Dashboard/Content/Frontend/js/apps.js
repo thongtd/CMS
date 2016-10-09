@@ -9,7 +9,6 @@ app.controller('cowsController', function ($scope) {
             url: '/add-to-cart',
             data: { id: productId },
             success: function (data) {
-                $("#CartAmount").html(data.Items.Count);
                 $scope.cartItems = data.Items;
                 if (!$scope.$$phase) $scope.$apply();
             }
