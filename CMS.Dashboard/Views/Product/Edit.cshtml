@@ -1,8 +1,11 @@
 ﻿@using CMS.Dashboard.Code
+@using Newtonsoft.Json
 @model CMS.DataAccess.Core.Domain.Product
 @{
     ViewBag.Title = "Cập nhật sản phẩm";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var images = JsonConvert.DeserializeObject<IList<string>>(Model.Images);
 }
 <div class="breadLine">
     <ul class="breadcrumb">
@@ -83,20 +86,33 @@
                         </div>
                     </div>
                     <div class="clearfix"></div>
-                    <div class="block-fluid">
-                        <div class="row-form">
-                            <label class="checkbox inline lb-checkbox no-padding">
-                                @Html.CheckBoxFor(model => model.PinToTop)
-                                Gim trang chủ
-                            </label>
-                        </div>
+                </div>
+                <div class="span4" style="margin-top: 10px;">
+                    <div class="head head-custom" style="margin-top: 10px;">
+                        <div class="isw-picture"></div>
+                        <h1>Hình ảnh</h1>
+                        <div class="clear"></div>
                     </div>
                     <div class="block-fluid">
                         <div class="row-form">
-                            <label class="checkbox inline lb-checkbox no-padding">
-                                @Html.CheckBoxFor(model => model.IsActive)
-                                Cho phép hiển thị
-                            </label>
+                            <div class="span12">
+                                @for (int i = 0; i < images.Count; i++)
+                                {
+                                    <div class="products-image">
+                                        @Html.TextBoxFor(m => m.Images[i], new { placeholder = "Hình ảnh sản phẩm", Value = images[i] })
+                                        <a class="image-browse" onclick="browseImage('Images_@Html.Raw(i)_')">
+                                            <i class="isw-plus"></i>
+                                        </a>
+                                        <a class="image-browse del">
+                                            <i class="isw-delete"></i>
+                                        </a>
+                                    </div>
+                                }
+                                <div class="products-image">
+                                    <input type="button" class="btn btn-create btn-flat" value="Thêm Ảnh">
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
                 </div>
@@ -108,24 +124,63 @@
                     </div>
                     <div class="block-fluid">
                         <div class="row-form">
-                            <label for="">Đơn giá:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Price, new { placeholder = "Đơn giá" })
-                            @Html.ValidationMessageFor(model => model.Price)
+                            <div class="span12">
+                                <div class="span6">
+                                    <label for="">Đơn giá:<em>*</em></label>
+                                    @Html.TextBoxFor(m => m.Price, new { placeholder = "Đơn giá" })
+                                    @Html.ValidationMessageFor(model => model.Price)
+                                </div>
+                                <div class="span6">
+                                    <label for="">Giảm giá:<em>*</em></label>
+                                    @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá", Value = "0" })
+                                    @Html.ValidationMessageFor(model => model.Discount)
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="row-form">
-                            <label for="">Giảm giá:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá"})
-                            @Html.ValidationMessageFor(model => model.Discount)
-                        </div>
-                        <div class="row-form">
+                        <div class="row-form discount">
                             <label for="">Loại giảm giá:<em>*</em></label>
-                            @Html.RadioButtonFor(model => model.DiscountType, 1, new { id = "Value", @checked = "checked" })
-                            <label for="Value">Giá trị</label>
-                            @Html.RadioButtonFor(model => model.DiscountType, 2, new { id = "Percent" })
-                            <label for="Percent">Phần trăm</label>
+                            <div class="span12 no-margin">
+                                <div class="span6">
+                                    @Html.RadioButtonFor(model => model.DiscountType, 1, new { id = "Value", @checked = "checked" })
+                                    <label for="Value">Giá trị</label>
+                                </div>
+                                <div class="span6">
+                                    @Html.RadioButtonFor(model => model.DiscountType, 2, new { id = "Percent" })
+                                    <label for="Percent">Phần trăm</label>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
+                        <div class="clearfix"></div>
                     </div>
                 </div>
+                @*<div class="span4" style="margin-top: 10px;">
+                        <div class="head head-custom" style="margin-top: 10px;">
+                            <div class="isw-tag"></div>
+                            <h1>Thông tin giá</h1>
+                            <div class="clear"></div>
+                        </div>
+                        <div class="block-fluid">
+                            <div class="row-form">
+                                <label for="">Đơn giá:<em>*</em></label>
+                                @Html.TextBoxFor(m => m.Price, new { placeholder = "Đơn giá" })
+                                @Html.ValidationMessageFor(model => model.Price)
+                            </div>
+                            <div class="row-form">
+                                <label for="">Giảm giá:<em>*</em></label>
+                                @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá"})
+                                @Html.ValidationMessageFor(model => model.Discount)
+                            </div>
+                            <div class="row-form">
+                                <label for="">Loại giảm giá:<em>*</em></label>
+                                @Html.RadioButtonFor(model => model.DiscountType, 1, new { id = "Value", @checked = "checked" })
+                                <label for="Value">Giá trị</label>
+                                @Html.RadioButtonFor(model => model.DiscountType, 2, new { id = "Percent" })
+                                <label for="Percent">Phần trăm</label>
+                            </div>
+                        </div>
+                    </div>*@
                 <div class="span4" style="margin-top: 10px;">
                     @{
                         Html.RenderPartial("_MetaTags");
@@ -134,6 +189,20 @@
                 <div class="span4" style="margin-top: 10px;">
                     <div class="block-fluid">
                         <div class="row-form">
+                            <div class="span12">
+                                <div class="span6">
+                                    <label class="checkbox inline lb-checkbox no-padding">
+                                        @Html.CheckBoxFor(model => model.PinToTop)
+                                        Gim trang chủ
+                                    </label>
+                                </div>
+                                <span class="span6">
+                                    <label class="checkbox inline lb-checkbox no-padding">
+                                        @Html.CheckBoxFor(model => model.IsActive)
+                                        Cho phép hiển thị
+                                    </label>
+                                </span>
+                            </div>
                             <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý" />
                         </div>
                     </div>

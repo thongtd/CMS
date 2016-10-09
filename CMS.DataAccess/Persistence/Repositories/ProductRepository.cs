@@ -9,6 +9,7 @@ using CMS.DataAccess.Models;
 using MvcConnerstore.Collections;
 using System.Data.Entity;
 using CMS.DataAccess.Core.Linqkit;
+using Newtonsoft.Json;
 
 namespace CMS.DataAccess.Persistence.Repositories
 {
@@ -24,7 +25,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             product.Slug = string.IsNullOrEmpty(model.Slug) ? model.Name.NameToSlug() : model.Slug;
             product.ProductCategoryId = model.ProductCategoryId;
             product.Thumbnail = model.Thumbnail;
-            product.Images = string.IsNullOrEmpty(model.Images) ? model.Thumbnail : model.Images;
+            product.Images = model.Images.Any() ? JsonConvert.SerializeObject(model.Images) : null;
             product.CreatedDate = model.CreatedDate;
             product.ModeifiedDate = DateTime.UtcNow;
             product.SubContent = model.SubContent;

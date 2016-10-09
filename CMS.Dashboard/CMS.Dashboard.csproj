@@ -221,6 +221,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Dashboard\img\icons\ws\ic_delete.png" />
+    <Content Include="Content\Dashboard\js\controller\dashboardController.js" />
     <Content Include="Content\Frontend\bootstrap\css\bootstrap.css" />
     <Content Include="Content\Frontend\bootstrap\fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Content\Frontend\bootstrap\js\bootstrap.js" />

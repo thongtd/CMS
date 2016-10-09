@@ -93,7 +93,7 @@
                                 @for (int i = 0; i < 5; i++)
                                 {
                                     <div class="products-image">
-                                        @Html.TextBoxFor(m => m.Images[i], new { placeholder = "Hình ảnh sản phẩm" })
+                                        @Html.TextBoxFor(m => m.Images[i], new {placeholder = "Hình ảnh sản phẩm"})
                                         <a class="image-browse" onclick="browseImage('Images_@Html.Raw(i)_')">
                                             <i class="isw-plus"></i>
                                         </a>
