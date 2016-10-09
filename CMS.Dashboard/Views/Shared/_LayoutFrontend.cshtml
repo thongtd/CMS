@@ -15,7 +15,7 @@
     @RenderSection("styles", false)
     <title>@ViewBag.Title</title>
 </head>
-<body>
+<body ng-app="cows" ng-controller="cowsController">
     <div id="fb-root"></div>
     <script>
         (function (d, s, id) {
@@ -25,7 +25,7 @@
             js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.7&appId=665773710245538";
             fjs.parentNode.insertBefore(js, fjs);
         }(document, 'script', 'facebook-jssdk'));</script>
-    <div class="container-fluid header">
+    <div class="container-fluid header" ng-init="getCartItems()">
         <div class="container">
             <div class="top-header">
                 <div class="row">
@@ -36,7 +36,7 @@
                     </div>
                     <div class="col-md-4">
                         <h1 class="logo-text">
-                            <a href="">BEEF JAPAN</a>
+                            <a href="/" title="BEEF JAPAN">BEEF JAPAN</a>
                         </h1>
                     </div>
                     <div class="col-md-4">
@@ -45,11 +45,28 @@
                                 <label>Giỏ hàng của tôi</label>
                                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
                                 <img class="store" src="~/Content/Frontend/images/icon-cart.png" />
+                                <span id="CartAmount">{{cartItems.length}}</span>
                             </p>
-                            <ul class="dropdown-menu cart-item dropdown-menu-right">
-                                <li>
+                            <ul class="dropdown-menu cart-item dropdown-menu-right" ng-if="cartItems.lenght > 0">
+                                <li ng-repeat="item in cartItems">
                                     <p class="thumbs">
-                                        <img src="~/Content/Frontend/images/thumbs.jpg" />
+                                        <img src="{{item.Product.Thumbnail}}" />
+                                    </p>
+                                    <p>
+                                        <a href="#">
+                                            {{item.Product.Name}}
+                                        </a>
+                                        <label class="price">
+                                            {{item.Product.Price | number}}
+                                        </label>
+                                    </p>
+                                    <a href="javascript:void(0)" class="remove-item" ng-click="removeFromCart(item.Product.Id)">
+                                        <label>&#9747;</label>
+                                    </a>
+                                </li>
+                                @*<li>
+                                    <p class="thumbs">
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
                                     </p>
                                     <p>
                                         <a href="#">Thịt bò VIP</a>
@@ -61,7 +78,7 @@
                                 </li>
                                 <li>
                                     <p class="thumbs">
-                                        <img src="~/Content/Frontend/images/thumbs.jpg" />
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
                                     </p>
                                     <p>
                                         <a href="#">Thịt bò VIP</a>
@@ -73,7 +90,7 @@
                                 </li>
                                 <li>
                                     <p class="thumbs">
-                                        <img src="~/Content/Frontend/images/thumbs.jpg" />
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
                                     </p>
                                     <p>
                                         <a href="#">Thịt bò VIP</a>
@@ -85,7 +102,7 @@
                                 </li>
                                 <li>
                                     <p class="thumbs">
-                                        <img src="~/Content/Frontend/images/thumbs.jpg" />
+                                        <img src="~/Content/Frontend/images/thumbs.jpg"/>
                                     </p>
                                     <p>
                                         <a href="#">Thịt bò VIP</a>
@@ -94,7 +111,7 @@
                                     <a href="#" class="remove-item">
                                         <label>&#9747;</label>
                                     </a>
-                                </li>
+                                </li>*@
                                 <li>
                                     <a href="#" class="btn bt-checkout">Mua Hàng</a>
                                 </li>
@@ -117,7 +134,7 @@
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav">
                     <li>
-                        <a href="#">
+                        <a href="/" title="TRANG CHỦ">
                             Trang chủ
                         </a>
                     </li>
@@ -256,7 +273,8 @@
     <script src="~/Content/Frontend/js/jquery-1.10.2.min.js"></script>
     <script src="~/Content/Frontend/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script> <!-- 16 KB -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.js"></script>
+    <script src="~/Content/Frontend/js/apps.js"></script>
     @RenderSection("scripts", false)
 </body>
 </html>

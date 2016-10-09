@@ -181,6 +181,7 @@ ul.cart-item li p.thumbs {
 }
 ul.cart-item li p.thumbs img{
     width: 50px;
+    min-height: 100px;
 }
 ul.cart-item li p {
     display: block;
@@ -557,6 +558,12 @@ footer .panel.social ul li i {
     font-family: "Myriad Pro";
     font-weight: 700;
     color: #000000;
+}
+#CartAmount {
+    position: absolute;
+    top: 30px;
+    right: 8px;
+    color: #fff;
 }
 /* Smartphones (portrait and landscape) ----------- */
 @media only screen and (min-device-width : 320px) and (max-device-width : 480px) {

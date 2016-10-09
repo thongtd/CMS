@@ -203,6 +203,7 @@
     <Compile Include="Code\Unitities.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\CartController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
@@ -214,6 +215,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\CartItem.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\ProductDetailResponse.cs" />
@@ -239,6 +241,7 @@
     <Content Include="Content\Frontend\images\icon-cart.png" />
     <Content Include="Content\Frontend\images\meat.png" />
     <Content Include="Content\Frontend\images\thumbs.jpg" />
+    <Content Include="Content\Frontend\js\apps.js" />
     <Content Include="Content\Frontend\js\jquery-1.10.2.min.js" />
     <Content Include="Content\Frontend\js\jquery-1.11.1.min.js" />
     <Content Include="Content\Dashboard\css\bootstrap-responsive.css" />
@@ -1816,6 +1819,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\Cart\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
