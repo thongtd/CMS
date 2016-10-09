@@ -231,6 +231,7 @@
     <Content Include="Content\Frontend\bootstrap\js\bootstrap.min.js" />
     <Content Include="Content\Frontend\bootstrap\js\npm.js" />
     <Content Include="Content\Frontend\css\font-awesome.min.css" />
+    <Content Include="Content\Frontend\css\fotorama.css" />
     <Content Include="Content\Frontend\css\reset.css" />
     <Content Include="Content\Frontend\css\responsive.css" />
     <Content Include="Content\Frontend\css\style.css" />
@@ -241,7 +242,9 @@
     <Content Include="Content\Frontend\images\icon-cart.png" />
     <Content Include="Content\Frontend\images\meat.png" />
     <Content Include="Content\Frontend\images\thumbs.jpg" />
+    <Content Include="Content\Frontend\js\angular.min.js" />
     <Content Include="Content\Frontend\js\apps.js" />
+    <Content Include="Content\Frontend\js\fotorama.js" />
     <Content Include="Content\Frontend\js\jquery-1.10.2.min.js" />
     <Content Include="Content\Frontend\js\jquery-1.11.1.min.js" />
     <Content Include="Content\Dashboard\css\bootstrap-responsive.css" />
