@@ -216,6 +216,7 @@
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\ProductDetailResponse.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -1810,7 +1811,7 @@
     <None Include="Properties\PublishProfiles\WebPublish.pubxml" />
     <Content Include="Views\Shared\_LayoutFrontend.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\Product.cshtml" />
+    <Content Include="Views\Home\ProductCategory.cshtml" />
     <Content Include="Views\Home\ProductDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>

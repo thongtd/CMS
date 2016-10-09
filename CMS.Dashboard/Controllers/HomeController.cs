@@ -1,5 +1,7 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
+using CMS.Dashboard.Models;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
@@ -15,15 +17,14 @@ namespace CMS.Dashboard.Controllers
 
         public ActionResult Index()
         {
-            int totalRows = 0;
             var predicate = PredicateBuilder.Create<Product>(s => s.IsActive);
-            var products = _productRepository.Paging(1, 6, out totalRows, predicate);
+            var products = _productRepository.GetByTop(6, predicate);
 
             return View(products);
         }
         
         [Route("danh-sach-san-pham/{page}")]
-        public async Task<ActionResult> Product(string page)
+        public ActionResult ProductCategory(string page)
         {
             int totalRows = 0;
             var predicate = PredicateBuilder.Create<Product>(s => s.IsActive);
@@ -34,11 +35,19 @@ namespace CMS.Dashboard.Controllers
         }
 
         [Route("sap-pham/{slug}")]
-        public async Task<ActionResult> ProductDetail(string slug)
+        public ActionResult ProductDetail(string slug)
         {
             var product = _productRepository.GetBySlug(slug);
 
-            return View(product);
+            var predicate = PredicateBuilder.Create<Product>(s => s.IsActive && s.ProductCategoryId == product.ProductCategoryId);
+            var relatedProducts = _productRepository.GetByTop(3, predicate).ToList();
+
+            var productDetailResponse = new ProductDetailResponse
+            {
+                ProductResponse = product,
+                RelatedProducts = relatedProducts
+            };
+            return View(productDetailResponse);
         }
     }
 }

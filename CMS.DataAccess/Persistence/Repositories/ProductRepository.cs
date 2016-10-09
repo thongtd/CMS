@@ -65,7 +65,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                     Id = s.Id,
                     Title = s.Title,
                     Slug = s.Slug,
-                    //Images = s.Images,
+                    Images = s.Images != null ? JsonConvert.DeserializeObject<IList<string>>(s.Images) : null,
                     Keyword = s.Keyword,
                     Thumbnail = s.Thumbnail,
                     PinToTop = s.PinToTop,
@@ -89,7 +89,42 @@ namespace CMS.DataAccess.Persistence.Repositories
 
         public IEnumerable<ProductResponse> GetByTop(int top, Expression<Func<Product, bool>> predicate)
         {
-            throw new NotImplementedException();
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var products = uow.Product.Find(predicate).Take(top).ToList();
+
+                if (products.Any())
+                {
+                    return products.Select(s => new ProductResponse
+                    {
+                        ProductCategory = s.ProductCategory,
+                        IsActive = s.IsActive,
+                        ProductCategoryId = s.ProductCategoryId,
+                        Name = s.Name,
+                        BodyContent = s.BodyContent,
+                        Click = s.Click,
+                        ModeifiedDate = s.ModeifiedDate,
+                        CreatedDate = s.CreatedDate,
+                        CultureCode = s.CultureCode,
+                        Description = s.Description,
+                        Id = s.Id,
+                        Title = s.Title,
+                        Slug = s.Slug,
+                        Images = s.Images != null ? JsonConvert.DeserializeObject<IList<string>>(s.Images) : null,
+                        Keyword = s.Keyword,
+                        Thumbnail = s.Thumbnail,
+                        PinToTop = s.PinToTop,
+                        SubContent = s.SubContent,
+                        IdentityCode = s.IdentityCode,
+                        Target = s.Target,
+                        Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList(),
+                        Price = s.Price,
+                        Discount = s.Discount,
+                        DiscountType = s.DiscountType
+                    }).ToList();
+                }
+                return new List<ProductResponse>();
+            }
         }
 
         public IEnumerable<ProductResponse> GetTagByProductId(int blogId)
@@ -115,7 +150,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 IsActive = product.IsActive,
                 Description = product.Description,
                 ProductCategoryId = product.ProductCategoryId,
-                //Images = product.Images,
+                Images = product.Images != null ? JsonConvert.DeserializeObject<IList<string>>(product.Images) : null,
                 BodyContent = product.BodyContent,
                 Click = product.Click,
                 CreatedDate = product.CreatedDate,

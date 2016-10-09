@@ -134,18 +134,20 @@
                     {
                         for (int i = 0; i < products.Count(); i++)
                         {
+                            var productUrl = Url.Action("ProductDetail", "Home", new { slug = products[i].Slug });
+
                             if (i == 0 || i == 3)
                             {
                                 @Html.Raw("<div class=\"row\">")
                             }
                             <div class="col-md-4 col-xs-12 item">
                                 <div class="thumbs">
-                                    <a href="#">
+                                    <a href="@productUrl" title="@products[i].Name">
                                         <img src="@products[i].Thumbnail" title="@products[i].Name" alt="@products[i].Slug"/>
                                     </a>
                                 </div>
                                 <div class="decs">
-                                    <a href="" class="name" title="@products[i].Name">
+                                    <a href="@productUrl" title="@products[i].Name" class="name">
                                         @products[i].Name
                                     </a>
                                     <div class="package-price">
