@@ -55,5 +55,11 @@ namespace CMS.Dashboard.Controllers
             };
             return View(productDetailResponse);
         }
+
+        [Route("tin-tuc/{slug}")]
+        public ActionResult BlogCategory()
+        {
+            return View();
+        }
     }
 }
