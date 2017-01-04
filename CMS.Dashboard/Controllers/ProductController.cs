@@ -8,14 +8,14 @@ using MvcConnerstore.Collections;
 
 namespace CMS.Dashboard.Controllers
 {
-    [RoutePrefix("Dashboard")]
+    [RoutePrefix("admin")]
     public class ProductController : Controller
     {
         private readonly IProductRepository _productRepository = new ProductRepository(new WorkContext());
 
         private readonly ITagRepository _tagRepository = new TagRepository(new WorkContext());
 
-        [Route("ProductController/Gets")]
+        [Route("product/gets")]
         public ActionResult Gets()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -27,7 +27,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [Route("ProductController/Index")]
+        [Route("product")]
         public ActionResult Index(string pageIndex)
         {
             ViewBag.Product = "active";
@@ -35,7 +35,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [Route("ProductController/Create")]
+        [Route("product/create")]
         public ActionResult Create()
         {
             ViewBag.Product = "active";
@@ -43,7 +43,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpPost, ValidateInput(false), Route("ProductController/Create")]
+        [HttpPost, ValidateInput(false), Route("product/create")]
         public ActionResult Create(ProductRequest model, FormCollection frmCollect)
         {
             if (ModelState.IsValid)
@@ -56,7 +56,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [Route("ProductController/Edit/{id}")]
+        [Route("product/edit/{id}")]
         public ActionResult Edit(int id)
         {
             ViewBag.Product = "active";
@@ -73,7 +73,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, ValidateInput(false), Route("ProductController/Edit")]
+        [HttpPost, ValidateInput(false), Route("product/edit")]
         public ActionResult Edit(ProductRequest model, FormCollection frmCollect)
         {
             if (ModelState.IsValid)
@@ -86,7 +86,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpPost, Route("ProductController/Active")]
+        [HttpPost, Route("product/active")]
         public ActionResult Active(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -103,7 +103,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, Route("ProductController/Delete")]
+        [HttpPost, Route("product/delete")]
         public ActionResult Delete(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))

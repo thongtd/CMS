@@ -45,8 +45,7 @@ namespace CMS.DataAccess.Persistence.Repositories
 
         public IEnumerable<ProductResponse> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Product, bool>> predicate)
         {
-            var products = WorkContext.Products
-                .Include(s => s.ProductCategory).OrderByDescending(s => s.Id);
+            var products = WorkContext.Products.Include(s => s.ProductCategory).OrderByDescending(s => s.Id).ToList();
 
             if (products.Any())
             {
