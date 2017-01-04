@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using CMS.Dashboard.Code.Models;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
@@ -14,7 +16,26 @@ namespace CMS.Dashboard.Controllers
     [RoutePrefix("Dashboard")]
     public class BlogCategoryController : Controller
     {
+        private const string IndexPageTile = "Danh sách nhóm tin";
+
         private readonly IBlogCategoryRepository _blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
+
+        private readonly IList<Breadcurmb> breadcurmbs = new List<Breadcurmb>();
+
+        public BlogCategoryController()
+        {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = "/",
+                Lable = "Home"
+            });
+
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = "#",
+                Lable = "Dashboard"
+            });
+        }
 
         [Route("BlogCategory/Gets")]
         public ActionResult Gets()
@@ -47,6 +68,15 @@ namespace CMS.Dashboard.Controllers
         [Route("BlogCategory/Index")]
         public ActionResult Index(string pageIndex)
         {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = Url.Action("Index", "BlogCategory"),
+                Lable = IndexPageTile
+            });
+
+            ViewBag.Breadcurmbs = breadcurmbs;
+            ViewBag.Title = IndexPageTile;
+
             ViewBag.News = "active";
 
             return View();

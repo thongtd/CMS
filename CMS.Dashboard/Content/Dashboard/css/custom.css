@@ -23,7 +23,7 @@
     background-image:none;
     border: none;
     border-radius: 0;
-    padding: 5px 20px;
+    padding: 5px 10px;
     margin: 0;
 }
 .btn-create {
@@ -140,12 +140,12 @@ span.field-validation-error span, .field-validation-error{
 .discount .span12 .span6 label{
     display: inline-block;
 }
-.products-image input[type="text"] {
+.img-upload input[type="text"] {
     width: 77%;
     margin-right: 5px;
     float: left;
 }
-.products-image .image-browse {
+.img-upload .image-browse {
     display: block;
     float: left;
     width: 30px;
@@ -154,23 +154,23 @@ span.field-validation-error span, .field-validation-error{
     text-align: center;
     margin-right: 3px;
 }
-.products-image .image-browse i {
+.img-upload .image-browse i {
     margin: 6px auto;
     padding: 0;
     margin-left: auto;
     margin-right: auto;
     float: none;
 }
-.products-image {
+.img-upload {
     margin-bottom: 5px;
     display: block;
     float: left;
     width: 100%;
 }
-.products-image .image-browse.del {
+.img-upload .image-browse.del {
     background: #ff5b57;
     border-color: #ff5b57;
 }
-.products-image .image-browse:hover {
+.img-upload .image-browse:hover {
     cursor: pointer;
 }

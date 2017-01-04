@@ -7,11 +7,11 @@
     margin: 20px 0px;
     width: 100%;
     clear: left;
-    background: url("../img/backgrounds/divider.png") left center repeat-x;
+    background: url("/img/backgrounds/divider.png") left center repeat-x;
 }
 
     .dr span {
-        background: url("../img/backgrounds/divider_span.png") center center no-repeat;
+        background: url("/img/backgrounds/divider_span.png") center center no-repeat;
         width: 100%;
         height: 5px;
         display: block;
@@ -639,176 +639,171 @@
     padding-top: 55px;
 }
 
-    .content .workplace {
-        position: relative;
-        padding: 20px;
-    }
+.content .workplace {
+    position: relative;
+    padding: 20px 25px;
+}
 
+.content .workplace .head {
+    background: #f3f3f4;
+    background-clip: padding-box;
+    padding: .75em .2em .8333em 1em;
+}
 
-        /* ~BOXES~ */
+.content .workplace .head h1, .content .workplace .head h2, .content .workplace .head h3, .content .workplace .head h4, .content .workplace .head h5, .content .workplace .head h6 {
+    font-size: 12px;
+    color: #fff;
+    line-height: 22px;
+    padding: 8px 0px;
+    margin: 0px;
+    font-weight: bold;
+    margin-left: 10px;
+    display: block;
+    float: left;
+    -moz-text-shadow: 0 1px 0 #333;
+    -webkit-text-shadow: 0 1px 0 #333;
+    text-shadow: 0 1px 0 #333;
+}
 
+.content .workplace .head .buttons {
+    float: right;
+    background: none;
+    position: relative;
+    list-style: none;
+}
 
+.content .workplace .head .buttons > li {
+    display: block;
+    float: left;
+}
 
-        .content .workplace .head {
-            background: #f3f3f4;
-            background-clip: padding-box;
-            padding: 10px;
-        }
+.content .workplace .head .buttons li:active, .content .workplace .head .buttons li.active {
+    background: url('../img/backgrounds/box-head-active.jpg') left center repeat-x;
+}
 
-            .content .workplace .head h1, .content .workplace .head h2, .content .workplace .head h3, .content .workplace .head h4, .content .workplace .head h5, .content .workplace .head h6 {
-                font-size: 12px;
-                color: #fff;
-                line-height: 22px;
-                padding: 8px 0px;
-                margin: 0px;
-                font-weight: bold;
-                margin-left: 10px;
-                display: block;
-                float: left;
-                -moz-text-shadow: 0 1px 0 #333;
-                -webkit-text-shadow: 0 1px 0 #333;
-                text-shadow: 0 1px 0 #333;
-            }
+.content .workplace .head .buttons li > a {
+    outline: none;
+}
 
-            .content .workplace .head .buttons {
-                float: right;
-                background: none;
-                position: relative;
-                list-style: none;
-            }
+.content .workplace .head .buttons [class*="isw-"], .content .workplace .head .button [class*="isb-"] {
+    margin: 0px;
+    padding: 11px 10px;
+    border-left: 1px solid #335A85;
+}
 
-                .content .workplace .head .buttons > li {
-                    display: block;
-                    float: left;
-                }
+.content .workplace .head .buttons li .dd-list {
+    display: none;
+    position: absolute;
+    z-index: 2;
+    right: -1px;
+    min-width: 150px;
+    list-style: none;
+    padding: 0px;
+    margin: 0px;
+    top: 100%;
+    background-color: #395E88;
+    border: 1px solid #143D6B;
+}
 
-                .content .workplace .head .buttons li:active, .content .workplace .head .buttons li.active {
-                    background: url('../img/backgrounds/box-head-active.jpg') left center repeat-x;
-                }
+.content .workplace .head .buttons li .dd-list li {
+    display: block;
+    clear: left;
+    border-top: 1px solid #507298;
+    border-bottom: 1px solid #143D6B;
+}
 
-                .content .workplace .head .buttons li > a {
-                    outline: none;
-                }
+.content .workplace .head .buttons li .dd-list li:last-child {
+    border-bottom: 0px;
+}
 
-                .content .workplace .head .buttons [class*="isw-"], .content .workplace .head .button [class*="isb-"] {
-                    margin: 0px;
-                    padding: 11px 10px;
-                    border-left: 1px solid #335A85;
-                }
+.content .workplace .head .buttons li .dd-list li a {
+    line-height: 38px;
+    color: #fff;
+    font-size: 11px;
+    display: block;
+    text-decoration: none;
+}
 
-                .content .workplace .head .buttons li .dd-list {
-                    display: none;
-                    position: absolute;
-                    z-index: 2;
-                    right: -1px;
-                    min-width: 150px;
-                    list-style: none;
-                    padding: 0px;
-                    margin: 0px;
-                    top: 100%;
-                    background-color: #395E88;
-                    border: 1px solid #143D6B;
-                }
+.content .workplace .head .buttons li .dd-list li a:hover {
+    background-color: #2C517A;
+}
 
-                    .content .workplace .head .buttons li .dd-list li {
-                        display: block;
-                        clear: left;
-                        border-top: 1px solid #507298;
-                        border-bottom: 1px solid #143D6B;
-                    }
+.content .workplace .head .buttons li .dd-list li [class*="isw-"], .content .workplace .head .button .dd-list li [class*="isb-"] {
+    border: 0px;
+}
 
-                        .content .workplace .head .buttons li .dd-list li:last-child {
-                            border-bottom: 0px;
-                        }
+.content .workplace .head .buttons > li.s_loader,
+.content .workplace .head .buttons > li.w_loader,
+.content .workplace .head .buttons > li.c_loader,
+.content .workplace .head .buttons > li.loader {
+    border: 0px;
+}
 
-                        .content .workplace .head .buttons li .dd-list li a {
-                            line-height: 38px;
-                            color: #fff;
-                            font-size: 11px;
-                            display: block;
-                            text-decoration: none;
-                        }
+.content .workplace .head .buttons > li.s_loader {
+    padding: 9px 13px;
+}
 
-                            .content .workplace .head .buttons li .dd-list li a:hover {
-                                background-color: #2C517A;
-                            }
+.content .workplace .head .buttons > li.c_loader {
+    padding: 3px 4px 4px 5px;
+}
 
-                        .content .workplace .head .buttons li .dd-list li [class*="isw-"], .content .workplace .head .button .dd-list li [class*="isb-"] {
-                            border: 0px;
-                        }
+.content .workplace .head .buttons > li.w_loader,
+.content .workplace .head .buttons > li.loader {
+    padding: 3px 5px;
+}
 
-                .content .workplace .head .buttons > li.s_loader,
-                .content .workplace .head .buttons > li.w_loader,
-                .content .workplace .head .buttons > li.c_loader,
-                .content .workplace .head .buttons > li.loader {
-                    border: 0px;
-                }
+.content .workplace .headInfo {
+    background-color: #F1F1F1;
+    border: 1px solid #D5D5D5;
+    padding: 5px;
+    position: relative;
+    -moz-border-top-left-radius: 3px;
+    -webkit-border-top-left-radius: 3px;
+    border-top-left-radius: 3px;
+    -moz-border-top-right-radius: 3px;
+    -webkit-border-top-right-radius: 3px;
+    border-top-right-radius: 3px;
+}
 
-                .content .workplace .head .buttons > li.s_loader {
-                    padding: 9px 13px;
-                }
+.content .workplace .headInfo .arrow_down {
+    width: 17px;
+    height: 12px;
+    position: absolute;
+    left: 50%;
+    margin-left: -9px;
+    top: 40px;
+    background: url('../img/menu-arrow-down.png') left top no-repeat;
+}
 
-                .content .workplace .head .buttons > li.c_loader {
-                    padding: 3px 4px 4px 5px;
-                }
+.content .workplace .headInfo .image {
+    margin: 0px 10px 5px 5px;
+    float: left;
+}
 
-                .content .workplace .head .buttons > li.w_loader,
-                .content .workplace .head .buttons > li.loader {
-                    padding: 3px 5px;
-                }
+.content .workplace .headInfo .image a {
+    display: block;
+    font-weight: bold;
+    text-align: center;
+}
 
-        .content .workplace .headInfo {
-            background-color: #F1F1F1;
-            border: 1px solid #D5D5D5;
-            padding: 5px;
-            position: relative;
-            -moz-border-top-left-radius: 3px;
-            -webkit-border-top-left-radius: 3px;
-            border-top-left-radius: 3px;
-            -moz-border-top-right-radius: 3px;
-            -webkit-border-top-right-radius: 3px;
-            border-top-right-radius: 3px;
-        }
+.content .workplace .headInfo .info {
+    float: left;
+    font-size: 11px;
+    color: #333;
+}
 
-            .content .workplace .headInfo .arrow_down {
-                width: 17px;
-                height: 12px;
-                position: absolute;
-                left: 50%;
-                margin-left: -9px;
-                top: 40px;
-                background: url('../img/menu-arrow-down.png') left top no-repeat;
-            }
+.content .workplace .headInfo .info address {
+    margin-bottom: 0px;
+}
 
-            .content .workplace .headInfo .image {
-                margin: 0px 10px 5px 5px;
-                float: left;
-            }
+.content .workplace .headInfo .input-append {
+    text-align: right;
+}
 
-                .content .workplace .headInfo .image a {
-                    display: block;
-                    font-weight: bold;
-                    text-align: center;
-                }
-
-            .content .workplace .headInfo .info {
-                float: left;
-                font-size: 11px;
-                color: #333;
-            }
-
-                .content .workplace .headInfo .info address {
-                    margin-bottom: 0px;
-                }
-
-            .content .workplace .headInfo .input-append {
-                text-align: right;
-            }
-
-                .content .workplace .headInfo .input-append,
-                .content .workplace .headInfo .input-append button {
-                    margin-bottom: 0px;
-                }
+.content .workplace .headInfo .input-append,
+.content .workplace .headInfo .input-append button {
+    margin-bottom: 0px;
+}
 
 
 .block, .block-fluid {
@@ -1050,6 +1045,8 @@
 .row-form input[type="checkbox"],
 .row-form input[type="radio"] {
     margin-left: 0px;
+    margin-right: 5px;
+    margin-top: 3px;
 }
 
 .formErrorContent {
@@ -1980,4 +1977,21 @@
     color: red;
     cursor: pointer;
     font-weight: bold;
+}
+.breadcrumb {
+    padding: 0;
+    margin: 0;
+    background: 0 0;
+}
+.breadcrumb>li {
+    line-height: 28px;
+    display: inline-block;
+}
+.breadcrumb>li a {
+    color: #333;
+}
+.breadcrumb > li + li::before {
+    color: rgb(204, 204, 204);
+    content: "/ ";
+    padding: 0px 5px;
 }

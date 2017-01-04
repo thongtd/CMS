@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using CMS.Dashboard.Code.Models;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Linqkit;
@@ -17,9 +18,29 @@ namespace CMS.Dashboard.Controllers
     [RoutePrefix("Dashboard")]
     public class BlogController : Controller
     {
-        private readonly IBlogRepository _blogRepository = new BlogRepository(new WorkContext());
+        private const string IndexPageTile = "Danh sách tin tức";
+        private const string EditPageTile = "Sửa thông tin bài viết";
+        private const string CreatePageTile = "Thêm mới bài viết";
 
+        private readonly IBlogRepository _blogRepository = new BlogRepository(new WorkContext());
         private readonly ITagRepository _tagRepository = new TagRepository(new WorkContext());
+
+        private readonly IList<Breadcurmb> breadcurmbs= new List<Breadcurmb>();
+
+        public BlogController()
+        {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = "/",
+                Lable = "Home"
+            });
+
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = "#",
+                Lable = "Dashboard"
+            });
+        }
 
         [Route("Blog/Gets")]
         public ActionResult Gets()
@@ -36,6 +57,14 @@ namespace CMS.Dashboard.Controllers
         [Route("Blog/Index")]
         public ActionResult Index(string pageIndex)
         {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = Url.Action("Index", "Blog"),
+                Lable = IndexPageTile
+            });
+
+            ViewBag.Breadcurmbs = breadcurmbs;
+            ViewBag.Title = IndexPageTile;
             ViewBag.News = "active";
 
             return View();
@@ -44,6 +73,20 @@ namespace CMS.Dashboard.Controllers
         [Route("Blog/Create")]
         public ActionResult Create()
         {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = Url.Action("Index", "Blog"),
+                Lable = IndexPageTile
+            });
+
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = Url.Action("Create", "Blog"),
+                Lable = CreatePageTile
+            });
+
+            ViewBag.Breadcurmbs = breadcurmbs;
+            ViewBag.Title = CreatePageTile;
             ViewBag.News = "active";
 
             return View();
@@ -65,6 +108,20 @@ namespace CMS.Dashboard.Controllers
         [Route("Blog/Edit/{id}")]
         public ActionResult Edit(int id)
         {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = Url.Action("Index", "Blog"),
+                Lable = IndexPageTile
+            });
+
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = Url.Action("Edit", "Blog"),
+                Lable = EditPageTile
+            });
+
+            ViewBag.Breadcurmbs = breadcurmbs;
+            ViewBag.Title = EditPageTile;
             ViewBag.News = "active";
 
             using (var uow = new UnitOfWork(new WorkContext()))

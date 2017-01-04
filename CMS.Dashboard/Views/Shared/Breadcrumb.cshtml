@@ -1,0 +1,17 @@
+﻿@using CMS.Dashboard.Code.Models
+@{
+    var breadCurmbs = ViewBag.Breadcurmbs as IList<Breadcurmb>;
+}
+<div class="">
+    <ol class="breadcrumb pull-right">
+        @if (breadCurmbs != null && breadCurmbs.Any())
+            {
+                foreach (var breadcurmb in breadCurmbs)
+                {
+                <li><a href="@breadcurmb.ActionLink">@breadcurmb.Lable</a></li>
+            }
+        }
+    </ol>
+    <h1 class="page-header">@ViewBag.Title<small style="display: block; margin-top: 5px;"></small></h1>
+</div>
+

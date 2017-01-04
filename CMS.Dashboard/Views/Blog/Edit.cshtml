@@ -1,57 +1,44 @@
 ﻿@using CMS.Dashboard.Code
 @model CMS.DataAccess.Core.Domain.Blog
 @{
-    ViewBag.Title = "Cập nhật bài viết";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
-<div class="breadLine">
-    <ul class="breadcrumb">
-        <li><a href="#">Trang chủ</a> <span class="divider">></span></li>
-        <li><a href="@Url.Action("Index", "Blog")">Danh sách bài viết</a> <span class="divider">></span></li>
-        <li class="active">Cập nhật bài viết</li>
-    </ul>
-</div>
 <form action="@Url.Action("Edit", "Blog")" method="post" id="validate" class="form-content">
     @Html.ValidationSummary(true)
     @Html.HiddenFor(model => model.Id)
     @Html.HiddenFor(model => model.CreatedDate)
     <div class="workplace">
+        @Html.Partial("Breadcrumb")
         <div class="row-fluid">
-            <div class="span12 no-margin">
-                <h1 class="page-header">
-                    Thêm mới bài viết
-                    <small style="display: block; margin-top: 5px;"></small>
-                </h1>
-            </div>
             <div class="clearfix"></div>
             <div class="span12 no-margin">
                 <div class="span8">
                     <div class="block-fluid">
                         <div class="row-form">
                             <label for="">Tên nhóm tin:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Name, new { placeholder = "Tên bài viết" })
+                            @Html.TextBoxFor(m => m.Name, new {placeholder = "Tên bài viết"})
                             @Html.ValidationMessageFor(model => model.Name)
                         </div>
                         <div class="row-form">
                             <label for="">Mô tả ngắn bài viết:<em>*</em></label>
-                            @Html.TextAreaFor(m => m.SubContent, new { placeholder = "Mô tả ngắn bài viết" })
+                            @Html.TextAreaFor(m => m.SubContent, new {placeholder = "Mô tả ngắn bài viết"})
                             @Html.ValidationMessageFor(model => model.SubContent)
                         </div>
                         <div class="row-form">
                             <label for="">Nội dung bài viết:<em>*</em></label>
-                            @Html.TextAreaFor(m => m.BodyContent, new { placeholder = "Nội dung bài viết", style = "height: 500px;" })
+                            @Html.TextAreaFor(m => m.BodyContent, new {placeholder = "Nội dung bài viết", style = "height: 500px;"})
                             @Html.ValidationMessageFor(model => model.BodyContent)
                         </div>
                         <h4 style="margin-left: 20px; text-decoration: underline;">Cấu hình SEO</h4>
                         <div class="row-form">
                             <label for="">Slug:</label>
-                            @Html.TextBoxFor(m => m.Slug, new { placeholder = "Slug" })
+                            @Html.TextBoxFor(m => m.Slug, new {placeholder = "Slug"})
                             @Html.ValidationMessageFor(model => model.Slug)
                         </div>
                         <div class="row-form">
                             <div class="span12">
                                 <label for="">Meta Description:</label>
-                                @Html.TextAreaFor(m => m.Description, new { placeholder = "Meta Description" })
+                                @Html.TextAreaFor(m => m.Description, new {placeholder = "Meta Description"})
                                 @Html.ValidationMessageFor(model => model.Description)
                             </div>
                             <div class="clear"></div>
@@ -59,7 +46,7 @@
                         <div class="row-form">
                             <div class="span12">
                                 <label for="">Meta Keyword</label>
-                                @Html.TextAreaFor(m => m.Keyword, new { placeholder = "Meta Keyword" })
+                                @Html.TextAreaFor(m => m.Keyword, new {placeholder = "Meta Keyword"})
                                 @Html.ValidationMessageFor(model => model.Keyword)
                             </div>
                             <div class="clear"></div>
@@ -77,12 +64,23 @@
                     <div class="block-fluid">
                         <div class="row-form">
                             <label for="">Chọn ảnh:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Thumbnail, new { placeholder = "Chọn ảnh đại diện" })
-                            @Html.ValidationMessageFor(model => model.Thumbnail)
-                            <a href="#" id="btImgBrowse" class="btn btn-flat btn-create" onclick="browseImage('Thumbnail');">Chọn ảnh đại diện</a>
+                            <div class="img-upload">
+                                @Html.TextBoxFor(m => m.Thumbnail, new { placeholder = "Chọn ảnh đại diện" })
+                                @Html.ValidationMessageFor(model => model.Thumbnail)
+                                <a class="image-browse" onclick="browseImage('Thumbnail')">
+                                    <i class="isw-plus"></i>
+                                </a>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
+                </div>
+                <div class="span4" style="margin-top: 10px;">
+                    @{
+                        Html.RenderPartial("_MetaTags");
+                    }
+                </div>
+                <div class="span4" style="margin-top: 10px;">
                     <div class="block-fluid">
                         <div class="row-form">
                             <label class="checkbox inline lb-checkbox no-padding">
@@ -99,16 +97,10 @@
                             </label>
                         </div>
                     </div>
-                </div>
-                <div class="span4" style="margin-top: 10px;">
-                    @{
-                        Html.RenderPartial("_MetaTags");
-                    }
-                </div>
-                <div class="span4" style="margin-top: 10px;">
+                    <div class="clearfix"></div>
                     <div class="block-fluid">
                         <div class="row-form">
-                            <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý" />
+                            <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý"/>
                         </div>
                     </div>
                 </div>

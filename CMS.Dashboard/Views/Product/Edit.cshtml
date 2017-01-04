@@ -98,7 +98,7 @@
                             <div class="span12">
                                 @for (int i = 0; i < images.Count; i++)
                                 {
-                                    <div class="products-image">
+                                    <div class="img-upload">
                                         @Html.TextBoxFor(m => m.Images[i], new { placeholder = "Hình ảnh sản phẩm", Value = images[i] })
                                         <a class="image-browse" onclick="browseImage('Images_@Html.Raw(i)_')">
                                             <i class="isw-plus"></i>
@@ -108,7 +108,7 @@
                                         </a>
                                     </div>
                                 }
-                                <div class="products-image">
+                                <div class="img-upload">
                                     <input type="button" class="btn btn-create btn-flat" value="Thêm Ảnh">
                                 </div>
                             </div>
