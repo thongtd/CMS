@@ -70,7 +70,7 @@ namespace CMS.Dashboard.Controllers
         {
             breadcurmbs.Add(new Breadcurmb
             {
-                ActionLink = Url.Action("Index", "BlogCategory"),
+                ActionLink = Url.Action("Index"),
                 Lable = IndexPageTile
             });
 

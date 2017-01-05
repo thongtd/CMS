@@ -1,6 +1,7 @@
 ﻿/// <autosync enabled="true" />
 /// <reference path="js/actions.js" />
 /// <reference path="js/additional-methods.js" />
+/// <reference path="js/angular.min.js" />
 /// <reference path="js/controller/dashboardcontroller.js" />
 /// <reference path="js/cookies.js" />
 /// <reference path="js/charts.js" />

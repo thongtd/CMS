@@ -141,7 +141,7 @@ span.field-validation-error span, .field-validation-error{
     display: inline-block;
 }
 .img-upload input[type="text"] {
-    width: 77%;
+    width: 75%;
     margin-right: 5px;
     float: left;
 }

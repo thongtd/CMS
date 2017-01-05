@@ -59,7 +59,7 @@ namespace CMS.Dashboard.Controllers
         {
             breadcurmbs.Add(new Breadcurmb
             {
-                ActionLink = Url.Action("Index", "Blog"),
+                ActionLink = Url.Action("Index"),
                 Lable = IndexPageTile
             });
 
@@ -75,13 +75,13 @@ namespace CMS.Dashboard.Controllers
         {
             breadcurmbs.Add(new Breadcurmb
             {
-                ActionLink = Url.Action("Index", "Blog"),
+                ActionLink = Url.Action("Index"),
                 Lable = IndexPageTile
             });
 
             breadcurmbs.Add(new Breadcurmb
             {
-                ActionLink = Url.Action("Create", "Blog"),
+                ActionLink = Url.Action("Create"),
                 Lable = CreatePageTile
             });
 
@@ -110,13 +110,13 @@ namespace CMS.Dashboard.Controllers
         {
             breadcurmbs.Add(new Breadcurmb
             {
-                ActionLink = Url.Action("Index", "Blog"),
+                ActionLink = Url.Action("Index"),
                 Lable = IndexPageTile
             });
 
             breadcurmbs.Add(new Breadcurmb
             {
-                ActionLink = Url.Action("Edit", "Blog"),
+                ActionLink = Url.Action("Edit"),
                 Lable = EditPageTile
             });
 

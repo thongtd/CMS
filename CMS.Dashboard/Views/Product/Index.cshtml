@@ -1,14 +1,8 @@
 ﻿@{
-    ViewBag.Title = "Danh sách sản phẩm";
     Layout = "/Views/Shared/_Layout.cshtml";
 }
-<div class="breadLine">
-    <ul class="breadcrumb">
-        <li><a href="#">Trang chủ</a> <span class="divider">></span></li>
-        <li class="active">Danh sách sản phẩm</li>
-    </ul>
-</div>
 <div class="workplace">
+    @Html.Partial("Breadcrumb")
     <div class="row-fluid">
         <form action="" method="post">
             <div class="span12">
@@ -20,50 +14,64 @@
                         <div id="gridSource"></div>
                         @section scripts{
                             <script>
-                                $(document).ready(function () {
-                                    $("#gridSource").kendoGrid({
-                                        dataSource: {
-                                            transport: {
-                                                read: "@Url.Action("Gets","Product")"
-                                            },
-                                            pageSize: 20
-                                        },
-                                        maxheight: 550,
-                                        scrollable: true,
-                                        sortable: true,
-                                        filterable: true,
-                                        pageable: {
-                                            input: true,
-                                            numeric: false
-                                        },
-                                        columns: [
-                                            {
-                                                field: "Id", title: "ID", width: "50px", filterable: false
-                                            },
-                                            {
-                                                field: "Name", title: "Tên nhóm sản phẩm"
-                                            },
-                                            {
-                                                field: "CreatedDate", title: "Ngày tạo", filterable: false, width: "200px",
-                                                template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
-                                            },
-                                            {
-                                                field: "ProductCategory.Name", title: "Nhóm sản phẩm", filterable: true, width: "200px"
-                                            },
-                                            {
-                                                title: "Chức năng",
-                                                template: "<a data-href=\"@Url.Action("Active", "Product")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
-                                                    "<a href='@Url.Action("Edit", "Product")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
-                                                    "<a data-href=\"@Url.Action("Delete", "Product")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
-                                                attributes: {
-                                                    "class": "td-func"
+                                $(document)
+                                    .ready(function() {
+                                        $("#gridSource")
+                                            .kendoGrid({
+                                                dataSource: {
+                                                    transport: {
+                                                        read: "@Url.Action("Gets", "Product")"
+                                                    },
+                                                    pageSize: 20
                                                 },
-                                                width: "110px",
-                                                filterable: false
-                                            }
-                                        ]
+                                                maxheight: 550,
+                                                scrollable: true,
+                                                sortable: true,
+                                                filterable: true,
+                                                pageable: {
+                                                    input: true,
+                                                    numeric: false
+                                                },
+                                                columns: [
+                                                    {
+                                                        field: "Id",
+                                                        title: "ID",
+                                                        width: "50px",
+                                                        filterable: false
+                                                    },
+                                                    {
+                                                        field: "Name",
+                                                        title: "Tên nhóm sản phẩm"
+                                                    },
+                                                    {
+                                                        field: "CreatedDate",
+                                                        title: "Ngày tạo",
+                                                        filterable: false,
+                                                        width: "200px",
+                                                        template:
+                                                            "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
+                                                    },
+                                                    {
+                                                        field: "ProductCategory.Name",
+                                                        title: "Nhóm sản phẩm",
+                                                        filterable: true,
+                                                        width: "200px"
+                                                    },
+                                                    {
+                                                        title: "Chức năng",
+                                                        template:
+                                                            "<a data-href=\"@Url.Action("Active", "Product")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
+                                                                "<a href='@Url.Action("Edit", "Product")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                                "<a data-href=\"@Url.Action("Delete", "Product")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
+                                                        attributes: {
+                                                            "class": "td-func"
+                                                        },
+                                                        width: "110px",
+                                                        filterable: false
+                                                    }
+                                                ]
+                                            });
                                     });
-                                });
                             </script>
                         }
                     </div>

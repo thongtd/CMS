@@ -1,6 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using CMS.Dashboard.Code.Models;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
@@ -14,7 +16,28 @@ namespace CMS.Dashboard.Controllers
     [RoutePrefix("admin")]
     public class ProductCategoryController : Controller
     {
+        private const string IndexPageTile = "Danh sách nhóm sản phẩm";
+        private const string EditPageTile = "Sửa thông tin nhóm sản phẩm";
+        private const string CreatePageTile = "Thêm mới nhóm sản phẩm";
+
         private readonly IProductCategoryRepository productCategoryRepository = new ProductCategoryRepository(new WorkContext());
+
+        private readonly IList<Breadcurmb> breadcurmbs = new List<Breadcurmb>();
+
+        public ProductCategoryController()
+        {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = "/",
+                Lable = "Home"
+            });
+
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = "#",
+                Lable = "Dashboard"
+            });
+        }
 
         [Route("product-category/get")]
         public ActionResult Get()
@@ -47,6 +70,14 @@ namespace CMS.Dashboard.Controllers
         [Route("product-category")]
         public ActionResult Index(string pageIndex)
         {
+            breadcurmbs.Add(new Breadcurmb
+            {
+                ActionLink = Url.Action("Index"),
+                Lable = IndexPageTile
+            });
+
+            ViewBag.Breadcurmbs = breadcurmbs;
+            ViewBag.Title = IndexPageTile;
             ViewBag.Product = "active";
 
             return View();
