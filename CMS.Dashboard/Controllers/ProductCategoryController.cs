@@ -11,13 +11,13 @@ using MvcConnerstore.Collections;
 
 namespace CMS.Dashboard.Controllers
 {
-    [RoutePrefix("Dashboard")]
+    [RoutePrefix("admin")]
     public class ProductCategoryController : Controller
     {
-        private readonly IProductCategoryRepository _productCategoryRepository = new ProductCategoryRepository(new WorkContext());
+        private readonly IProductCategoryRepository productCategoryRepository = new ProductCategoryRepository(new WorkContext());
 
-        [Route("ProductCategory/Gets")]
-        public ActionResult Gets()
+        [Route("product-category/get")]
+        public ActionResult Get()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -44,7 +44,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [Route("ProductCategory/Index")]
+        [Route("product-category")]
         public ActionResult Index(string pageIndex)
         {
             ViewBag.Product = "active";
@@ -52,7 +52,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpGet, Route("ProductCategory/Create")]
+        [HttpGet, Route("product-category/create")]
         public ActionResult Create()
         {
             ViewBag.Product = "active";
@@ -67,7 +67,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, Route("ProductCategory/Create")]
+        [HttpPost, Route("product-category/create")]
         public ActionResult Create(ProductCategoryRequest model)
         {
             if (ModelState.IsValid)
@@ -85,7 +85,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpGet, Route("ProductCategory/Edit/{id}")]
+        [HttpGet, Route("product-category/edit/{id}")]
         public ActionResult Edit(int id)
         {
             ViewBag.Product = "active";
@@ -98,7 +98,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, Route("ProductCategory/Edit")]
+        [HttpPost, Route("product-category/edit")]
         public ActionResult Edit(ProductCategoryRequest model)
         {
             if (ModelState.IsValid)
@@ -107,7 +107,7 @@ namespace CMS.Dashboard.Controllers
                 {
                     var category = uow.ProductCategory.Get(model.Id);
 
-                    _productCategoryRepository.ConvertToModel(ref category, model);
+                    productCategoryRepository.ConvertToModel(ref category, model);
 
                     category.ModeifiedDate = DateTime.UtcNow;
 
@@ -118,7 +118,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpPost, Route("ProductCategory/Active")]
+        [HttpPost, Route("product-category/active")]
         public ActionResult Active(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -135,7 +135,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
         
-        [HttpPost, Route("ProductCategory/Delete")]
+        [HttpPost, Route("product-category/delete")]
         public ActionResult Delete(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))

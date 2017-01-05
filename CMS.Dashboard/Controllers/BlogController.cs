@@ -15,17 +15,17 @@ using MvcConnerstore.Collections;
 
 namespace CMS.Dashboard.Controllers
 {
-    [RoutePrefix("Dashboard")]
+    [RoutePrefix("admin")]
     public class BlogController : Controller
     {
         private const string IndexPageTile = "Danh sách tin tức";
         private const string EditPageTile = "Sửa thông tin bài viết";
         private const string CreatePageTile = "Thêm mới bài viết";
 
-        private readonly IBlogRepository _blogRepository = new BlogRepository(new WorkContext());
-        private readonly ITagRepository _tagRepository = new TagRepository(new WorkContext());
+        private readonly IBlogRepository blogRepository = new BlogRepository(new WorkContext());
+        private readonly ITagRepository tagRepository = new TagRepository(new WorkContext());
 
-        private readonly IList<Breadcurmb> breadcurmbs= new List<Breadcurmb>();
+        private readonly IList<Breadcurmb> breadcurmbs = new List<Breadcurmb>();
 
         public BlogController()
         {
@@ -42,8 +42,8 @@ namespace CMS.Dashboard.Controllers
             });
         }
 
-        [Route("Blog/Gets")]
-        public ActionResult Gets()
+        [Route("blog/get")]
+        public ActionResult Get()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -54,7 +54,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [Route("Blog/Index")]
+        [Route("blog")]
         public ActionResult Index(string pageIndex)
         {
             breadcurmbs.Add(new Breadcurmb
@@ -70,7 +70,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [Route("Blog/Create")]
+        [Route("blog/create")]
         public ActionResult Create()
         {
             breadcurmbs.Add(new Breadcurmb
@@ -92,20 +92,20 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpPost, ValidateInput(false), Route("Blog/Create")]
+        [HttpPost, ValidateInput(false), Route("blog/create")]
         public ActionResult Create(BlogRequest model, FormCollection frmCollect)
         {
             if (ModelState.IsValid)
             {
                 var tags = frmCollect["hidden-tags"];
 
-                _blogRepository.Add(model, tags);
+                blogRepository.Add(model, tags);
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        [Route("Blog/Edit/{id}")]
+        [Route("blog/edit/{id}")]
         public ActionResult Edit(int id)
         {
             breadcurmbs.Add(new Breadcurmb
@@ -128,7 +128,7 @@ namespace CMS.Dashboard.Controllers
             {
                 var blog = uow.Blog.Get(id);
 
-                var lstTags = _tagRepository.GetTagsForObject(blog.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
+                var lstTags = tagRepository.GetTagsForObject(blog.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
                 ViewBag.ActiveTags = lstTags.HtmlTag;
                 ViewBag.HiddenTags = lstTags.TagValue;
 
@@ -136,20 +136,20 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, ValidateInput(false), Route("Blog/Edit")]
+        [HttpPost, ValidateInput(false), Route("blog/edit")]
         public ActionResult Edit(BlogRequest model, FormCollection frmCollect)
         {
             if (ModelState.IsValid)
             {
                 var tags = frmCollect["hidden-tags"];
 
-                _blogRepository.Update(model, tags);
+                blogRepository.Update(model, tags);
                 return RedirectToAction("Index");
             }
             return View();
         }
 
-        [HttpPost, Route("Blog/Active")]
+        [HttpPost, Route("blog/active")]
         public ActionResult Active(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -166,7 +166,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, Route("Blog/Delete")]
+        [HttpPost, Route("blog/delete")]
         public ActionResult Delete(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))

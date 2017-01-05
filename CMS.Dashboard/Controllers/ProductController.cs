@@ -11,9 +11,8 @@ namespace CMS.Dashboard.Controllers
     [RoutePrefix("admin")]
     public class ProductController : Controller
     {
-        private readonly IProductRepository _productRepository = new ProductRepository(new WorkContext());
-
-        private readonly ITagRepository _tagRepository = new TagRepository(new WorkContext());
+        private readonly IProductRepository productRepository = new ProductRepository(new WorkContext());
+        private readonly ITagRepository tagRepository = new TagRepository(new WorkContext());
 
         [Route("product/gets")]
         public ActionResult Gets()
@@ -50,7 +49,7 @@ namespace CMS.Dashboard.Controllers
             {
                 var tags = frmCollect["hidden-tags"];
 
-                _productRepository.Add(model, tags);
+                productRepository.Add(model, tags);
                 return RedirectToAction("Index");
             }
             return View();
@@ -65,7 +64,7 @@ namespace CMS.Dashboard.Controllers
             {
                 var product = uow.Product.Get(id);
 
-                var lstTags = _tagRepository.GetTagsForObject(product.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
+                var lstTags = tagRepository.GetTagsForObject(product.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
                 ViewBag.ActiveTags = lstTags.HtmlTag;
                 ViewBag.HiddenTags = lstTags.TagValue;
 
@@ -80,7 +79,7 @@ namespace CMS.Dashboard.Controllers
             {
                 var tags = frmCollect["hidden-tags"];
 
-                _productRepository.Update(model, tags);
+                productRepository.Update(model, tags);
                 return RedirectToAction("Index");
             }
             return View();

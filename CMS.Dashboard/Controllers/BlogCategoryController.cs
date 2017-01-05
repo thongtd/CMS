@@ -13,12 +13,12 @@ using MvcConnerstore.Collections;
 
 namespace CMS.Dashboard.Controllers
 {
-    [RoutePrefix("Dashboard")]
+    [RoutePrefix("admin")]
     public class BlogCategoryController : Controller
     {
         private const string IndexPageTile = "Danh sách nhóm tin";
 
-        private readonly IBlogCategoryRepository _blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
+        private readonly IBlogCategoryRepository blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
 
         private readonly IList<Breadcurmb> breadcurmbs = new List<Breadcurmb>();
 
@@ -37,8 +37,8 @@ namespace CMS.Dashboard.Controllers
             });
         }
 
-        [Route("BlogCategory/Gets")]
-        public ActionResult Gets()
+        [Route("blog-category/get")]
+        public ActionResult Get()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -65,7 +65,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [Route("BlogCategory/Index")]
+        [Route("blog-category")]
         public ActionResult Index(string pageIndex)
         {
             breadcurmbs.Add(new Breadcurmb
@@ -82,7 +82,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpGet, Route("BlogCategory/Create")]
+        [HttpGet, Route("blog-category/create")]
         public ActionResult Create()
         {
             ViewBag.News = "active";
@@ -97,7 +97,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, Route("BlogCategory/Create")]
+        [HttpPost, Route("blog-category/create")]
         public ActionResult Create(BlogCategoryRequest model)
         {
             if (ModelState.IsValid)
@@ -115,7 +115,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpGet, Route("BlogCategory/Edit/{id}")]
+        [HttpGet, Route("blog-category/edit/{id}")]
         public ActionResult Edit(int id)
         {
             ViewBag.News = "active";
@@ -128,7 +128,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, Route("BlogCategory/Edit")]
+        [HttpPost, Route("blog-category/edit")]
         public ActionResult Edit(BlogCategoryRequest model)
         {
             if (ModelState.IsValid)
@@ -137,7 +137,7 @@ namespace CMS.Dashboard.Controllers
                 {
                     var category = uow.BlogCategory.Get(model.Id);
 
-                    _blogCategoryRepository.ConvertToModel(ref category, model);
+                    blogCategoryRepository.ConvertToModel(ref category, model);
 
                     category.ModeifiedDate = DateTime.UtcNow;
 
@@ -148,7 +148,7 @@ namespace CMS.Dashboard.Controllers
             return View();
         }
 
-        [HttpPost, Route("BlogCategory/Active")]
+        [HttpPost, Route("blog-category/active")]
         public ActionResult Active(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
@@ -165,7 +165,7 @@ namespace CMS.Dashboard.Controllers
             }
         }
         
-        [HttpPost, Route("BlogCategory/Delete")]
+        [HttpPost, Route("blog-category/delete")]
         public ActionResult Delete(int id)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
