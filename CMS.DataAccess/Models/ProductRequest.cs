@@ -39,6 +39,8 @@ namespace CMS.DataAccess.Models
 
         public int Click { get; set; }
 
+        public string TagClouds { get; set; }   //Separate by ,
+
         public Guid IdentityCode { get; set; }
 
         public bool PinToTop { get; set; }
@@ -55,7 +57,7 @@ namespace CMS.DataAccess.Models
 
         public decimal Discount { get; set; }
 
-        public int DiscountType { get; set; }
+        public bool DiscountIsPercent { get; set; }
 
         public bool IsActive { get; set; }
     }

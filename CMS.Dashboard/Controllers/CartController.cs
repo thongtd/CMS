@@ -20,11 +20,11 @@ namespace CMS.Dashboard.Controllers
 
             if (product.Discount > 0)
             {
-                if (product.DiscountType == (int)DiscountType.Value)
+                if (!product.DiscountIsPercent)
                 {
                     product.Price = product.Price - product.Discount;
                 }
-                else if (product.DiscountType == (int)DiscountType.Value)
+                else
                 {
                     product.Price = product.Price - (product.Price*(product.Discount/100));
                 }

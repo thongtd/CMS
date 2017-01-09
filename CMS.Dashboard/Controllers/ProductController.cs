@@ -91,13 +91,14 @@ namespace CMS.Dashboard.Controllers
         public ActionResult Create(ProductRequest model, FormCollection frmCollect)
         {
             if (ModelState.IsValid)
-            {
-                var tags = frmCollect["hidden-tags"];
+                return View();
 
-                productRepository.Add(model, tags);
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                uow.Product.Add(model);
+
                 return RedirectToAction("Index");
-            }
-            return View();
+            };
         }
 
         [Route("product/edit/{id}")]

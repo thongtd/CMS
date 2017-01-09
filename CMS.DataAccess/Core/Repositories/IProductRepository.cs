@@ -18,7 +18,7 @@ namespace CMS.DataAccess.Core.Repositories
 
         ProductResponse GetBySlug(string slug);
 
-        void Add(ProductRequest model, string tags);
+        void Add(ProductRequest model);
 
         void Update(ProductRequest model, string tags);
     }

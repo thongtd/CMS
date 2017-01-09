@@ -53,7 +53,7 @@ namespace CMS.DataAccess.Core.Domain
 
         public decimal Discount { get; set; }
 
-        public int DiscountType { get; set; }
+        public bool DiscountIsPercent { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -89,7 +89,7 @@ namespace CMS.DataAccess.Core.Domain
                 PinToTop = model.PinToTop,
                 Price = model.Price,
                 Discount = model.Discount,
-                DiscountType = model.DiscountType
+                DiscountIsPercent = model.DiscountIsPercent
             };
         }
     }
@@ -120,7 +120,7 @@ namespace CMS.DataAccess.Core.Domain
             Property(x => x.PinToTop).IsRequired();
             Property(x => x.Price).IsRequired();
             Property(x => x.Discount);
-            Property(x => x.DiscountType);
+            Property(x => x.DiscountIsPercent);
         }
     }
 }

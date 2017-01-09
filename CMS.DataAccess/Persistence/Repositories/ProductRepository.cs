@@ -40,7 +40,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             product.PinToTop = model.PinToTop;
             product.Price = model.Price;
             product.Discount = model.Discount;
-            product.DiscountType = model.DiscountType;
+            product.DiscountIsPercent = model.DiscountIsPercent;
         }
 
         public IEnumerable<ProductResponse> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Product, bool>> predicate)
@@ -74,7 +74,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                     Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList(),
                     Price = s.Price,
                     Discount = s.Discount,
-                    DiscountType = s.DiscountType
+                    DiscountIsPercent = s.DiscountIsPercent
                 }).ToList();
 
                 totalRecord = productResponses.Count();
@@ -119,7 +119,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                         Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList(),
                         Price = s.Price,
                         Discount = s.Discount,
-                        DiscountType = s.DiscountType
+                        DiscountIsPercent = s.DiscountIsPercent
                     }).ToList();
                 }
                 return new List<ProductResponse>();
@@ -155,7 +155,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 CreatedDate = product.CreatedDate,
                 CultureCode = product.CultureCode,
                 Discount = product.Discount,
-                DiscountType = product.DiscountType,
+                DiscountIsPercent = product.DiscountIsPercent,
                 IdentityCode = product.IdentityCode,
                 Keyword = product.Keyword,
                 ModeifiedDate = product.ModeifiedDate,
@@ -169,7 +169,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             };
         }
 
-        public void Add(ProductRequest model, string collectionTags)
+        public void Add(ProductRequest model)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -184,11 +184,10 @@ namespace CMS.DataAccess.Persistence.Repositories
 
                 product.IdentityCode = identity;
                 uow.Product.Add(product);
-
-                #region Add tags for blog
-                if (!string.IsNullOrEmpty(collectionTags))
+                
+                if (!string.IsNullOrEmpty(model.TagClouds))
                 {
-                    string[] arrTags = collectionTags.Split(',');
+                    string[] arrTags = model.TagClouds.Split(',');
                     var tags = uow.TagCategory.GetAll();
                     var tagIds = (from s in tags where arrTags.Contains(s.Name) select s).ToList();
 
@@ -205,7 +204,6 @@ namespace CMS.DataAccess.Persistence.Repositories
                         uow.Tag.Add(tag);
                     }
                 }
-                #endregion
 
                 uow.Complete();
             }

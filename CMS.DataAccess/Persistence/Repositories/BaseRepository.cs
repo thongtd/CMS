@@ -7,11 +7,11 @@ using CMS.DataAccess.Core.Repositories;
 
 namespace CMS.DataAccess.Persistence.Repositories
 {
-    public class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
+    public abstract class BaseRepository<TEntity> : IBaseRepository<TEntity> where TEntity : class
     {
         protected readonly DbContext Context;
 
-        public BaseRepository(DbContext context)
+        protected BaseRepository(DbContext context)
         {
             this.Context = context;
         }
@@ -40,7 +40,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             return Context.Set<TEntity>().SingleOrDefault(predicate);
         }
 
-        public void Add(TEntity entity)
+        public virtual void Add(TEntity entity)
         {
             Context.Set<TEntity>().Add(entity);
         }

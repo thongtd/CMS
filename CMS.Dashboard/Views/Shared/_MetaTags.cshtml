@@ -3,17 +3,22 @@
     <h1>Meta Tags</h1>
     <div class="clear"></div>
 </div>
-<div class="block-fluid" style=" min-height: 150px; padding-bottom: 10px; overflow-y: scroll; overflow-x: hidden;">
+<div class="block-fluid" style="min-height: 150px; padding-bottom: 10px; overflow-y: scroll; overflow-x: hidden;">
     <div class="row-form" style="display: block; float: left; padding-bottom: 5px; width: 100%;">
         <i>Các tags ngăn cách nhau bằng dấu phẩy ","</i>
-        <input type="text" id="txtTag" style="width: 70%; margin-right: 5px;">
-        <input type="button" class="btn btn-create btn-flat" id="btAddTags" value="Thêm" />
-        <div class="form-tags" id="input-tags" style="padding: 7px 0px;">
-            <div class="tagchecklist">
-                @Html.Raw(ViewBag.ActiveTags)
+        <input type="text" id="tag" ng-model="tag" style="width: 70%; margin-right: 5px;">
+        <input type="button" class="btn btn-create btn-flat" ng-click="addTag(tag)" value="Thêm" />
+        <div class="span10 no-margin">
+            <div class="meta-tags" id="input-tags" style="padding: 7px 0px;">
+                <ul>
+                    <li ng-repeat="tag in tags">
+                        <span>{{tag}} <a class="remove" ng-click="tags.splice($index, 1)">x</a></span>
+                    </li>
+                </ul>
+                @*@Html.Raw(ViewBag.ActiveTags)*@
             </div>
         </div>
-        <input type="hidden" id="hidden-tags" name="hidden-tags" value="@ViewBag.HiddenTags" />
+        <input type="hidden" id="hidden-tags" name="hidden-tags" value="{{tags.join()}}"/>
         <input type="hidden" id="hidden-tags-edit" name="hidden-tags-edit" />
     </div>
 </div>
@@ -35,6 +40,8 @@
         $('#div-tags a').click(function () {
             AddTags(this.id, this.text);
         });
+
+        $("#s2_1").select2();
     });
 
     function RemoveTags(vId) {

@@ -9,6 +9,17 @@
 
     function dashboardController($scope) {
         $scope.productImages = [];
+        $scope.tags = [];
+
+        $scope.tags.push("tag 1");
+        $scope.tags.push("tag 2");
+        $scope.tags.push("tag 3");
+        $scope.tags.push("tag 4");
+        $scope.tags.push("tag 5");
+        $scope.tags.push("tag 6");
+        $scope.tags.push("tag 7");
+
+        //For image upload
         for (var i = 0; i < 5; i++) {
             $scope.productImages.push("");
         }
@@ -21,7 +32,7 @@
             finder.popup();
         }
 
-        $scope.addProductImage = function() {
+        $scope.addProductImage = function () {
             $scope.productImages.push("");
         }
 
@@ -29,13 +40,27 @@
             $scope.productImages.splice(index, 1);
             if (!$scope.$$phase) $scope.$apply();
         }
+
+        //End For image upload
+
+        $scope.addTag = function (tagVal) {
+            if (tagVal == undefined || tagVal.length === 0) {
+                return;
+            }
+
+            $scope.tag = "";
+            var index = $scope.tags.indexOf(tagVal);
+            if (index < 0) {
+                $scope.tags.push(tagVal);
+            }
+        }
     }
 
     app.directive("ckfinderBrowse", [function () {
         return {
             restrict: 'A',
             scope: {},
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
                 element.bind('click', function () {
                     var finder = new CKFinder();
                     finder.selectActionFunction = function (fileUrl) {

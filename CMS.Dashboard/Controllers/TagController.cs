@@ -9,11 +9,11 @@ using CMS.DataAccess.Persistence;
 
 namespace CMS.Dashboard.Controllers
 {
-    [RoutePrefix("Dashboard")]
+    [RoutePrefix("admin")]
     public class TagController : Controller
     {
-        [HttpPost, Route("Tag/GetAllTag")]
-        public ActionResult GetAllTag(string tag)
+        [HttpPost, Route("tag/get-tags")]
+        public ActionResult GetTags(string tag)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -28,12 +28,12 @@ namespace CMS.Dashboard.Controllers
             }
         }
 
-        [HttpPost, Route("Tag/AddTag")]
-        public JsonResult AddTag(string tag)
+        [HttpPost, Route("tag/add-tag")]
+        public JsonResult AddTag(string tags)
         {
             try
             {
-                if (string.IsNullOrEmpty(tag))
+                if (string.IsNullOrEmpty(tags))
                 {
                     return Json(new
                     {
@@ -42,22 +42,22 @@ namespace CMS.Dashboard.Controllers
                     });
                 }
 
-                string[] strArrayTags = tag.Split(',');
+                var arrayTags = tags.Split(',');
                 using (var uow = new UnitOfWork(new WorkContext()))
                 {
-                    foreach (var item in strArrayTags)
+                    foreach (var item in arrayTags)
                     {
                         if (item.Trim().Length > 0)
                         {
-                            string strTags = item.NameToSlug();
+                            var tag = item.NameToSlug();
 
                             var predicate = PredicateBuilder.Create<TagCategory>(s => s.Name.Equals(item));
 
                             var tagCategorys = uow.TagCategory.Find(predicate).ToList();
                             if (!tagCategorys.Any())
                             {
-                                var objTag = new TagCategory { Name = item.ToLower().Trim(), MetaTag = strTags };
-                                uow.TagCategory.Add(objTag);
+                                var metaTag = new TagCategory { Name = item.ToLower().Trim(), MetaTag = tag };
+                                uow.TagCategory.Add(metaTag);
                             }
                         }
                     }

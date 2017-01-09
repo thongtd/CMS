@@ -71,29 +71,26 @@
                     <div class="block-fluid">
                         <div class="row-form">
                             <div class="span12">
-                                <div class="span6">
+                                <div class="span12">
                                     <label for="">Đơn giá:<em>*</em></label>
                                     @Html.TextBoxFor(m => m.Price, new { placeholder = "Đơn giá" })
                                     @Html.ValidationMessageFor(model => model.Price)
-                                </div>
-                                <div class="span6">
-                                    <label for="">Giảm giá:<em>*</em></label>
-                                    @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá", Value = "0" })
-                                    @Html.ValidationMessageFor(model => model.Discount)
                                 </div>
                             </div>
                             <div class="clearfix"></div>
                         </div>
                         <div class="row-form discount">
-                            <label for="">Loại giảm giá:<em>*</em></label>
+                            <label for="">Giảm giá:<em>*</em></label>
                             <div class="span12 no-margin">
                                 <div class="span6">
-                                    @Html.RadioButtonFor(model => model.DiscountType, 1, new { id = "Value", @checked = "checked" })
-                                    <label for="Value">Giá trị</label>
+                                    <div class="span6">
+                                        @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá", Value = "0" })
+                                        @Html.ValidationMessageFor(model => model.Discount)
+                                    </div>
                                 </div>
                                 <div class="span6">
-                                    @Html.RadioButtonFor(model => model.DiscountType, 2, new { id = "Percent" })
-                                    <label for="Percent">Phần trăm</label>
+                                    @Html.CheckBoxFor(m => m.DiscountIsPercent)
+                                    <label for="DiscountIsPercent">Phần trăm</label>
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -113,7 +110,7 @@
                             <div class="img-upload">
                                 @Html.TextBoxFor(m => m.Thumbnail, new { placeholder = "Chọn ảnh đại diện" })
                                 @Html.ValidationMessageFor(model => model.Thumbnail)
-                                <a class="image-browse" id="btImgBrowse" onclick="browseImage('Thumbnail')">
+                                <a class="media image-browse" id="btImgBrowse" ckfinder-browse data-ref-id="Thumbnail">
                                     <i class="isw-plus"></i>
                                 </a>
                             </div>
@@ -125,10 +122,10 @@
                             <div class="span12 no-margin">
                                 <div class="img-upload" ng-repeat="item in productImages track by $index">
                                     <input id="Images_{{$index}}_" name="Images[{{$index}}]" placeholder="Hình ảnh sản phẩm" type="text" value="">
-                                    <a class="image-browse" ckfinder-browse data-ref-id="Images_{{$index}}_">
+                                    <a class="media image-browse" ckfinder-browse data-ref-id="Images_{{$index}}_">
                                         <i class="isw-plus"></i>
                                     </a>
-                                    <a class="image-browse del" ng-click="removeProductImage($index)">
+                                    <a class="media image-browse del" ng-click="productImages.splice($index, 1)" ng-show="$index == productImages.length - 1">
                                         <i class="isw-delete"></i>
                                     </a>
                                 </div>

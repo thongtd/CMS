@@ -46,7 +46,7 @@ namespace CMS.DataAccess.Models
 
         public decimal Discount { get; set; }
 
-        public int DiscountType { get; set; }
+        public bool DiscountIsPercent { get; set; }
 
         public bool IsActive { get; set; }
         
