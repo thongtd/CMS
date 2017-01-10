@@ -110,7 +110,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 if (!string.IsNullOrEmpty(collectionTags))
                 {
                     string[] arrTags = collectionTags.Split(',');
-                    var tags = uow.TagCategory.GetAll();
+                    var tags = uow.TagCategory.FindAll();
                     var tagIds = (from s in tags where arrTags.Contains(s.Name) select s).ToList();
 
                     foreach (var item in tagIds)
@@ -150,7 +150,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 if (!string.IsNullOrEmpty(tags))
                 {
                     string[] arrTags = tags.Split(',');
-                    var tagCategories = uow.TagCategory.GetAll();
+                    var tagCategories = uow.TagCategory.FindAll();
 
                     var tagIds = (from s in tagCategories where arrTags.Contains(s.Name) select s).ToList();
 

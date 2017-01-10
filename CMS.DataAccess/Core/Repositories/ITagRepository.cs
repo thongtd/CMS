@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Models;
 
@@ -15,5 +16,7 @@ namespace CMS.DataAccess.Core.Repositories
         IEnumerable<Tag> GetTagByBlogId(int blogId);
 
         TagHtmlResponse GetTagsForObject(Guid objectValue, string objectName, string objectProperty);
+
+        Task AddTagToObject(string[] arrTags, string objectName, string objectProperty, Guid objectIdentityId);
     }
 }

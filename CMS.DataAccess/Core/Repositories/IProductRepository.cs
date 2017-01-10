@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Models;
 
@@ -18,7 +19,7 @@ namespace CMS.DataAccess.Core.Repositories
 
         ProductResponse GetBySlug(string slug);
 
-        void Add(ProductRequest model);
+        Task Add(ProductRequest model);
 
         void Update(ProductRequest model, string tags);
     }

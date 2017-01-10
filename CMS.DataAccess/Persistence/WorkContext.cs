@@ -40,7 +40,7 @@ namespace CMS.DataAccess.Persistence
             //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WorkContext>());
             //Database.SetInitializer<WorkContext>(null);
 
-            Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WorkContext>());
+            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WorkContext>());
 
             modelBuilder.Configurations.Add(new BlogCategoryMap());
             modelBuilder.Configurations.Add(new BlogMap());

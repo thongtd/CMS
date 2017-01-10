@@ -17,7 +17,7 @@ namespace CMS.Dashboard.Controllers
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
-                var tags = uow.TagCategory.GetAll().ToList();
+                var tags = uow.TagCategory.FindAll().ToList();
 
                 var allTags = new string[tags.Count];
                 for (var i = 0; i < tags.Count; i++)

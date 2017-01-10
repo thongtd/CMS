@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Data.Entity;
 using System.Linq;
+using System.Threading.Tasks;
 using CMS.DataAccess.Core.Domain;
+using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
 
@@ -47,6 +49,50 @@ namespace CMS.DataAccess.Persistence.Repositories
                 tagsListHtml.TagValue += tag.TagCategory.Name + ",";
             }
             return tagsListHtml;
+        }
+
+        public async Task AddTagToObject(string[] arrTags, string objectName, string objectProperty, Guid objectIdentityId)
+        {
+            if (!arrTags.Any()) { return; }
+
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var tags = await uow.TagCategory.FindAsyn(null);
+
+                var tagExits = tags.Where(t => arrTags.Contains(t.Name)).Select(t => t.Name).ToList();
+                var newTags = arrTags.Except(tagExits);
+
+                var tagCategorys = new List<TagCategory>();
+
+                foreach (var tag in newTags)
+                {
+                    tagCategorys.Add(new TagCategory
+                    {
+                        Name = tag,
+                        MetaTag = tag.NameToSlug()
+                    });
+                }
+
+                uow.TagCategory.AddRange(tagCategorys);
+                uow.Complete();
+
+                var tagIds = await uow.TagCategory.FindAsyn(s => arrTags.Contains(s.Name));
+
+                var tagEntitys = new List<Tag>();
+                foreach (var item in tagIds)
+                {
+                    tagEntitys.Add(new Tag()
+                    {
+                        ObjectName = objectName,
+                        ObjectProperty = objectProperty,
+                        ObjectIdentityId = objectIdentityId,
+                        TagCategoryId = item.Id
+                    });
+                }
+
+                uow.Tag.AddRange(tagEntitys);
+                uow.Complete();
+            }
         }
 
         public WorkContext WorkContext

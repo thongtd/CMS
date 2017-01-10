@@ -1,12 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
 using System.Linq;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Models;
 using Newtonsoft.Json;
-using System.Web.Script.Serialization;
 
 namespace CMS.DataAccess.Core.Domain
 {

@@ -8,6 +8,7 @@ using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
 using MvcConnerstore.Collections;
 using System.Data.Entity;
+using System.Threading.Tasks;
 using CMS.DataAccess.Core.Linqkit;
 using Newtonsoft.Json;
 
@@ -45,45 +46,72 @@ namespace CMS.DataAccess.Persistence.Repositories
 
         public IEnumerable<ProductResponse> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Product, bool>> predicate)
         {
-            var products = WorkContext.Products.Include(s => s.ProductCategory).OrderByDescending(s => s.Id).ToList();
-
-            if (products.Any())
-            {
-                var productResponses = products.Select(s => new ProductResponse
+            var products = WorkContext.Products
+                .Include(s => s.ProductCategory)
+                .Select(s=>new
                 {
-                    ProductCategory = s.ProductCategory,
-                    IsActive = s.IsActive,
-                    ProductCategoryId = s.ProductCategoryId,
-                    Name = s.Name,
-                    BodyContent = s.BodyContent,
-                    Click = s.Click,
-                    ModeifiedDate = s.ModeifiedDate,
-                    CreatedDate = s.CreatedDate,
-                    CultureCode = s.CultureCode,
-                    Description = s.Description,
-                    Id = s.Id,
-                    Title = s.Title,
-                    Slug = s.Slug,
-                    Images = s.Images != null ? JsonConvert.DeserializeObject<IList<string>>(s.Images) : null,
-                    Keyword = s.Keyword,
-                    Thumbnail = s.Thumbnail,
-                    PinToTop = s.PinToTop,
-                    SubContent = s.SubContent,
-                    IdentityCode = s.IdentityCode,
-                    Target = s.Target,
-                    Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList(),
-                    Price = s.Price,
-                    Discount = s.Discount,
-                    DiscountIsPercent = s.DiscountIsPercent
-                }).ToList();
+                    s.Id,
+                    s.Name,
+                    s.Slug,
+                    s.ProductCategoryId,
+                    s.Thumbnail,
+                    s.Images,
+                    s.CreatedDate,
+                    s.ModeifiedDate,
+                    s.SubContent,
+                    s.BodyContent,
+                    s.Target,
+                    s.Click,
+                    s.IdentityCode,
+                    s.PinToTop,
+                    s.Title,
+                    s.Description,
+                    s.Keyword,
+                    s.CultureCode,
+                    s.Price,
+                    s.Discount,
+                    s.DiscountIsPercent,
+                    s.IsActive,
+                    s.ProductCategory
+                }).OrderByDescending(s => s.Id).ToList();
 
-                totalRecord = productResponses.Count();
-                productResponses = productResponses.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
-                return new PagedList<ProductResponse>(productResponses, totalRecord);
+            if (!products.Any())
+            {
+                totalRecord = 0;
+                return new List<ProductResponse>();
             }
 
-            totalRecord = 0;
-            return new PagedList<ProductResponse>(null, 0);
+            var productResponses = products.Select(s => new ProductResponse
+            {
+                ProductCategory = s.ProductCategory,
+                IsActive = s.IsActive,
+                ProductCategoryId = s.ProductCategoryId,
+                Name = s.Name,
+                BodyContent = s.BodyContent,
+                Click = s.Click,
+                ModeifiedDate = s.ModeifiedDate,
+                CreatedDate = s.CreatedDate,
+                CultureCode = s.CultureCode,
+                Description = s.Description,
+                Id = s.Id,
+                Title = s.Title,
+                Slug = s.Slug,
+                Images = s.Images != null ? JsonConvert.DeserializeObject<IList<string>>(s.Images) : null,
+                Keyword = s.Keyword,
+                Thumbnail = s.Thumbnail,
+                PinToTop = s.PinToTop,
+                SubContent = s.SubContent,
+                IdentityCode = s.IdentityCode,
+                Target = s.Target,
+                Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList(),
+                Price = s.Price,
+                Discount = s.Discount,
+                DiscountIsPercent = s.DiscountIsPercent
+            }).ToList();
+
+            totalRecord = productResponses.Count();
+            productResponses = productResponses.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
+            return productResponses;
         }
 
         public IEnumerable<ProductResponse> GetByTop(int top, Expression<Func<Product, bool>> predicate)
@@ -169,7 +197,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             };
         }
 
-        public void Add(ProductRequest model)
+        public async Task Add(ProductRequest model)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -188,21 +216,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 if (!string.IsNullOrEmpty(model.TagClouds))
                 {
                     string[] arrTags = model.TagClouds.Split(',');
-                    var tags = uow.TagCategory.GetAll();
-                    var tagIds = (from s in tags where arrTags.Contains(s.Name) select s).ToList();
-
-                    foreach (var item in tagIds)
-                    {
-                        int tagId = int.Parse(item.Id.ToString());
-                        var tag = new Tag()
-                        {
-                            ObjectName = Constants.ObjectName.Blog,
-                            ObjectProperty = Constants.ObjectName.BlogIdenityCode,
-                            ObjectIdentityId = identity,
-                            TagCategoryId = tagId
-                        };
-                        uow.Tag.Add(tag);
-                    }
+                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, Constants.ObjectName.ProductIdenityCode, identity);
                 }
 
                 uow.Complete();
@@ -227,7 +241,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 if (!string.IsNullOrEmpty(tags))
                 {
                     string[] arrTags = tags.Split(',');
-                    var tagCategories = uow.TagCategory.GetAll();
+                    var tagCategories = uow.TagCategory.FindAll();
 
                     var tagIds = (from s in tagCategories where arrTags.Contains(s.Name) select s).ToList();
 

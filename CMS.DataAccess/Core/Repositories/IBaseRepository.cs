@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 
 namespace CMS.DataAccess.Core.Repositories
 {
@@ -8,9 +9,11 @@ namespace CMS.DataAccess.Core.Repositories
     {
         TEntity Get<T>(T Id);
 
-        IEnumerable<TEntity> GetAll();
+        IEnumerable<TEntity> FindAll();
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);
+
+        Task<IEnumerable<TEntity>> FindAsyn(Expression<Func<TEntity, bool>> predicate);
 
         TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate);
 

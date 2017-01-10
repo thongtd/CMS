@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using CMS.DataAccess.Core.Repositories;
 
 namespace CMS.DataAccess.Persistence.Repositories
@@ -21,7 +22,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             return Context.Set<TEntity>().Find(Id);
         }
 
-        public IEnumerable<TEntity> GetAll()
+        public IEnumerable<TEntity> FindAll()
         {
             return Context.Set<TEntity>().ToList();
         }
@@ -33,6 +34,15 @@ namespace CMS.DataAccess.Persistence.Repositories
                 return Context.Set<TEntity>().ToList();
             }
             return Context.Set<TEntity>().Where(predicate).ToList();
+        }
+
+        public async Task<IEnumerable<TEntity>> FindAsyn(Expression<Func<TEntity, bool>> predicate)
+        {
+            if (predicate == null)
+            {
+                return await Context.Set<TEntity>().ToListAsync();
+            }
+            return await Context.Set<TEntity>().Where(predicate).ToListAsync();
         }
 
         public TEntity SingleOrDefault(Expression<Func<TEntity, bool>> predicate)

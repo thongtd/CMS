@@ -10,15 +10,7 @@
     function dashboardController($scope) {
         $scope.productImages = [];
         $scope.tags = [];
-
-        $scope.tags.push("tag 1");
-        $scope.tags.push("tag 2");
-        $scope.tags.push("tag 3");
-        $scope.tags.push("tag 4");
-        $scope.tags.push("tag 5");
-        $scope.tags.push("tag 6");
-        $scope.tags.push("tag 7");
-
+        
         //For image upload
         for (var i = 0; i < 5; i++) {
             $scope.productImages.push("");

@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using CMS.Dashboard.Code.Models;
 using CMS.DataAccess.Core.Extension;
@@ -13,9 +14,9 @@ namespace CMS.Dashboard.Controllers
     [RoutePrefix("admin")]
     public class ProductController : Controller
     {
-        private const string IndexPageTile = "Danh sách nhóm sản phẩm";
-        private const string EditPageTile = "Sửa thông tin nhóm sản phẩm";
-        private const string CreatePageTile = "Thêm mới nhóm sản phẩm";
+        private const string IndexPageTile = "Danh sách sản phẩm";
+        private const string EditPageTile = "Sửa thông tin sản phẩm";
+        private const string CreatePageTile = "Thêm mới sản phẩm";
 
         private readonly IProductRepository productRepository = new ProductRepository(new WorkContext());
         private readonly ITagRepository tagRepository = new TagRepository(new WorkContext());
@@ -38,14 +39,15 @@ namespace CMS.Dashboard.Controllers
         }
 
         [Route("product/gets")]
-        public ActionResult Gets()
+        public async Task<ActionResult> Gets()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
                 var total = 0;
-                var product = uow.Product.Paging(PagedExtention.TryGetPageIndex("1"), int.MaxValue, out total, null);
 
-                return Json(product, JsonRequestBehavior.AllowGet);
+                var task =Task.Run(()=> uow.Product.Paging(PagedExtention.TryGetPageIndex("1"), int.MaxValue, out total, null));
+
+                return Json(await task, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -90,8 +92,8 @@ namespace CMS.Dashboard.Controllers
         [HttpPost, ValidateInput(false), Route("product/create")]
         public ActionResult Create(ProductRequest model, FormCollection frmCollect)
         {
-            if (ModelState.IsValid)
-                return View();
+            if (!ModelState.IsValid)
+                return View(model);
 
             using (var uow = new UnitOfWork(new WorkContext()))
             {
