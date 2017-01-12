@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CMS.Dashboard.Code.Models;
+using CMS.Dashboard.Filters;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
@@ -14,50 +13,31 @@ using MvcConnerstore.Collections;
 namespace CMS.Dashboard.Controllers
 {
     [RoutePrefix("admin")]
+    [DashboardActionFilter(IndexPageTile = "Danh sách nhóm bài viết", EditPageTile = "Sửa thông tin nhóm bài viết", CreatePageTile = "Thêm mới nhóm bài viết")]
     public class BlogCategoryController : Controller
     {
-        private const string IndexPageTile = "Danh sách nhóm tin";
-
         private readonly IBlogCategoryRepository blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
-
-        private readonly IList<Breadcurmb> breadcurmbs = new List<Breadcurmb>();
-
-        public BlogCategoryController()
-        {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "/",
-                Lable = "Home"
-            });
-
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "#",
-                Lable = "Dashboard"
-            });
-        }
-
+        
         [Route("blog-category/get")]
         public ActionResult Get()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
-                var total = 0;
+                int total;
                 var blogCategorys = uow.BlogCategory.Paging(PagedExtention.TryGetPageIndex("1"), int.MaxValue, out total, null);
 
-                if (blogCategorys.Any())
+                if (!blogCategorys.Any()) return Json(blogCategorys, JsonRequestBehavior.AllowGet);
+
+                foreach (var category in blogCategorys)
                 {
-                    foreach (var category in blogCategorys)
+                    if (category.Level.Length > 5)
                     {
-                        if (category.Level.Length > 5)
+                        var space = string.Empty;
+                        while (space.Length < category.Level.Length - 5)
                         {
-                            var space = string.Empty;
-                            while (space.Length < category.Level.Length - 5)
-                            {
-                                space += "_";
-                            }
-                            category.Name = space + category.Name;
+                            space += "_";
                         }
+                        category.Name = space + category.Name;
                     }
                 }
 
@@ -68,15 +48,6 @@ namespace CMS.Dashboard.Controllers
         [Route("blog-category")]
         public ActionResult Index(string pageIndex)
         {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = Url.Action("Index"),
-                Lable = IndexPageTile
-            });
-
-            ViewBag.Breadcurmbs = breadcurmbs;
-            ViewBag.Title = IndexPageTile;
-
             ViewBag.News = "active";
 
             return View();
@@ -100,19 +71,17 @@ namespace CMS.Dashboard.Controllers
         [HttpPost, Route("blog-category/create")]
         public ActionResult Create(BlogCategoryRequest model)
         {
-            if (ModelState.IsValid)
-            {
-                var blogCategory = (BlogCategory)model;
-                blogCategory.CreatedDate = DateTime.UtcNow;
+            if (!ModelState.IsValid) return View();
 
-                using (var uow = new UnitOfWork(new WorkContext()))
-                {
-                    uow.BlogCategory.Add(blogCategory);
-                    uow.Complete();
-                    return View();
-                }
+            var blogCategory = (BlogCategory)model;
+            blogCategory.CreatedDate = DateTime.UtcNow;
+
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                uow.BlogCategory.Add(blogCategory);
+                uow.Complete();
+                return View();
             }
-            return View();
         }
 
         [HttpGet, Route("blog-category/edit/{id}")]
@@ -131,21 +100,19 @@ namespace CMS.Dashboard.Controllers
         [HttpPost, Route("blog-category/edit")]
         public ActionResult Edit(BlogCategoryRequest model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View();
+
+            using (var uow = new UnitOfWork(new WorkContext()))
             {
-                using (var uow = new UnitOfWork(new WorkContext()))
-                {
-                    var category = uow.BlogCategory.Get(model.Id);
+                var category = uow.BlogCategory.Get(model.Id);
 
-                    blogCategoryRepository.ConvertToModel(ref category, model);
+                blogCategoryRepository.ConvertToModel(ref category, model);
 
-                    category.ModeifiedDate = DateTime.UtcNow;
+                category.ModeifiedDate = DateTime.UtcNow;
 
-                    uow.Complete();
-                    return View();
-                }
+                uow.Complete();
+                return View();
             }
-            return View();
         }
 
         [HttpPost, Route("blog-category/active")]

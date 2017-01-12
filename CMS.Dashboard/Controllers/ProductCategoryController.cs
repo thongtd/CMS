@@ -1,8 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using CMS.Dashboard.Code.Models;
+using CMS.Dashboard.Filters;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
@@ -14,31 +13,11 @@ using MvcConnerstore.Collections;
 namespace CMS.Dashboard.Controllers
 {
     [RoutePrefix("admin")]
+    [DashboardActionFilter(IndexPageTile = "Danh sách nhóm sản phẩm", EditPageTile = "Sửa thông tin nhóm sản phẩm", CreatePageTile = "Thêm mới nhóm sản phẩm")]
     public class ProductCategoryController : Controller
     {
-        private const string IndexPageTile = "Danh sách nhóm sản phẩm";
-        private const string EditPageTile = "Sửa thông tin nhóm sản phẩm";
-        private const string CreatePageTile = "Thêm mới nhóm sản phẩm";
-
         private readonly IProductCategoryRepository productCategoryRepository = new ProductCategoryRepository(new WorkContext());
-
-        private readonly IList<Breadcurmb> breadcurmbs = new List<Breadcurmb>();
-
-        public ProductCategoryController()
-        {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "/",
-                Lable = "Home"
-            });
-
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "#",
-                Lable = "Dashboard"
-            });
-        }
-
+        
         [Route("product-category/get")]
         public ActionResult Get()
         {
@@ -70,14 +49,6 @@ namespace CMS.Dashboard.Controllers
         [Route("product-category")]
         public ActionResult Index(string pageIndex)
         {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = Url.Action("Index"),
-                Lable = IndexPageTile
-            });
-
-            ViewBag.Breadcurmbs = breadcurmbs;
-            ViewBag.Title = IndexPageTile;
             ViewBag.Product = "active";
 
             return View();
@@ -101,19 +72,17 @@ namespace CMS.Dashboard.Controllers
         [HttpPost, Route("product-category/create")]
         public ActionResult Create(ProductCategoryRequest model)
         {
-            if (ModelState.IsValid)
-            {
-                var productCategory = (ProductCategory)model;
-                productCategory.CreatedDate = DateTime.UtcNow;
+            if (!ModelState.IsValid) return View();
 
-                using (var uow = new UnitOfWork(new WorkContext()))
-                {
-                    uow.ProductCategory.Add(productCategory);
-                    uow.Complete();
-                    return View();
-                }
+            var productCategory = (ProductCategory)model;
+            productCategory.CreatedDate = DateTime.UtcNow;
+
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                uow.ProductCategory.Add(productCategory);
+                uow.Complete();
+                return View();
             }
-            return View();
         }
 
         [HttpGet, Route("product-category/edit/{id}")]
@@ -132,21 +101,19 @@ namespace CMS.Dashboard.Controllers
         [HttpPost, Route("product-category/edit")]
         public ActionResult Edit(ProductCategoryRequest model)
         {
-            if (ModelState.IsValid)
+            if (!ModelState.IsValid) return View();
+
+            using (var uow = new UnitOfWork(new WorkContext()))
             {
-                using (var uow = new UnitOfWork(new WorkContext()))
-                {
-                    var category = uow.ProductCategory.Get(model.Id);
+                var category = uow.ProductCategory.Get(model.Id);
 
-                    productCategoryRepository.ConvertToModel(ref category, model);
+                productCategoryRepository.ConvertToModel(ref category, model);
 
-                    category.ModeifiedDate = DateTime.UtcNow;
+                category.ModeifiedDate = DateTime.UtcNow;
 
-                    uow.Complete();
-                    return View();
-                }
+                uow.Complete();
+                return View();
             }
-            return View();
         }
 
         [HttpPost, Route("product-category/active")]

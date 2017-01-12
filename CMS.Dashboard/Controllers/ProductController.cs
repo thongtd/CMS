@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using System.Web.Mvc;
-using CMS.Dashboard.Code.Models;
+using CMS.Dashboard.Filters;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
@@ -12,40 +11,20 @@ using MvcConnerstore.Collections;
 namespace CMS.Dashboard.Controllers
 {
     [RoutePrefix("admin")]
+    [DashboardActionFilter(IndexPageTile = "Danh sách sản phẩm", EditPageTile = "Sửa thông tin sản phẩm", CreatePageTile = "Thêm mới sản phẩm")]
     public class ProductController : Controller
     {
-        private const string IndexPageTile = "Danh sách sản phẩm";
-        private const string EditPageTile = "Sửa thông tin sản phẩm";
-        private const string CreatePageTile = "Thêm mới sản phẩm";
-
         private readonly IProductRepository productRepository = new ProductRepository(new WorkContext());
         private readonly ITagRepository tagRepository = new TagRepository(new WorkContext());
-
-        private readonly IList<Breadcurmb> breadcurmbs = new List<Breadcurmb>();
-
-        public ProductController()
-        {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "/",
-                Lable = "Home"
-            });
-
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "#",
-                Lable = "Dashboard"
-            });
-        }
-
+        
         [Route("product/gets")]
         public async Task<ActionResult> Gets()
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
-                var total = 0;
+                int total;
 
-                var task =Task.Run(()=> uow.Product.Paging(PagedExtention.TryGetPageIndex("1"), int.MaxValue, out total, null));
+                var task = Task.Run(() => uow.Product.Paging(PagedExtention.TryGetPageIndex("1"), int.MaxValue, out total, null));
 
                 return Json(await task, JsonRequestBehavior.AllowGet);
             }
@@ -54,14 +33,6 @@ namespace CMS.Dashboard.Controllers
         [Route("product")]
         public ActionResult Index(string pageIndex)
         {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = Url.Action("Index"),
-                Lable = IndexPageTile
-            });
-
-            ViewBag.Breadcurmbs = breadcurmbs;
-            ViewBag.Title = IndexPageTile;
             ViewBag.Product = "active";
 
             return View();
@@ -70,20 +41,6 @@ namespace CMS.Dashboard.Controllers
         [Route("product/create")]
         public ActionResult Create()
         {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = Url.Action("Index"),
-                Lable = IndexPageTile
-            });
-
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "#",
-                Lable = CreatePageTile
-            });
-
-            ViewBag.Breadcurmbs = breadcurmbs;
-            ViewBag.Title = CreatePageTile;
             ViewBag.Product = "active";
 
             return View();
@@ -100,26 +57,12 @@ namespace CMS.Dashboard.Controllers
                 uow.Product.Add(model);
 
                 return RedirectToAction("Index");
-            };
+            }
         }
 
         [Route("product/edit/{id}")]
         public ActionResult Edit(int id)
         {
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = Url.Action("Index"),
-                Lable = IndexPageTile
-            });
-
-            breadcurmbs.Add(new Breadcurmb
-            {
-                ActionLink = "#",
-                Lable = EditPageTile
-            });
-
-            ViewBag.Breadcurmbs = breadcurmbs;
-            ViewBag.Title = EditPageTile;
             ViewBag.Product = "active";
 
             using (var uow = new UnitOfWork(new WorkContext()))

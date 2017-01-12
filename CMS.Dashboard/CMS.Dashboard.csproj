@@ -212,6 +212,7 @@
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Extentions\ListExtentions.cs" />
+    <Compile Include="Filters\DashboardActionFilter.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -1825,6 +1826,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Views\BaseDashboard\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Tag\" />
   </ItemGroup>
