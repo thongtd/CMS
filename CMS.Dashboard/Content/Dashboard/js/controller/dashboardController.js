@@ -5,17 +5,13 @@
 
     angular.module('microCMS').controller('dashboardController', dashboardController);
 
-    dashboardController.$inject = ['$scope'];
+    dashboardController.$inject = ['$scope', 'options'];
 
-    function dashboardController($scope) {
+    function dashboardController($scope, options) {
         $scope.productImages = [];
         $scope.tags = [];
         
         //For image upload
-        for (var i = 0; i < 5; i++) {
-            $scope.productImages.push("");
-        }
-
         $scope.browseImage = function (textField) {
             var finder = new CKFinder();
             finder.selectActionFunction = function (fileUrl) {
@@ -32,8 +28,19 @@
             $scope.productImages.splice(index, 1);
             if (!$scope.$$phase) $scope.$apply();
         }
-
         //End For image upload
+
+        $scope.initProductImages = function() {
+            for (var i = 0; i < 5; i++) {
+                $scope.productImages.push("");
+            }
+
+            return $scope.productImages;
+        }
+
+        $scope.bindingProductImages = function() {
+            $scope.productImages = options.productImages;
+        }
 
         $scope.addTag = function (tagVal) {
             if (tagVal == undefined || tagVal.length === 0) {
@@ -59,6 +66,18 @@
                         $("#" + attrs.refId + "").val(fileUrl);
                     };
                     finder.popup();
+                });
+            }
+        }
+    }]);
+
+    app.directive("ngCkEditor",[function() {
+        return {
+            restrict: 'A',
+            scope: {},
+            link: function(scope, element, attrs) {
+                CKEDITOR.replace(attrs.refId, {
+                    toolbar: 'Full'
                 });
             }
         }

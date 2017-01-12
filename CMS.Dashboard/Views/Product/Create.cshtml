@@ -26,7 +26,7 @@
                             @Html.TextAreaFor(m => m.SubContent, new { placeholder = "Mô tả ngắn sản phẩm" })
                             @Html.ValidationMessageFor(model => model.SubContent)
                         </div>
-                        <div class="row-form">
+                        <div class="row-form" ng-ck-editor data-ref-id="BodyContent">
                             <label for="">Nội dung sản phẩm:<em>*</em></label>
                             @Html.TextAreaFor(m => m.BodyContent, new { placeholder = "Nội dung sản phẩm", style = "height: 500px;" })
                             @Html.ValidationMessageFor(model => model.BodyContent)
@@ -83,10 +83,8 @@
                             <label for="">Giảm giá:<em>*</em></label>
                             <div class="span12 no-margin">
                                 <div class="span6">
-                                    <div class="span6">
-                                        @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá", Value = "0" })
-                                        @Html.ValidationMessageFor(model => model.Discount)
-                                    </div>
+                                    @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá", Value = "0" })
+                                    @Html.ValidationMessageFor(model => model.Discount)
                                 </div>
                                 <div class="span6">
                                     @Html.CheckBoxFor(m => m.DiscountIsPercent)
@@ -116,10 +114,9 @@
                             </div>
                             <div class="clearfix"></div>
                         </div>
-                        <div my-customer></div>
                         <div class="row-form">
                             <label for="">Danh sách ảnh sản phẩm:<em>*</em></label>
-                            <div class="span12 no-margin">
+                            <div class="span12 no-margin" ng-init="initProductImages()">
                                 <div class="img-upload" ng-repeat="item in productImages track by $index">
                                     <input id="Images_{{$index}}_" name="Images[{{$index}}]" placeholder="Hình ảnh sản phẩm" type="text" value="">
                                     <a class="media image-browse" ckfinder-browse data-ref-id="Images_{{$index}}_">
@@ -167,8 +164,12 @@
         </div>
     </div>
 </form>
-<script type="text/javascript">
-    $(document).ready(function () {
-        initFullCkEditor('BodyContent');
-    })
-</script>
+@section scripts{
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+
+            angular.module("microCMS").constant("options", {});
+        })();
+    </script>
+}
