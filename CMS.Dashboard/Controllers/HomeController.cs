@@ -48,7 +48,7 @@ namespace CMS.Dashboard.Controllers
             var predicate = PredicateBuilder.Create<Product>(s => s.IsActive && s.ProductCategoryId == product.ProductCategoryId);
             var relatedProducts = _productRepository.GetByTop(3, predicate).ToList();
 
-            var productDetailResponse = new ProductDetailResponse
+            var productDetailResponse = new ProductDetailModel
             {
                 ProductResponse = product,
                 RelatedProducts = relatedProducts

@@ -46,6 +46,11 @@ namespace CMS.DataAccess.Persistence
 
         public IProductRepository Product { get; private set; }
 
+        public WorkContext GetWorkContext()
+        {
+            return WorkContext;
+        }
+
         public int Complete()
         {
             return WorkContext.SaveChanges();

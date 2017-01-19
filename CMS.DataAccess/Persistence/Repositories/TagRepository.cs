@@ -33,25 +33,19 @@ namespace CMS.DataAccess.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public TagHtmlResponse GetTagsForObject(Guid objectValue, string objectName, string objectProperty)
+        public async Task<IEnumerable<Tag>> GetTagsOfObject(Guid objectValue, string objectName, string objectProperty)
         {
-            var tagsListHtml = new TagHtmlResponse();
+            if (objectValue == Guid.Empty)
+                return new List<Tag>();
 
-            if (objectValue == Guid.Empty) return tagsListHtml;
-            var lstTags = WorkContext.Tags
-                .Include(s => s.TagCategory).Where(s => s.ObjectIdentityId == objectValue
-                                                        && s.ObjectName == objectName && s.ObjectProperty == objectProperty).ToList();
+            var tags = await WorkContext.Tags
+                .Include(s => s.TagCategory)
+                .Where(s => s.ObjectIdentityId == objectValue && s.ObjectName == objectName && s.ObjectProperty == objectProperty).ToListAsync();
 
-            foreach (var tag in lstTags)
-            {
-                tagsListHtml.HtmlTag += "<span><a onclick=\"RemoveTags(&quot;" + tag.TagCategory.Name + "&quot;)\" id='" + tag.TagCategory.Name
-                                            + "' class=\"ntdelbutton remove-tag\">[x]&nbsp;</a>" + tag.TagCategory.Name + "</span>&nbsp;";
-                tagsListHtml.TagValue += tag.TagCategory.Name + ",";
-            }
-            return tagsListHtml;
+            return tags;
         }
 
-        public async Task AddTagToObject(string[] arrTags, string objectName, string objectProperty, Guid objectIdentityId)
+        public async Task AddTagToObject(string[] arrTags, string objectName, string objectProperty, Guid objectIdentityId, bool isEdit)
         {
             if (!arrTags.Any()) { return; }
 
@@ -90,7 +84,23 @@ namespace CMS.DataAccess.Persistence.Repositories
                     });
                 }
 
+                RemoveOldTags(tagEntitys);
                 uow.Tag.AddRange(tagEntitys);
+                uow.Complete();
+            }
+        }
+
+        private void RemoveOldTags(List<Tag> tags)
+        {
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var workContext = uow.GetWorkContext();
+                foreach (var tag in tags)
+                {
+                    workContext.Tags.Attach(tag);
+                    uow.Tag.Remove(tag);
+                }
+
                 uow.Complete();
             }
         }

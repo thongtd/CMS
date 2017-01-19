@@ -1,10 +1,16 @@
 ﻿@using CMS.Dashboard.Code
 @using Newtonsoft.Json
-@model CMS.DataAccess.Core.Domain.Product
+@model CMS.Dashboard.ViewModels.EditProductModel
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     var images = JsonConvert.DeserializeObject<IList<string>>(Model.Images);
+    var tags = new List<string>();
+
+    foreach (var tag in Model.Tags)
+    {
+        tags.Add(tag.TagCategory.Name);
+    }
 }
 <form action="@Url.Action("Edit", "Product")" method="post" id="validate" class="form-content">
     @Html.ValidationSummary(true)
@@ -140,7 +146,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="span4" style="margin-top: 10px;">
+                <div class="span4" style="margin-top: 10px;" ng-init="initTagsForEdit()">
                     @{
                         Html.RenderPartial("_MetaTags");
                     }
@@ -177,6 +183,7 @@
 
             angular.module("microCMS").constant("options", {
                 productImages: @Html.Raw(Json.Encode(images)),
+                tags: @Html.Raw(Json.Encode(tags)),
             });
         })();
     </script>

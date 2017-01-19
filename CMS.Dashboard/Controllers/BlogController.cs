@@ -64,9 +64,7 @@ namespace CMS.Dashboard.Controllers
             {
                 var blog = uow.Blog.Get(id);
 
-                var lstTags = tagRepository.GetTagsForObject(blog.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
-                ViewBag.ActiveTags = lstTags.HtmlTag;
-                ViewBag.HiddenTags = lstTags.TagValue;
+                var lstTags = tagRepository.GetTagsOfObject(blog.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
 
                 return View(blog);
             }

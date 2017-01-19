@@ -15,10 +15,8 @@
                         <span>{{tag}} <a class="remove" ng-click="tags.splice($index, 1)">x</a></span>
                     </li>
                 </ul>
-                @*@Html.Raw(ViewBag.ActiveTags)*@
             </div>
         </div>
         <input type="hidden" id="TagClouds" name="TagClouds" value="{{tags.join()}}"/>
-        <input type="hidden" id="hidden-tags-edit" name="hidden-tags-edit" />
     </div>
 </div>

@@ -215,15 +215,15 @@ namespace CMS.DataAccess.Persistence.Repositories
                 
                 if (!string.IsNullOrEmpty(model.TagClouds))
                 {
-                    string[] arrTags = model.TagClouds.Split(',');
-                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, Constants.ObjectName.ProductIdenityCode, identity);
+                    var arrTags = model.TagClouds.Split(',');
+                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, Constants.ObjectName.ProductIdenityCode, identity, false);
                 }
 
                 uow.Complete();
             }
         }
 
-        public void Update(ProductRequest model, string tags)
+        public async Task Update(ProductRequest model)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
@@ -232,31 +232,10 @@ namespace CMS.DataAccess.Persistence.Repositories
                 ConvertToModel(ref product, model);
                 product.ModeifiedDate = DateTime.UtcNow;
 
-                var predicate = PredicateBuilder.Create<Tag>(s => s.ObjectIdentityId == product.IdentityCode && s.ObjectName == Constants.ObjectName.Blog
-                    && s.ObjectProperty == Constants.ObjectName.BlogIdenityCode);
-                var oldTags = uow.Tag.Find(predicate).ToList();
-
-                uow.Tag.RemoveRange(oldTags);
-
-                if (!string.IsNullOrEmpty(tags))
+                if (!string.IsNullOrEmpty(model.TagClouds))
                 {
-                    string[] arrTags = tags.Split(',');
-                    var tagCategories = uow.TagCategory.FindAll();
-
-                    var tagIds = (from s in tagCategories where arrTags.Contains(s.Name) select s).ToList();
-
-                    foreach (var item in tagIds)
-                    {
-                        int tagId = int.Parse(item.Id.ToString());
-                        var tag = new Tag
-                        {
-                            ObjectName = Constants.ObjectName.Blog,
-                            ObjectProperty = Constants.ObjectName.BlogIdenityCode,
-                            ObjectIdentityId = product.IdentityCode,
-                            TagCategoryId = tagId
-                        };
-                        uow.Tag.Add(tag);
-                    }
+                    var arrTags = model.TagClouds.Split(',');
+                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, Constants.ObjectName.ProductIdenityCode, product.IdentityCode, true);
                 }
 
                 uow.Complete();

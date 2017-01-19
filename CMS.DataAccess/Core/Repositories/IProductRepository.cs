@@ -21,6 +21,6 @@ namespace CMS.DataAccess.Core.Repositories
 
         Task Add(ProductRequest model);
 
-        void Update(ProductRequest model, string tags);
+        Task Update(ProductRequest model);
     }
 }

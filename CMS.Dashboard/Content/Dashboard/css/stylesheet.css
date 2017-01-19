@@ -7,11 +7,11 @@
     margin: 20px 0px;
     width: 100%;
     clear: left;
-    background: url("/img/backgrounds/divider.png") left center repeat-x;
+    background: url("../img/backgrounds/divider.png") left center repeat-x;
 }
 
     .dr span {
-        background: url("/img/backgrounds/divider_span.png") center center no-repeat;
+        background: url("../img/backgrounds/divider_span.png") center center no-repeat;
         width: 100%;
         height: 5px;
         display: block;

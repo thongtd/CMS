@@ -53,6 +53,10 @@
                 $scope.tags.push(tagVal);
             }
         }
+
+        $scope.initTagsForEdit = function() {
+            $scope.tags = options.tags;
+        }
     }
 
     app.directive("ckfinderBrowse", [function () {

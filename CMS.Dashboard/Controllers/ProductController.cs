@@ -1,6 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Web.Mvc;
 using CMS.Dashboard.Filters;
+using CMS.Dashboard.ViewModels;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
@@ -47,44 +48,66 @@ namespace CMS.Dashboard.Controllers
         }
 
         [HttpPost, ValidateInput(false), Route("product/create")]
-        public ActionResult Create(ProductRequest model, FormCollection frmCollect)
+        public async Task<ActionResult> Create(ProductRequest model)
         {
             if (!ModelState.IsValid)
                 return View(model);
 
             using (var uow = new UnitOfWork(new WorkContext()))
             {
-                uow.Product.Add(model);
+                await uow.Product.Add(model);
 
                 return RedirectToAction("Index");
             }
         }
 
         [Route("product/edit/{id}")]
-        public ActionResult Edit(int id)
+        public async Task<ActionResult> Edit(int id)
         {
             ViewBag.Product = "active";
 
             using (var uow = new UnitOfWork(new WorkContext()))
             {
                 var product = uow.Product.Get(id);
+                var tags = await tagRepository.GetTagsOfObject(product.IdentityCode, Constants.ObjectName.Product, Constants.ObjectName.ProductIdenityCode);
 
-                var lstTags = tagRepository.GetTagsForObject(product.IdentityCode, Constants.ObjectName.Blog, Constants.ObjectName.BlogIdenityCode);
-                ViewBag.ActiveTags = lstTags.HtmlTag;
-                ViewBag.HiddenTags = lstTags.TagValue;
+                var editProductModel = new EditProductModel
+                {
+                    Id = product.Id,
+                    Name = product.Name,
+                    Slug = product.Slug,
+                    ProductCategoryId = product.ProductCategoryId,
+                    Thumbnail = product.Thumbnail,
+                    Images = product.Images,
+                    CreatedDate = product.CreatedDate,
+                    ModeifiedDate = product.ModeifiedDate,
+                    SubContent = product.SubContent,
+                    BodyContent = product.BodyContent,
+                    Target = product.Target,
+                    Click = product.Click,
+                    IdentityCode = product.IdentityCode,
+                    PinToTop = product.PinToTop,
+                    Title = product.Title,
+                    Description = product.Description,
+                    Keyword = product.Keyword,
+                    CultureCode = product.CultureCode,
+                    Price = product.Price,
+                    Discount = product.Discount,
+                    DiscountIsPercent = product.DiscountIsPercent,
+                    IsActive = product.IsActive,
+                    Tags = tags
+                };
 
-                return View(product);
+                return View(editProductModel);
             }
         }
 
         [HttpPost, ValidateInput(false), Route("product/edit")]
-        public ActionResult Edit(ProductRequest model, FormCollection frmCollect)
+        public async Task<ActionResult> Edit(ProductRequest model)
         {
             if (ModelState.IsValid)
             {
-                var tags = frmCollect["hidden-tags"];
-
-                productRepository.Update(model, tags);
+                await productRepository.Update(model);
                 return RedirectToAction("Index");
             }
             return View();
