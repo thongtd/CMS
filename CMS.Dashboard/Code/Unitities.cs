@@ -27,7 +27,7 @@ namespace CMS.Dashboard.Code
         public static List<SelectListItem> ProductCategoryTree()
         {
             var productCategoryRepository = new ProductCategoryRepository(new WorkContext());
-            var productCategoryTrees = productCategoryRepository.BlogCategoryTree().ToList();
+            var productCategoryTrees = productCategoryRepository.ProductCategoryTree().ToList();
             var result = new List<SelectListItem>();
 
             if (productCategoryTrees.Any())

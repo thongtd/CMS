@@ -17,8 +17,8 @@
                     </div>
                     <div class="block-fluid">
                         <div class="row-form">
-                            <label for="">Tên nhóm sản phẩm:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Name, new { placeholder = "Tên bài sản phẩm" })
+                            <label for="">Tên sản phẩm:<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Name, new { placeholder = "Tên sản phẩm" })
                             @Html.ValidationMessageFor(model => model.Name)
                         </div>
                         <div class="row-form">
@@ -28,7 +28,7 @@
                         </div>
                         <div class="row-form" ng-ck-editor data-ref-id="BodyContent">
                             <label for="">Nội dung sản phẩm:<em>*</em></label>
-                            @Html.TextAreaFor(m => m.BodyContent, new { placeholder = "Nội dung sản phẩm", style = "height: 500px;" })
+                            @Html.TextAreaFor(m => m.BodyContent, new { placeholder = "Mô tả", style = "height: 500px;" })
                             @Html.ValidationMessageFor(model => model.BodyContent)
                         </div>
                         <h4 style="margin-left: 20px; text-decoration: underline;">Cấu hình SEO</h4>
@@ -71,10 +71,11 @@
                     <div class="block-fluid">
                         <div class="row-form">
                             <div class="span12">
-                                <div class="span12">
+                                <div class="span12" ng-init="bindProductPrice('0')">
                                     <label for="">Đơn giá:<em>*</em></label>
-                                    @Html.TextBoxFor(m => m.Price, new { placeholder = "Đơn giá" })
-                                    @Html.ValidationMessageFor(model => model.Price)
+                                    <input type="text" id="FakePrice" name="FakePrice" ng-model="productPrice" ng-change="productPriceChange()" class="text-align-right price-class"
+                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                    <input type="hidden" id="Price" name="Price" value="0" />
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -82,9 +83,10 @@
                         <div class="row-form discount">
                             <label for="">Giảm giá:<em>*</em></label>
                             <div class="span12 no-margin">
-                                <div class="span6">
-                                    @Html.TextBoxFor(m => m.Discount, new { placeholder = "Giảm giá", Value = "0" })
-                                    @Html.ValidationMessageFor(model => model.Discount)
+                                <div class="span6" ng-init="bindDiscountPrice('0')">
+                                    <input type="text" id="FakeDiscountPrice" name="FakeDiscountPrice" ng-model="discountPrice" ng-change="discountPriceChange()" class="text-align-right price-class"
+                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                    <input type="hidden" id="Discount" name="Discount" value="0" />
                                 </div>
                                 <div class="span6">
                                     @Html.CheckBoxFor(m => m.DiscountIsPercent)
@@ -110,6 +112,7 @@
                                 <a class="media image-browse" id="btImgBrowse" ckfinder-browse data-ref-id="Thumbnail">
                                     <i class="isw-plus"></i>
                                 </a>
+                                <div class="clearfix"></div>
                                 @Html.ValidationMessageFor(model => model.Thumbnail)
                             </div>
                             <div class="clearfix"></div>

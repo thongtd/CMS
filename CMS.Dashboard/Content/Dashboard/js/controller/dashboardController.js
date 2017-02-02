@@ -10,7 +10,7 @@
     function dashboardController($scope, options) {
         $scope.productImages = [];
         $scope.tags = [];
-        
+
         //For image upload
         $scope.browseImage = function (textField) {
             var finder = new CKFinder();
@@ -30,7 +30,7 @@
         }
         //End For image upload
 
-        $scope.initProductImages = function() {
+        $scope.initProductImages = function () {
             for (var i = 0; i < 5; i++) {
                 $scope.productImages.push("");
             }
@@ -38,7 +38,7 @@
             return $scope.productImages;
         }
 
-        $scope.bindingProductImages = function() {
+        $scope.bindingProductImages = function () {
             $scope.productImages = options.productImages;
         }
 
@@ -54,8 +54,28 @@
             }
         }
 
-        $scope.initTagsForEdit = function() {
+        $scope.initTagsForEdit = function () {
             $scope.tags = options.tags;
+        }
+
+        $scope.bindProductPrice = function(price) {
+            $scope.productPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        $scope.productPriceChange = function () {
+            var val = $scope.productPrice.replace(/,/g, '');
+            $scope.productPrice = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            $('#Price').val(val);
+        }
+
+        $scope.bindDiscountPrice = function (price) {
+            $scope.discountPrice = price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        $scope.discountPriceChange = function () {
+            var val = $scope.discountPrice.replace(/,/g, '');
+            $scope.discountPrice = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+            $('#Discount').val(val);
         }
     }
 
@@ -75,11 +95,11 @@
         }
     }]);
 
-    app.directive("ngCkEditor",[function() {
+    app.directive("ngCkEditor", [function () {
         return {
             restrict: 'A',
             scope: {},
-            link: function(scope, element, attrs) {
+            link: function (scope, element, attrs) {
                 CKEDITOR.replace(attrs.refId, {
                     toolbar: 'Full'
                 });

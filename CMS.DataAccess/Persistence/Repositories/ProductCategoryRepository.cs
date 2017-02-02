@@ -72,9 +72,9 @@ namespace CMS.DataAccess.Persistence.Repositories
             throw new NotImplementedException();
         }
 
-        public IEnumerable<SelectedList> BlogCategoryTree()
+        public IEnumerable<SelectedList> ProductCategoryTree()
         {
-            var blogCategorys = new List<SelectedList> { new SelectedList { Value = "0", Text = "[Danh mục gốc]" } };
+            var blogCategorys = new List<SelectedList> { new SelectedList { Value = "", Text = "[Chọn nhóm sản phẩm]" } };
 
             using (var unitOfWork = new UnitOfWork(new WorkContext()))
             {
