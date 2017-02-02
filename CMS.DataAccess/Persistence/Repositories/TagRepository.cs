@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
-using CMS.DataAccess.Models;
 
 namespace CMS.DataAccess.Persistence.Repositories
 {
@@ -27,30 +26,39 @@ namespace CMS.DataAccess.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<Tag> GetTagByBlogId(int blogId)
+        
+        public async Task<IEnumerable<Tag>> GetTagsByObjectIdentityId(Guid identityId, string objectName)
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<IEnumerable<Tag>> GetTagsOfObject(Guid objectValue, string objectName, string objectProperty)
-        {
-            if (objectValue == Guid.Empty)
+            if (identityId == Guid.Empty)
                 return new List<Tag>();
 
             var tags = await WorkContext.Tags
                 .Include(s => s.TagCategory)
-                .Where(s => s.ObjectIdentityId == objectValue && s.ObjectName == objectName && s.ObjectProperty == objectProperty).ToListAsync();
+                .Where(s => s.ObjectIdentityId == identityId && s.ObjectName == objectName).ToListAsync();
 
             return tags;
         }
 
-        public async Task AddTagToObject(string[] arrTags, string objectName, string objectProperty, Guid objectIdentityId, bool isEdit)
+        public async Task AddTagToObject(string[] arrTags, string objectName, Guid objectIdentityId, bool isEdit)
         {
             if (!arrTags.Any()) { return; }
 
             using (var uow = new UnitOfWork(new WorkContext()))
             {
+                var tagIdszz = await GetTagsByObjectIdentityId(objectIdentityId, objectName);
+
+                foreach (var item in tagIdszz)
+                {
+                    var tag = new Tag()
+                    {
+                        ObjectName = objectName,
+                        ObjectIdentityId = objectIdentityId,
+                        TagCategoryId = item.Id
+                    };
+
+                    uow.Tag.Remove(tag);
+                }
+
                 var tags = await uow.TagCategory.FindAsyn(null);
 
                 var tagExits = tags.Where(t => arrTags.Contains(t.Name)).Select(t => t.Name).ToList();
@@ -78,27 +86,31 @@ namespace CMS.DataAccess.Persistence.Repositories
                     tagEntitys.Add(new Tag()
                     {
                         ObjectName = objectName,
-                        ObjectProperty = objectProperty,
                         ObjectIdentityId = objectIdentityId,
                         TagCategoryId = item.Id
                     });
                 }
 
-                RemoveOldTags(tagEntitys);
                 uow.Tag.AddRange(tagEntitys);
                 uow.Complete();
             }
         }
 
-        private void RemoveOldTags(List<Tag> tags)
+        public async Task RemoveOldTags(string objectName, Guid objectIdentityId)
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
-                var workContext = uow.GetWorkContext();
+                var context = uow.GetWorkContext();
+
+                var tags = await uow.Tag.GetTagsByObjectIdentityId(objectIdentityId, objectName);
+
                 foreach (var tag in tags)
                 {
-                    workContext.Tags.Attach(tag);
-                    uow.Tag.Remove(tag);
+                    if (context.Entry(tag).State == EntityState.Detached)
+                    {
+                        context.Tags.Attach(tag);
+                    }
+                    context.Tags.Remove(tag);
                 }
 
                 uow.Complete();

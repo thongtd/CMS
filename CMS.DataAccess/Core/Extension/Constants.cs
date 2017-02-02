@@ -55,10 +55,8 @@
         public static class ObjectName
         {
             public static string Blog = "Blog";
-            public static string BlogIdenityCode = "IdenityCode";
 
             public static string Product = "Product";
-            public static string ProductIdenityCode = "IdenityCode";
         }
     }
 }

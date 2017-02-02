@@ -11,8 +11,6 @@ namespace CMS.DataAccess.Core.Domain
 
         public string ObjectName { get; set; }
 
-        public string ObjectProperty { get; set; }
-
         public Guid ObjectIdentityId { get; set; }
 
         public int TagCategoryId { get; set; }
@@ -30,7 +28,6 @@ namespace CMS.DataAccess.Core.Domain
             return new Tag
             {
                 ObjectName = model.ObjectName,
-                ObjectProperty = model.ObjectProperty,
                 ObjectIdentityId = model.ObjectIdentityId,
                 TagCategoryId = model.TagCategory,
             };
@@ -44,7 +41,6 @@ namespace CMS.DataAccess.Core.Domain
             ToTable("Tag");
             HasKey(x => x.Id);
             Property(x => x.ObjectName).HasMaxLength(50).IsRequired();
-            Property(x => x.ObjectProperty).HasMaxLength(50).IsRequired();
             Property(x => x.ObjectIdentityId).IsRequired();
             Property(x => x.TagCategoryId).IsRequired();
         }

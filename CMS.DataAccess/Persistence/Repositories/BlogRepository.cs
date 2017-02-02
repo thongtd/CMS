@@ -119,7 +119,6 @@ namespace CMS.DataAccess.Persistence.Repositories
                         var tag = new Tag()
                         {
                             ObjectName = Constants.ObjectName.Blog,
-                            ObjectProperty = Constants.ObjectName.BlogIdenityCode,
                             ObjectIdentityId = identity,
                             TagCategoryId = tagId
                         };
@@ -141,8 +140,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 ConvertToModel(ref blog, model);
                 blog.ModeifiedDate = DateTime.UtcNow;
 
-                var predicate = PredicateBuilder.Create<Tag>(s => s.ObjectIdentityId == blog.IdentityCode && s.ObjectName == Constants.ObjectName.Blog
-                    && s.ObjectProperty == Constants.ObjectName.BlogIdenityCode);
+                var predicate = PredicateBuilder.Create<Tag>(s => s.ObjectIdentityId == blog.IdentityCode && s.ObjectName == Constants.ObjectName.Blog);
                 var oldTags = uow.Tag.Find(predicate).ToList();
 
                 uow.Tag.RemoveRange(oldTags);
@@ -160,7 +158,6 @@ namespace CMS.DataAccess.Persistence.Repositories
                         var tag = new Tag
                         {
                             ObjectName = Constants.ObjectName.Blog,
-                            ObjectProperty = Constants.ObjectName.BlogIdenityCode,
                             ObjectIdentityId = blog.IdentityCode,
                             TagCategoryId = tagId
                         };

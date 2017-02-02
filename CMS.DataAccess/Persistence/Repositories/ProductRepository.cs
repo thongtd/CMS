@@ -216,7 +216,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 if (!string.IsNullOrEmpty(model.TagClouds))
                 {
                     var arrTags = model.TagClouds.Split(',');
-                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, Constants.ObjectName.ProductIdenityCode, identity, false);
+                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, identity, false);
                 }
 
                 uow.Complete();
@@ -235,7 +235,11 @@ namespace CMS.DataAccess.Persistence.Repositories
                 if (!string.IsNullOrEmpty(model.TagClouds))
                 {
                     var arrTags = model.TagClouds.Split(',');
-                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, Constants.ObjectName.ProductIdenityCode, product.IdentityCode, true);
+
+                    var taskRemove = uow.Tag.RemoveOldTags(Constants.ObjectName.Product, product.IdentityCode);
+                    await Task.WhenAll(taskRemove);
+
+                    await uow.Tag.AddTagToObject(arrTags, Constants.ObjectName.Product, product.IdentityCode, true);
                 }
 
                 uow.Complete();

@@ -11,11 +11,11 @@ namespace CMS.DataAccess.Core.Repositories
         IEnumerable<Tag> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Tag, bool>> predicate);
 
         IEnumerable<Tag> GetByTop(int top, Expression<Func<Tag, bool>> predicate);
+        
+        Task<IEnumerable<Tag>> GetTagsByObjectIdentityId(Guid identityId, string objectName);
 
-        IEnumerable<Tag> GetTagByBlogId(int blogId);
+        Task AddTagToObject(string[] arrTags, string objectName, Guid objectIdentityId, bool isEdit);
 
-        Task<IEnumerable<Tag>> GetTagsOfObject(Guid objectValue, string objectName, string objectProperty);
-
-        Task AddTagToObject(string[] arrTags, string objectName, string objectProperty, Guid objectIdentityId, bool isEdit);
+        Task RemoveOldTags(string objectName, Guid objectIdentityId);
     }
 }
