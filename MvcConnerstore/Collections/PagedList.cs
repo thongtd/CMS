@@ -77,7 +77,6 @@ namespace MvcConnerstore.Collections
 
     public static class PagedExtention
     {
-        public static int PageSize = 50;
         public static int TryGetPageIndex(string pageIndex)
         {
             try

@@ -1,4 +1,6 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Web.Mvc;
 using CMS.Dashboard.Filters;
 using CMS.Dashboard.ViewModels;
@@ -17,18 +19,28 @@ namespace CMS.Dashboard.Controllers
     {
         private readonly IProductRepository productRepository = new ProductRepository(new WorkContext());
         private readonly ITagRepository tagRepository = new TagRepository(new WorkContext());
-        
+
         [Route("product/gets")]
-        public async Task<ActionResult> Gets()
+        public async Task<ActionResult> Gets(int page, int pageSize)
         {
-            using (var uow = new UnitOfWork(new WorkContext()))
+            int totalRecord = 0;
+
+            var task = await Task.Run(() => productRepository.Paging(PagedExtention.TryGetPageIndex(page.ToString()), pageSize, out totalRecord, null));
+
+            var response = task.Select(s => new ProductPagingModel
             {
-                int total;
+                Name = s.Name,
+                Price = s.Price,
+                CreatedDate = s.CreatedDate,
+                Id = s.Id,
+                ProductCategoryName = s.ProductCategory.Name
+            });
 
-                var task = Task.Run(() => uow.Product.Paging(PagedExtention.TryGetPageIndex("1"), int.MaxValue, out total, null));
-
-                return Json(await task, JsonRequestBehavior.AllowGet);
-            }
+            return Json(new
+            {
+                data = response,
+                total = totalRecord
+            }, JsonRequestBehavior.AllowGet);
         }
 
         [Route("product")]

@@ -22,70 +22,88 @@
                                     });
                                 })();
 
-                                $(document)
-                                    .ready(function() {
-                                        $("#gridSource")
-                                            .kendoGrid({
-                                                dataSource: {
-                                                    transport: {
-                                                        read: "@Url.Action("Gets", "Product")"
-                                                    },
-                                                    pageSize: 20
-                                                },
-                                                maxheight: 550,
-                                                scrollable: true,
-                                                sortable: true,
+                                $(document).ready(function () {
+                                    $("#gridSource").kendoGrid({
+                                        dataSource: {
+                                            transport: {
+                                                read: {
+                                                    url: "@Url.Action("Gets", "Product")",
+                                                    dataType: "json",
+                                                    type: "POST"
+                                                }
+                                            },
+                                            pageSize: 20,
+                                            schema: {
+                                                data: "data",
+                                                total: "total"
+                                            },
+                                            serverPaging: true,
+                                            serverFiltering: true,
+                                            serverSorting: true
+                                        },
+                                        pageable: {
+                                            refresh: true,
+                                            pageSizes: true,
+                                            buttonCount: 5
+                                        },
+                                        filterable: {
+                                            operators: {
+                                                string: {
+                                                   contains: "Contains",
+                                                   doesnotcontain: "Does not contain",
+                                                   eq: "Is equal to",
+                                                   neq: "Is not equal to",
+                                                   startswith: "Starts with",
+                                                   endswith: "Ends with"
+                                                }
+                                            }
+                                        },
+                                        columns: [
+                                            {
+                                                field: "Id",
+                                                title: "ID",
+                                                width: "50px",
+                                                filterable: false
+                                            },
+                                            {
+                                                field: "Name",
+                                                title: "Tên sản phẩm"
+                                            },
+                                            {
+                                                field: "Price",
+                                                title: "Giá",
+                                                template:
+                                                    "#= kendo.toString(Price, 'n') #"
+                                            },
+                                            {
+                                                field: "CreatedDate",
+                                                title: "Ngày tạo",
+                                                filterable: false,
+                                                width: "200px",
+                                                template:
+                                                    "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
+                                            },
+                                            {
+                                                field: "ProductCategoryName",
+                                                title: "Nhóm sản phẩm",
                                                 filterable: true,
-                                                pageable: {
-                                                    input: true,
-                                                    numeric: false
+                                                width: "200px"
+                                            },
+                                            {
+                                                title: "Chức năng",
+                                                template:
+                                                    "<a data-href=\"@Url.Action("Active", "Product")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
+                                                        "<a href='@Url.Action("Edit", "Product")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                        "<a data-href=\"@Url.Action("Delete", "Product")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
+                                                attributes: {
+                                                    "class": "td-func"
                                                 },
-                                                columns: [
-                                                    {
-                                                        field: "Id",
-                                                        title: "ID",
-                                                        width: "50px",
-                                                        filterable: false
-                                                    },
-                                                    {
-                                                        field: "Name",
-                                                        title: "Tên nhóm sản phẩm"
-                                                    },
-                                                    {
-                                                        field: "Price",
-                                                        title: "Giá",
-                                                        template:
-                                                            "#= kendo.toString(Price, 'n') #"
-                                                    },
-                                                    {
-                                                        field: "CreatedDate",
-                                                        title: "Ngày tạo",
-                                                        filterable: false,
-                                                        width: "200px",
-                                                        template:
-                                                            "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
-                                                    },
-                                                    {
-                                                        field: "ProductCategory.Name",
-                                                        title: "Nhóm sản phẩm",
-                                                        filterable: true,
-                                                        width: "200px"
-                                                    },
-                                                    {
-                                                        title: "Chức năng",
-                                                        template:
-                                                            "<a data-href=\"@Url.Action("Active", "Product")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
-                                                                "<a href='@Url.Action("Edit", "Product")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
-                                                                "<a data-href=\"@Url.Action("Delete", "Product")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
-                                                        attributes: {
-                                                            "class": "td-func"
-                                                        },
-                                                        width: "110px",
-                                                        filterable: false
-                                                    }
-                                                ]
-                                            });
+                                                width: "110px",
+                                                filterable: false
+                                            }
+                                        ]
                                     });
+                                });
                             </script>
                         }
                     </div>
