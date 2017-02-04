@@ -66,12 +66,9 @@ namespace CMS.Dashboard.Controllers
             if (!ModelState.IsValid)
                 return View(model);
 
-            using (var uow = new UnitOfWork(new WorkContext()))
-            {
-                await uow.Product.Add(model);
+            await productRepository.Add(model);
 
-                return RedirectToAction("Index");
-            }
+            return RedirectToAction("Index");
         }
 
         [Route("product/edit/{id}")]
@@ -129,35 +126,27 @@ namespace CMS.Dashboard.Controllers
         [HttpPost, Route("product/active")]
         public ActionResult Active(int id)
         {
-            using (var uow = new UnitOfWork(new WorkContext()))
-            {
-                var product = uow.Product.Get(id);
+            var product = productRepository.Get(id);
 
-                product.IsActive = !product.IsActive;
-                uow.Complete();
-                return Json(new
-                {
-                    Status = true,
-                    Message = string.Empty
-                });
-            }
+            product.IsActive = !product.IsActive;
+            return Json(new
+            {
+                Status = true,
+                Message = string.Empty
+            });
         }
 
         [HttpPost, Route("product/delete")]
         public ActionResult Delete(int id)
         {
-            using (var uow = new UnitOfWork(new WorkContext()))
-            {
-                var product = uow.Product.Get(id);
+            var product = productRepository.Get(id);
 
-                uow.Product.Remove(product);
-                uow.Complete();
-                return Json(new
-                {
-                    Status = true,
-                    Message = string.Empty
-                });
-            }
+            productRepository.Remove(product);
+            return Json(new
+            {
+                Status = true,
+                Message = string.Empty
+            });
         }
     }
 }
