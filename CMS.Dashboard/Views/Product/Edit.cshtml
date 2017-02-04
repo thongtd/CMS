@@ -13,6 +13,7 @@
     }
 
     var discountPrice = Model.Discount > 0 ? Model.Discount.ToString("#.##") : "0";
+    var price = Model.Price > 0 ? Model.Price.ToString("#.##") : "0";
 }
 <form action="@Url.Action("Edit", "Product")" method="post" id="validate" class="form-content" ng-cloak>
     @Html.ValidationSummary(true)
@@ -84,11 +85,11 @@
                     <div class="block-fluid">
                         <div class="row-form">
                             <div class="span12">
-                                <div class="span12" ng-init="bindProductPrice('@Model.Price.ToString("#.##")')">
+                                <div class="span12" ng-init="bindProductPrice('@price')">
                                     <label for="">Đơn giá:<em>*</em></label>
                                     <input type="text" id="FakePrice" name="FakePrice" ng-model="productPrice" ng-change="productPriceChange()" class="text-align-right price-class" 
                                            onkeypress='return event.charCode >= 48 && event.charCode <= 57'/>
-                                    <input type="hidden" id="Price" name="Price" value="@Model.Price.ToString("#.##")" />
+                                    <input type="hidden" id="Price" name="Price" value="@price" />
                                 </div>
                             </div>
                             <div class="clearfix"></div>
@@ -99,7 +100,7 @@
                                 <div class="span6" ng-init="bindDiscountPrice('@discountPrice')">
                                     <input type="text" id="FakeDiscountPrice" name="FakeDiscountPrice" ng-model="discountPrice" ng-change="discountPriceChange()" class="text-align-right price-class"
                                            onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
-                                    <input type="hidden" id="Discount" name="Discount" value="@Model.Price.ToString("#.##")" />
+                                    <input type="hidden" id="Discount" name="Discount" value="@discountPrice" />
                                 </div>
                                 <div class="span6">
                                     @Html.CheckBoxFor(m => m.DiscountIsPercent)

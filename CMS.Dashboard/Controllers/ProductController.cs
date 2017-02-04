@@ -34,7 +34,10 @@ namespace CMS.Dashboard.Controllers
                 Price = s.Price,
                 CreatedDate = s.CreatedDate,
                 Id = s.Id,
-                ProductCategoryName = s.ProductCategory.Name
+                ProductCategoryName = s.ProductCategory.Name,
+                NumberOfProduct = s.NumberOfProduct,
+                SellingOfProduct = s.SellingOfProduct,
+                IsActive = s.IsActive
             });
 
             return Json(new
@@ -120,33 +123,41 @@ namespace CMS.Dashboard.Controllers
                 await productRepository.Update(model);
                 return RedirectToAction("Index");
             }
-            return View();
+            return View(model);
         }
 
         [HttpPost, Route("product/active")]
         public ActionResult Active(int id)
         {
-            var product = productRepository.Get(id);
-
-            product.IsActive = !product.IsActive;
-            return Json(new
+            using (var uow = new UnitOfWork(new WorkContext()))
             {
-                Status = true,
-                Message = string.Empty
-            });
+                var product = uow.Product.Get(id);
+
+                product.IsActive = !product.IsActive;
+                uow.Complete();
+                return Json(new
+                {
+                    Status = true,
+                    Message = string.Empty
+                });
+            }
         }
 
         [HttpPost, Route("product/delete")]
         public ActionResult Delete(int id)
         {
-            var product = productRepository.Get(id);
-
-            productRepository.Remove(product);
-            return Json(new
+            using (var uow = new UnitOfWork(new WorkContext()))
             {
-                Status = true,
-                Message = string.Empty
-            });
+                var product = uow.Product.Get(id);
+
+                uow.Product.Remove(product);
+                uow.Complete();
+                return Json(new
+                {
+                    Status = true,
+                    Message = string.Empty
+                });
+            }
         }
     }
 }

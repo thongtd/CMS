@@ -14,6 +14,10 @@ namespace CMS.Dashboard.ViewModels
 
         public string ProductCategoryName { get; set; }
 
+        public decimal NumberOfProduct { get; set; }
+
+        public decimal SellingOfProduct { get; set; }
+
         public bool IsActive { get; set; }
     }
 }

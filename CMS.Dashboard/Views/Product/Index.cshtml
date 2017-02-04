@@ -54,55 +54,30 @@
                                         filterable: {
                                             operators: {
                                                 string: {
-                                                   contains: "Contains",
-                                                   doesnotcontain: "Does not contain",
-                                                   eq: "Is equal to",
-                                                   neq: "Is not equal to",
-                                                   startswith: "Starts with",
-                                                   endswith: "Ends with"
+                                                    contains: "Contains",
+                                                    doesnotcontain: "Does not contain",
+                                                    eq: "Is equal to",
+                                                    neq: "Is not equal to",
+                                                    startswith: "Starts with",
+                                                    endswith: "Ends with"
                                                 }
                                             }
                                         },
                                         columns: [
-                                            {
-                                                field: "Id",
-                                                title: "ID",
-                                                width: "50px",
-                                                filterable: false
-                                            },
-                                            {
-                                                field: "Name",
-                                                title: "Tên sản phẩm"
-                                            },
-                                            {
-                                                field: "Price",
-                                                title: "Giá",
-                                                template:
-                                                    "#= kendo.toString(Price, 'n') #"
-                                            },
-                                            {
-                                                field: "CreatedDate",
-                                                title: "Ngày tạo",
-                                                filterable: false,
-                                                width: "200px",
-                                                template:
-                                                    "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
-                                            },
-                                            {
-                                                field: "ProductCategoryName",
-                                                title: "Nhóm sản phẩm",
-                                                filterable: true,
-                                                width: "200px"
-                                            },
+                                            { field: "Id", title: "ID", width: "50px", filterable: false },
+                                            { field: "Name", title: "Tên sản phẩm" },
+                                            { field: "Price", title: "Giá", template: "#= kendo.toString(Price, 'n') #" },
+                                            { field: "NumberOfProduct", title: "Số lượng", template: "#= kendo.toString(NumberOfProduct, 'n0') #", filterable: false },
+                                            { field: "SellingOfProduct", title: "Số lượng đã bán", template: "#= kendo.toString(SellingOfProduct, 'n0') #", filterable: false },
+                                            { field: "CreatedDate", title: "Ngày tạo", filterable: false, width: "200px", template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #" },
+                                            { field: "ProductCategoryName", title: "Nhóm sản phẩm", filterable: true, width: "200px" },
                                             {
                                                 title: "Chức năng",
                                                 template:
                                                     "<a data-href=\"@Url.Action("Active", "Product")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
-                                                        "<a href='@Url.Action("Edit", "Product")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
-                                                        "<a data-href=\"@Url.Action("Delete", "Product")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
-                                                attributes: {
-                                                    "class": "td-func"
-                                                },
+                                                    "<a href='@Url.Action("Edit", "Product")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                    "<a data-href=\"@Url.Action("Delete", "Product")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
+                                                attributes: { "class": "td-func" },
                                                 width: "110px",
                                                 filterable: false
                                             }
