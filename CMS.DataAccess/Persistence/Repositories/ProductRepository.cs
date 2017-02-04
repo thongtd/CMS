@@ -46,34 +46,7 @@ namespace CMS.DataAccess.Persistence.Repositories
 
         public IEnumerable<ProductResponse> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Product, bool>> predicate)
         {
-            var products = WorkContext.Products
-                .Include(s => s.ProductCategory)
-                .Select(s=>new
-                {
-                    s.Id,
-                    s.Name,
-                    s.Slug,
-                    s.ProductCategoryId,
-                    s.Thumbnail,
-                    s.Images,
-                    s.CreatedDate,
-                    s.ModeifiedDate,
-                    s.SubContent,
-                    s.BodyContent,
-                    s.Target,
-                    s.View,
-                    s.IdentityCode,
-                    s.PinToTop,
-                    s.Title,
-                    s.Description,
-                    s.Keyword,
-                    s.CultureCode,
-                    s.Price,
-                    s.Discount,
-                    s.DiscountIsPercent,
-                    s.IsActive,
-                    s.ProductCategory
-                }).OrderByDescending(s => s.Id).ToList();
+            var products = WorkContext.Products.Include(s => s.ProductCategory).OrderByDescending(s => s.Id).ToList();
 
             if (!products.Any())
             {
@@ -81,7 +54,8 @@ namespace CMS.DataAccess.Persistence.Repositories
                 return new List<ProductResponse>();
             }
 
-            var productResponses = products.Select(s => new ProductResponse
+            totalRecord = products.Count();
+            var productResponses = products.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(s => new ProductResponse
             {
                 ProductCategory = s.ProductCategory,
                 IsActive = s.IsActive,
@@ -109,8 +83,6 @@ namespace CMS.DataAccess.Persistence.Repositories
                 DiscountIsPercent = s.DiscountIsPercent
             }).ToList();
 
-            totalRecord = productResponses.Count();
-            productResponses = productResponses.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList();
             return productResponses;
         }
 
