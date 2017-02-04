@@ -3,6 +3,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using CMS.Dashboard.Filters;
+using CMS.Dashboard.Models;
 using CMS.Dashboard.ViewModels;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
@@ -20,12 +21,12 @@ namespace CMS.Dashboard.Controllers
         private readonly IProductRepository productRepository = new ProductRepository(new WorkContext());
         private readonly ITagRepository tagRepository = new TagRepository(new WorkContext());
 
-        [Route("product/gets")]
-        public async Task<ActionResult> Gets(int page, int pageSize)
+        [HttpPost, Route("product/gets")]
+        public async Task<ActionResult> Gets(KendoGridFilterModel filter)
         {
             int totalRecord = 0;
 
-            var task = await Task.Run(() => productRepository.Paging(PagedExtention.TryGetPageIndex(page.ToString()), pageSize, out totalRecord, null));
+            var task = await Task.Run(() => productRepository.Paging(PagedExtention.TryGetPageIndex(filter.page.ToString()), filter.pageSize, out totalRecord, null));
 
             var response = task.Select(s => new ProductPagingModel
             {
@@ -40,7 +41,7 @@ namespace CMS.Dashboard.Controllers
             {
                 data = response,
                 total = totalRecord
-            }, JsonRequestBehavior.AllowGet);
+            });
         }
 
         [Route("product")]

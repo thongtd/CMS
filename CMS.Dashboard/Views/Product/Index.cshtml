@@ -28,8 +28,13 @@
                                             transport: {
                                                 read: {
                                                     url: "@Url.Action("Gets", "Product")",
-                                                    dataType: "json",
-                                                    type: "POST"
+                                                    contentType: 'application/json; charset=utf-8',
+                                                    type: "POST",
+                                                    dataType: "json"
+                                                },
+                                                parameterMap: function (options, type) {
+                                                    console.log(options);
+                                                    return JSON.stringify(options);
                                                 }
                                             },
                                             pageSize: 20,
