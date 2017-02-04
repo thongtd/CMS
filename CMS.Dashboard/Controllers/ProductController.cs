@@ -28,16 +28,16 @@ namespace CMS.Dashboard.Controllers
 
             var task = await Task.Run(() => productRepository.Paging(PagedExtention.TryGetPageIndex(filter.page.ToString()), filter.pageSize, out totalRecord, null));
 
-            var response = task.Select(s => new ProductPagingModel
+            var response = task.Select(s => new
             {
-                Name = s.Name,
-                Price = s.Price,
-                CreatedDate = s.CreatedDate,
-                Id = s.Id,
+                s.Name,
+                s.Price,
+                s.CreatedDate,
+                s.Id,
                 ProductCategoryName = s.ProductCategory.Name,
-                NumberOfProduct = s.NumberOfProduct,
-                SellingOfProduct = s.SellingOfProduct,
-                IsActive = s.IsActive
+                s.NumberOfProduct,
+                s.SellingOfProduct,
+                s.IsActive
             });
 
             return Json(new
