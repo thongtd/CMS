@@ -57,7 +57,7 @@
                     <div class="block-fluid">
                         <div class="row-form">
                             <label for="">Chọn nhóm tin:<em>*</em></label>
-                            @Html.DropDownList("BlogCategoryId", SelectListUnitities.BlogCategorys())
+                            @Html.DropDownList("BlogCategoryId", Unitities.BlogCategorys())
                             @Html.ValidationMessageFor(model => model.BlogCategoryId)
                         </div>
                     </div>

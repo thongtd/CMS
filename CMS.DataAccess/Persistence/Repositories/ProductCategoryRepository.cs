@@ -71,52 +71,5 @@ namespace CMS.DataAccess.Persistence.Repositories
         {
             throw new NotImplementedException();
         }
-
-        public IEnumerable<SelectedList> ProductCategoryTree()
-        {
-            var blogCategorys = new List<SelectedList> { new SelectedList { Value = "", Text = "[Chọn nhóm sản phẩm]" } };
-
-            using (var unitOfWork = new UnitOfWork(new WorkContext()))
-            {
-                var predicate = PredicateBuilder.Create<ProductCategory>(s => s.IsActive);
-
-                var records = unitOfWork.ProductCategory.Find(predicate).ToList();
-
-                if (records.Any())
-                {
-                    if (records.Any())
-                    {
-                        for (int i = 0; i < records.Count(); i++)
-                        {
-                            int len = records[i].Level.Length;
-                            if (len == 5)
-                            {
-                                blogCategorys.Add(new SelectedList
-                                {
-                                    Value = records[i].Id.ToString(),
-                                    Text = records[i].Name
-                                });
-                            }
-                            else
-                            {
-                                string strTemp = "";
-                                while (len > 5 && len % 5 == 0)
-                                {
-                                    strTemp += "_____";
-                                    len = len - 5;
-                                }
-
-                                blogCategorys.Add(new SelectedList
-                                {
-                                    Value = records[i].Id.ToString(),
-                                    Text = strTemp + records[i].Name
-                                });
-                            }
-                        }
-                    }
-                }
-            }
-            return blogCategorys;
-        }
     }
 }

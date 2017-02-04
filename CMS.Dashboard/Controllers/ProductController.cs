@@ -1,16 +1,16 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web.Mvc;
 using CMS.Dashboard.Filters;
 using CMS.Dashboard.Models;
-using CMS.Dashboard.ViewModels;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
 using CMS.DataAccess.Persistence;
 using CMS.DataAccess.Persistence.Repositories;
 using MvcConnerstore.Collections;
+using Newtonsoft.Json;
 
 namespace CMS.Dashboard.Controllers
 {
@@ -84,20 +84,19 @@ namespace CMS.Dashboard.Controllers
                 var product =  uow.Product.Get(id);
                 var tags = await tagRepository.GetTagsByObjectIdentityId(product.IdentityCode, Constants.ObjectName.Product);
 
-                var editProductModel = new EditProductModel
+                var editProductModel = new ProductRequest
                 {
                     Id = product.Id,
                     Name = product.Name,
                     Slug = product.Slug,
                     ProductCategoryId = product.ProductCategoryId,
                     Thumbnail = product.Thumbnail,
-                    Images = product.Images,
+                    Images = JsonConvert.DeserializeObject<IList<string>>(product.Images),
                     CreatedDate = product.CreatedDate,
                     ModeifiedDate = product.ModeifiedDate,
                     SubContent = product.SubContent,
                     BodyContent = product.BodyContent,
                     Target = product.Target,
-                    View = product.View,
                     IdentityCode = product.IdentityCode,
                     PinToTop = product.PinToTop,
                     Title = product.Title,
@@ -108,7 +107,12 @@ namespace CMS.Dashboard.Controllers
                     Discount = product.Discount,
                     DiscountIsPercent = product.DiscountIsPercent,
                     IsActive = product.IsActive,
-                    Tags = tags
+                    Tags = tags,
+                    SellingOfProduct = product.SellingOfProduct,
+                    NumberOfProduct = product.NumberOfProduct,
+                    Color = product.Color?.Split(';'),
+                    Size = product.Size?.Split(';'),
+                    Unit = product.Unit
                 };
 
                 return View(editProductModel);

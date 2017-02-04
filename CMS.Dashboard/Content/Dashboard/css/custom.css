@@ -227,3 +227,6 @@ span.field-validation-error span, .field-validation-error{
 .table-sorting .head {
     background: #fff;
 }
+.list-checkbox .lb-checkbox{
+    margin: 0 5px 0 0 !important;
+}

@@ -201,7 +201,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Code\Models\Breadcurmb.cs" />
-    <Compile Include="Code\SelectListUnitities.cs" />
+    <Compile Include="Code\Unitities.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CartController.cs" />
@@ -225,7 +225,6 @@
     <Compile Include="Models\ProductDetailModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\EditProductModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\Dashboard\img\icons\ws\ic_delete.png" />
@@ -1832,6 +1831,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="ViewModels\" />
     <Folder Include="Views\BaseDashboard\" />
     <Folder Include="Views\Cart\" />
     <Folder Include="Views\Tag\" />

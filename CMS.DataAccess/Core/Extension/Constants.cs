@@ -57,6 +57,12 @@
             public static string Blog = "Blog";
 
             public static string Product = "Product";
+
+            public static string Color = "COLOR";
+
+            public static string Size = "SIZE";
+
+            public static string Unit = "UNIT";
         }
     }
 }

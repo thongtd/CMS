@@ -48,7 +48,7 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Nhóm cha:</label>
-                            @Html.DropDownList("ParentId", SelectListUnitities.BlogCategorys())
+                            @Html.DropDownList("ParentId", Unitities.BlogCategorys())
                             @Html.ValidationMessageFor(model => model.ParentId)
                         </div>
                         <div class="clear"></div>

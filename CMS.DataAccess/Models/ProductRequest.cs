@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Web.Mvc;
+using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
 
 namespace CMS.DataAccess.Models
@@ -60,5 +61,18 @@ namespace CMS.DataAccess.Models
         public bool DiscountIsPercent { get; set; }
 
         public bool IsActive { get; set; }
+
+        [Required(ErrorMessage = Constants.Validation.Required)]
+        public decimal NumberOfProduct { get; set; }
+
+        public decimal SellingOfProduct { get; set; }
+
+        public IList<string> Color { get; set; }
+
+        public IList<string> Size { get; set; }
+
+        public string Unit { get; set; }
+
+        public IEnumerable<Tag> Tags { get; set; }
     }
 }

@@ -57,6 +57,12 @@ namespace CMS.DataAccess.Core.Domain
 
         public decimal SellingOfProduct { get; set; }
 
+        public string Color { get; set; }
+
+        public string Size { get; set; }
+
+        public string Unit { get; set; }
+
         public bool IsActive { get; set; }
 
         [JsonIgnore]
@@ -68,7 +74,7 @@ namespace CMS.DataAccess.Core.Domain
             {
                 return null;
             }
-            
+
             return new Product
             {
                 Name = model.Name,
@@ -91,7 +97,12 @@ namespace CMS.DataAccess.Core.Domain
                 PinToTop = model.PinToTop,
                 Price = model.Price,
                 Discount = model.Discount,
-                DiscountIsPercent = model.DiscountIsPercent
+                DiscountIsPercent = model.DiscountIsPercent,
+                Unit = model.Unit,
+                Color = string.Join(";", model.Color),
+                Size = string.Join(";", model.Size),
+                SellingOfProduct = model.SellingOfProduct,
+                NumberOfProduct = model.NumberOfProduct
             };
         }
     }
@@ -123,6 +134,11 @@ namespace CMS.DataAccess.Core.Domain
             Property(x => x.Price).IsRequired();
             Property(x => x.Discount);
             Property(x => x.DiscountIsPercent);
+            Property(x => x.NumberOfProduct);
+            Property(x => x.SellingOfProduct);
+            Property(x => x.Color).HasMaxLength(255);
+            Property(x => x.Size).HasMaxLength(255);
+            Property(x => x.Unit).HasMaxLength(255);
         }
     }
 }

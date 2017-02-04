@@ -6,7 +6,6 @@ using CMS.DataAccess.Core.Domain;
 using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
-using MvcConnerstore.Collections;
 using System.Data.Entity;
 using System.Threading.Tasks;
 using CMS.DataAccess.Core.Linqkit;
@@ -42,6 +41,10 @@ namespace CMS.DataAccess.Persistence.Repositories
             product.Price = model.Price;
             product.Discount = model.Discount;
             product.DiscountIsPercent = model.DiscountIsPercent;
+            product.NumberOfProduct = model.NumberOfProduct;
+            product.Unit = model.Unit;
+            product.Color = string.Join(";", model.Color);
+            product.Size = string.Join(";", model.Size);
         }
 
         public IEnumerable<ProductResponse> Paging(int pageIndex, int pageSize, out int totalRecord, Expression<Func<Product, bool>> predicate)

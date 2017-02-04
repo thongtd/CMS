@@ -1,7 +1,11 @@
 ﻿@using CMS.Dashboard.Code
+@using CMS.DataAccess.Core.Extension
 @model CMS.DataAccess.Models.ProductRequest
 @{
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    var colorSettings = Unitities.GetProductSetting(Constants.ObjectName.Color);
+    var sizeSettings = Unitities.GetProductSetting(Constants.ObjectName.Size);
 }
 <form action="@Url.Action("Create", "Product")" method="post" id="validate" class="form-content">
     @Html.ValidationSummary(true)
@@ -56,110 +60,156 @@
                     </div>
                 </div>
                 <div class="span4">
-                    <div class="head head-custom">
-                        <div class="isw-calc"></div>
-                        <h1>Thông tin giá</h1>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="block-fluid">
-                        <div class="row-form">
-                            <label for="">Chọn nhóm sản phẩm:<em>*</em></label>
-                            @Html.DropDownList("ProductCategoryId", SelectListUnitities.ProductCategorys())
-                            @Html.ValidationMessageFor(model => model.ProductCategoryId)
+                    <div class="span12 no-margin-left">
+                        <div class="head head-custom">
+                            <div class="isw-calc"></div>
+                            <h1>Thông tin giá</h1>
+                            <div class="clear"></div>
                         </div>
-                    </div>
-                    <div class="block-fluid">
-                        <div class="row-form">
-                            <div class="span12">
-                                <div class="span12" ng-init="bindProductPrice('0')">
-                                    <label for="">Đơn giá:<em>*</em></label>
-                                    <input type="text" id="FakePrice" name="FakePrice" ng-model="productPrice" ng-change="productPriceChange()" class="text-align-right price-class"
-                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
-                                    <input type="hidden" id="Price" name="Price" value="0" />
-                                </div>
+                        <div class="block-fluid">
+                            <div class="row-form">
+                                <label for="">Chọn nhóm sản phẩm:<em>*</em></label>
+                                @Html.DropDownList("ProductCategoryId", Unitities.ProductCategorys())
+                                @Html.ValidationMessageFor(model => model.ProductCategoryId)
                             </div>
-                            <div class="clearfix"></div>
                         </div>
-                        <div class="row-form discount">
-                            <label for="">Giảm giá:<em>*</em></label>
-                            <div class="span12 no-margin">
-                                <div class="span6" ng-init="bindDiscountPrice('0')">
-                                    <input type="text" id="FakeDiscountPrice" name="FakeDiscountPrice" ng-model="discountPrice" ng-change="discountPriceChange()" class="text-align-right price-class"
-                                           onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
-                                    <input type="hidden" id="Discount" name="Discount" value="0" />
+                        <div class="block-fluid">
+                            <div class="row-form">
+                                <div class="span12">
+                                    <div class="span12" ng-init="bindProductPrice('0')">
+                                        <label for="">Đơn giá:<em>*</em></label>
+                                        <input type="text" id="FakePrice" name="FakePrice" ng-model="productPrice" ng-change="productPriceChange()" class="text-align-right price-class"
+                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                        <input type="hidden" id="Price" name="Price" value="0" />
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="row-form discount">
+                                <label for="">Giảm giá:<em>*</em></label>
+                                <div class="span12 no-margin">
+                                    <div class="span6" ng-init="bindDiscountPrice('0')">
+                                        <input type="text" id="FakeDiscountPrice" name="FakeDiscountPrice" ng-model="discountPrice" ng-change="discountPriceChange()" class="text-align-right price-class"
+                                               onkeypress='return event.charCode >= 48 && event.charCode <= 57' />
+                                        <input type="hidden" id="Discount" name="Discount" value="0" />
+                                    </div>
+                                    <div class="span6">
+                                        @Html.CheckBoxFor(m => m.DiscountIsPercent)
+                                        <label for="DiscountIsPercent">Phần trăm</label>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="row-form">
+                                <div class="span12">
+                                    <label for="">Mầu:</label>
+                                    <div class="list-checkbox">
+                                        @for (int i = 0; i < colorSettings.Count(); i++)
+                                        {
+                                            <label class="checkbox inline lb-checkbox no-padding">
+                                                <input id="Color_@(i)_" name="Color[@i]" type="checkbox" value="@colorSettings[i].Name">
+                                                @colorSettings[i].Name
+                                                <input name="Color[@i]" type="hidden">
+                                            </label>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="row-form">
+                                <div class="span12">
+                                    <label for="">Kích thước:</label>
+                                    <div class="list-checkbox">
+                                        @for (int i = 0; i < sizeSettings.Count(); i++)
+                                        {
+                                            <label class="checkbox inline lb-checkbox no-padding">
+                                                <input id="Size_@(i)_" name="Size[@i]" type="checkbox" value="@sizeSettings[i].Name">
+                                                @sizeSettings[i].Name
+                                                <input name="Size[@i]" type="hidden">
+                                            </label>
+                                        }
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="row-form">
+                                <div class="span6">
+                                    <label for="">Đơn vị:<em>*</em></label>
+                                    @Html.DropDownList("Unit", Unitities.ProductUnit())
+                                    @Html.ValidationMessageFor(model => model.Unit)
                                 </div>
                                 <div class="span6">
-                                    @Html.CheckBoxFor(m => m.DiscountIsPercent)
-                                    <label for="DiscountIsPercent">Phần trăm</label>
+                                    <label for="">Số lượng:<em>*</em></label>
+                                    @Html.TextBoxFor(model => model.NumberOfProduct, new { @class = "text-align-right", Value = "0" })
+                                    @Html.ValidationMessageFor(model => model.NumberOfProduct)
                                 </div>
+                                <div class="clear"></div>
                             </div>
-                            <div class="clearfix"></div>
                         </div>
-                        <div class="clearfix"></div>
                     </div>
-                </div>
-                <div class="span4" style="margin-top: 10px;">
-                    <div class="head head-custom" style="margin-top: 10px;">
-                        <div class="isw-picture"></div>
-                        <h1>Hình ảnh</h1>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="block-fluid">
-                        <div class="row-form">
-                            <label for="">Chọn ảnh đại diện:<em>*</em></label>
-                            <div class="img-upload">
-                                @Html.TextBoxFor(m => m.Thumbnail, new { placeholder = "Chọn ảnh đại diện" })
-                                <a class="media image-browse" id="btImgBrowse" ckfinder-browse data-ref-id="Thumbnail">
-                                    <i class="isw-plus"></i>
-                                </a>
-                                <div class="clearfix"></div>
-                                @Html.ValidationMessageFor(model => model.Thumbnail)
-                            </div>
-                            <div class="clearfix"></div>
+                    <div class="span12 no-margin-left" style="margin-top: 10px;">
+                        <div class="head head-custom" style="margin-top: 10px;">
+                            <div class="isw-picture"></div>
+                            <h1>Hình ảnh</h1>
+                            <div class="clear"></div>
                         </div>
-                        <div class="row-form">
-                            <label for="">Danh sách ảnh sản phẩm:<em>*</em></label>
-                            <div class="span12 no-margin" ng-init="initProductImages()">
-                                <div class="img-upload" ng-repeat="item in productImages track by $index">
-                                    <input id="Images_{{$index}}_" name="Images[{{$index}}]" placeholder="Hình ảnh sản phẩm" type="text" value="">
-                                    <a class="media image-browse" ckfinder-browse data-ref-id="Images_{{$index}}_">
+                        <div class="block-fluid">
+                            <div class="row-form">
+                                <label for="">Chọn ảnh đại diện:<em>*</em></label>
+                                <div class="img-upload">
+                                    @Html.TextBoxFor(m => m.Thumbnail, new { placeholder = "Chọn ảnh đại diện" })
+                                    <a class="media image-browse" id="btImgBrowse" ckfinder-browse data-ref-id="Thumbnail">
                                         <i class="isw-plus"></i>
                                     </a>
-                                    <a class="media image-browse del" ng-click="productImages.splice($index, 1)" ng-show="$index == productImages.length - 1">
-                                        <i class="isw-delete"></i>
-                                    </a>
+                                    <div class="clearfix"></div>
+                                    @Html.ValidationMessageFor(model => model.Thumbnail)
                                 </div>
-                                <div class="img-upload">
-                                    <input type="button" class="btn btn-create btn-flat" ng-click="addProductImage()" value="Thêm Ảnh">
-                                </div>
+                                <div class="clearfix"></div>
                             </div>
-                            <div class="clearfix"></div>
+                            <div class="row-form">
+                                <label for="">Danh sách ảnh sản phẩm:<em>*</em></label>
+                                <div class="span12 no-margin" ng-init="initProductImages()">
+                                    <div class="img-upload" ng-repeat="item in productImages track by $index">
+                                        <input id="Images_{{$index}}_" name="Images[{{$index}}]" placeholder="Hình ảnh sản phẩm" type="text" value="">
+                                        <a class="media image-browse" ckfinder-browse data-ref-id="Images_{{$index}}_">
+                                            <i class="isw-plus"></i>
+                                        </a>
+                                        <a class="media image-browse del" ng-click="productImages.splice($index, 1)" ng-show="$index == productImages.length - 1">
+                                            <i class="isw-delete"></i>
+                                        </a>
+                                    </div>
+                                    <div class="img-upload">
+                                        <input type="button" class="btn btn-create btn-flat" ng-click="addProductImage()" value="Thêm Ảnh">
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="span4" style="margin-top: 10px;">
-                    @{
-                        Html.RenderPartial("_MetaTags");
-                    }
-                </div>
-                <div class="span4" style="margin-top: 10px;">
-                    <div class="block-fluid">
-                        <div class="row-form">
-                            <div class="span12">
-                                <div class="span6">
-                                    <label class="checkbox inline lb-checkbox no-padding">
-                                        @Html.CheckBoxFor(model => model.PinToTop)
-                                        Gim trang chủ
-                                    </label>
+                    <div class="span12 no-margin-left" style="margin-top: 10px;">
+                        @{
+                            Html.RenderPartial("_MetaTags");
+                        }
+                    </div>
+                    <div class="span12 no-margin-left" style="margin-top: 10px;">
+                        <div class="block-fluid">
+                            <div class="row-form">
+                                <div class="span12">
+                                    <div class="span6">
+                                        <label class="checkbox inline lb-checkbox no-padding">
+                                            @Html.CheckBoxFor(model => model.PinToTop)
+                                            Gim trang chủ
+                                        </label>
+                                    </div>
+                                    <span class="span6">
+                                        <label class="checkbox inline lb-checkbox no-padding">
+                                            @Html.CheckBoxFor(model => model.IsActive)
+                                            Cho phép hiển thị
+                                        </label>
+                                    </span>
                                 </div>
-                                <span class="span6">
-                                    <label class="checkbox inline lb-checkbox no-padding">
-                                        @Html.CheckBoxFor(model => model.IsActive)
-                                        Cho phép hiển thị
-                                    </label>
-                                </span>
+                                <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý" />
                             </div>
-                            <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý" />
                         </div>
                     </div>
                 </div>
