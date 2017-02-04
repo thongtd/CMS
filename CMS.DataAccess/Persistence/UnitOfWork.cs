@@ -22,6 +22,7 @@ namespace CMS.DataAccess.Persistence
             Video = new VideoRepository(WorkContext);
             ProductCategory = new ProductCategoryRepository(WorkContext);
             Product = new ProductRepository(WorkContext);
+            ProductSetting= new ProductSettingRepository(WorkContext);
         }
 
         public IBlogCategoryRepository BlogCategory { get; private set; }
@@ -45,6 +46,8 @@ namespace CMS.DataAccess.Persistence
         public IProductCategoryRepository ProductCategory { get; private set; }
 
         public IProductRepository Product { get; private set; }
+
+        public IProductSettingRepository ProductSetting { get; private set; }
 
         public WorkContext GetWorkContext()
         {

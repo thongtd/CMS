@@ -91,6 +91,7 @@
     <Compile Include="Core\Domain\Gallery.cs" />
     <Compile Include="Core\Domain\GalleryCategory.cs" />
     <Compile Include="Core\Domain\Menu.cs" />
+    <Compile Include="Core\Domain\ProductSetting.cs" />
     <Compile Include="Core\Domain\Tag.cs" />
     <Compile Include="Core\Domain\TagCategory.cs" />
     <Compile Include="Core\Domain\Video.cs" />
@@ -113,7 +114,10 @@
     <Compile Include="Core\Repositories\ITagRepository.cs" />
     <Compile Include="Core\Repositories\IVideoCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IVideoRepository.cs" />
+    <Compile Include="Core\Repositories\IProductSettingRepository.cs" />
     <Compile Include="IDependency.cs" />
+    <Compile Include="Models\ProductSettingResponse.cs" />
+    <Compile Include="Models\ProductSettingRequest.cs" />
     <Compile Include="Models\ProductResponse.cs" />
     <Compile Include="Models\ProductRequest.cs" />
     <Compile Include="Models\ProductCategoryRequest.cs" />
@@ -138,6 +142,7 @@
     <Compile Include="Persistence\Repositories\ContactRepository.cs" />
     <Compile Include="Persistence\Repositories\GalleryCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\GalleryRepository.cs" />
+    <Compile Include="Persistence\Repositories\ProductSettingRepository.cs" />
     <Compile Include="Persistence\Repositories\TagCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\TagRepository.cs" />
     <Compile Include="Persistence\Repositories\VideoCategoryRepository.cs" />

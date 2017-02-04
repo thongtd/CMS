@@ -119,10 +119,11 @@
         width: 500,
         type: 'iframe',
         padding: 0,
+        beforeShow: function(){
+            //this.height = $('.fancybox-iframe').contents().find('html').height();
+        },
         onComplete: function () {
-            $('#fancybox-frame').load(function () {
-                $('#fancybox-content').height($(this).contents().find('body').height());
-            });
+            
         }
     });
 
@@ -141,8 +142,8 @@
                 type: 'POST',
                 success: function (data) {
                     javascript: parent.jQuery.fancybox.close();
-                    $('#gridSource').data('kendoGrid').dataSource.read();
-                    $('#gridSource').data('kendoGrid').refresh();
+                    window.parent.$('#gridSource').data('kendoGrid').dataSource.read();
+                    window.parent.$('#gridSource').data('kendoGrid').refresh();
                 },
                 error: function (e) {
                     console.log(e.message);

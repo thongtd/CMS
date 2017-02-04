@@ -6,9 +6,9 @@ using CMS.DataAccess.Persistence.Repositories;
 
 namespace CMS.Dashboard.Code
 {
-    public static class Unitities
+    public static class SelectListUnitities
     {
-        public static List<SelectListItem> BlogCategoryTree()
+        public static List<SelectListItem> BlogCategorys()
         {
             var blogCategoryRepository = new BlogCategoryRepository(new WorkContext());
             var blogCategoryTrees = blogCategoryRepository.BlogCategoryTree().ToList();
@@ -24,7 +24,7 @@ namespace CMS.Dashboard.Code
             return result;
         }
 
-        public static List<SelectListItem> ProductCategoryTree()
+        public static List<SelectListItem> ProductCategorys()
         {
             var productCategoryRepository = new ProductCategoryRepository(new WorkContext());
             var productCategoryTrees = productCategoryRepository.ProductCategoryTree().ToList();
@@ -37,6 +37,18 @@ namespace CMS.Dashboard.Code
                     result.Add(new SelectListItem { Text = item.Text, Value = item.Value });
                 }
             }
+            return result;
+        }
+
+        public static List<SelectListItem> ProductSettings()
+        {
+            var result = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Chọn loại cấu hình", Value = ""},
+                new SelectListItem {Text = "Mầu sản phẩm", Value = "COLOR"},
+                new SelectListItem {Text = "Kích thước sản phẩm", Value = "SIZE"},
+                new SelectListItem {Text = "Đơn vị sản phẩm", Value = "UNIT"}
+            };
             return result;
         }
     }

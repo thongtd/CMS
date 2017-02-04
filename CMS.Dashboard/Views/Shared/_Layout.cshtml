@@ -75,12 +75,12 @@
                 <ul>
                     <li>
                         <a href="@Url.Action("Index", "BlogCategory")">
-                            <span class="icon-chevron-right"></span><span class="text">Danh sách nhóm bài viết</span>
+                            <span class="icon-chevron-right"></span><span class="text">Nhóm bài viết</span>
                         </a>
                     </li>
                     <li>
                         <a href="@Url.Action("Index", "Blog")">
-                            <span class="icon-chevron-right"></span><span class="text">Danh sách bài viết</span>
+                            <span class="icon-chevron-right"></span><span class="text">Bài viết</span>
                         </a>
                     </li>
                 </ul>
@@ -92,33 +92,29 @@
                 <ul>
                     <li>
                         <a href="@Url.Action("Index", "ProductCategory")">
-                            <span class="icon-chevron-right"></span><span class="text">Danh sách nhóm sản phẩm</span>
+                            <span class="icon-chevron-right"></span><span class="text">Nhóm sản phẩm</span>
                         </a>
                     </li>
                     <li>
                         <a href="@Url.Action("Index", "Product")">
-                            <span class="icon-chevron-right"></span><span class="text">Danh sách sản phẩm</span>
+                            <span class="icon-chevron-right"></span><span class="text">Sản phẩm</span>
                         </a>
                     </li>
                 </ul>
             </li>
-            @*<li class="openable @ViewBag.MatchInfo">
-                    <a href="#">
-                        <span class="isw-list"></span><span class="text">Trực tiếp</span>
-                    </a>
-                    <ul>
-                        <li>
-                            <a href="@Url.Action("Index", "Tournament", new { area = "Admin" })">
-                                <span class="icon-chevron-right"></span><span class="text">Danh sách giải đấu</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="@Url.Action("Index", "MatchInfo", new { area = "Admin" })">
-                                <span class="icon-chevron-right"></span><span class="text">Lịch trực tiếp</span>
-                            </a>
-                        </li>
-                    </ul>
-                </li>
+            <li class="openable @ViewBag.SiteSetting">
+                <a href="#">
+                    <span class="isw-list"></span><span class="text">Cấu hình</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="@Url.Action("Index", "ProductSetting")">
+                            <span class="icon-chevron-right"></span><span class="text">Cấu hình sản phẩm</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+            @*
                 <li class="openable @ViewBag.SlideShow">
                     <a href="#">
                         <span class="isw-list"></span><span class="text">Banner - Hình ảnh</span>

@@ -33,15 +33,12 @@ namespace CMS.DataAccess.Persistence
 
         public DbSet<Product> Products { get; set; }
 
+        public DbSet<ProductSetting> ProductSettings { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WorkContext>());
-            //Database.SetInitializer<WorkContext>(null);
-
-            //Database.SetInitializer(new DropCreateDatabaseIfModelChanges<WorkContext>());
-
+            
             modelBuilder.Configurations.Add(new BlogCategoryMap());
             modelBuilder.Configurations.Add(new BlogMap());
             modelBuilder.Configurations.Add(new ContactMap());
@@ -53,6 +50,7 @@ namespace CMS.DataAccess.Persistence
             modelBuilder.Configurations.Add(new VideoCategoryMap());
             modelBuilder.Configurations.Add(new ProductCategoryMap());
             modelBuilder.Configurations.Add(new ProductMap());
+            modelBuilder.Configurations.Add(new ProductSettingMap());
         }
     }
 }

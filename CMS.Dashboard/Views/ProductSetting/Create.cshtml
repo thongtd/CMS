@@ -1,0 +1,39 @@
+﻿@using CMS.Dashboard.Code
+@using CMS.Dashboard.Extentions
+@model CMS.DataAccess.Models.ProductSettingRequest
+@{
+    ViewBag.Title = "Thêm mới cấu hình sản phẩm";
+    Layout = "/Views/Shared/_LayoutIframe.cshtml";
+}
+<div class="iframe-content">
+    <form class="form-horizontal form-popup ajaxSumitForm" action="@Url.Action("Create", "ProductSetting")" method="post" id="productCategory">
+        @Html.ValidationSummary(true)
+        <div class="row-fluid">
+            <div class="span12">
+                <div class="head">
+                    <span class="title">Thêm Mới Cấu Hình Sản Phẩm</span>
+                </div>
+                <div class="block-fluid form-body">
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Loại:<em>*</em></label>
+                            @Html.DropDownList("Type", SelectListUnitities.ProductSettings())
+                            @Html.ValidationMessageFor(model => model.Type)
+                        </div>
+                    </div>
+                    <div class="row-form">
+                        <div class="span12">
+                            <label for="">Tên:<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Name, new {@placeholder = "Tên"})
+                            @Html.ValidationMessageFor(model => model.Name)
+                        </div>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="row-form">
+                        <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
