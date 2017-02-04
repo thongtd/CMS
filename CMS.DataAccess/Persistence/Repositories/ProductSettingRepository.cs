@@ -38,6 +38,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             totalRecord = productSettings.Count();
             var productSettingResponses = productSettings.Skip((pageIndex - 1) * pageSize).Take(pageSize).ToList().Select(s => new ProductSettingResponse
             {
+                Id = s.Id,
                 Name = s.Name,
                 Type = s.Type
             }).ToList();

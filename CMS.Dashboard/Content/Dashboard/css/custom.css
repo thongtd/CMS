@@ -221,3 +221,9 @@ span.field-validation-error span, .field-validation-error{
     font-weight: 700;
     font-size: 14px;
 }
+.navigation li > ul > li > a span.text, .navigation li > a span.text {
+    font-size: 13px;
+}
+.table-sorting .head {
+    background: #fff;
+}

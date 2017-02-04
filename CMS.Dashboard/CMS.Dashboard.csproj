@@ -1828,6 +1828,7 @@
     <Content Include="Views\Shared\Breadcrumb.cshtml" />
     <Content Include="Views\ProductSetting\Index.cshtml" />
     <Content Include="Views\ProductSetting\Create.cshtml" />
+    <Content Include="Views\ProductSetting\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

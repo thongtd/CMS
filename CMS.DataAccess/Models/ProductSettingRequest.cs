@@ -5,6 +5,8 @@ namespace CMS.DataAccess.Models
 {
     public class ProductSettingRequest
     {
+        public int Id { get; set; }
+
         [Required(ErrorMessage = Constants.Validation.Required)]
         public string Type { get; set; }
 

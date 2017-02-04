@@ -22,6 +22,11 @@ namespace CMS.DataAccess.Persistence.Repositories
             return Context.Set<TEntity>().Find(Id);
         }
 
+        public async Task<TEntity> GetAsyn<T>(T Id)
+        {
+            return await Context.Set<TEntity>().FindAsync(Id);
+        }
+
         public IEnumerable<TEntity> FindAll()
         {
             return Context.Set<TEntity>().ToList();

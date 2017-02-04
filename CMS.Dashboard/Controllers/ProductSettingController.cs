@@ -74,5 +74,47 @@ namespace CMS.Dashboard.Controllers
                 return View();
             }
         }
+
+        [Route("product-setting/edit/{id}")]
+        public async Task<ActionResult> Edit(int id)
+        {
+            ViewBag.SiteSetting = "active";
+            
+            return View(await productSettingRepository.GetAsyn(id));
+        }
+
+        [HttpPost, ValidateInput(false), Route("product-setting/edit")]
+        public async Task<ActionResult> Edit(ProductSettingRequest model)
+        {
+            if (!ModelState.IsValid) return View(model);
+
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var productSetting = await uow.ProductSetting.GetAsyn(model.Id);
+
+                productSetting.Name = model.Name;
+                productSetting.Type = model.Type;
+
+                uow.Complete();
+                return RedirectToAction("Index");
+            }
+        }
+
+        [HttpPost, Route("product-setting/delete")]
+        public ActionResult Delete(int id)
+        {
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var productSetting = uow.ProductSetting.Get(id);
+
+                uow.ProductSetting.Remove(productSetting);
+                uow.Complete();
+                return Json(new
+                {
+                    Status = true,
+                    Message = string.Empty
+                });
+            }
+        }
     }
 }

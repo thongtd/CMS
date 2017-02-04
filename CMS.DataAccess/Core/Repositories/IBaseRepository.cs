@@ -9,6 +9,8 @@ namespace CMS.DataAccess.Core.Repositories
     {
         TEntity Get<T>(T Id);
 
+        Task<TEntity> GetAsyn<T>(T Id);
+
         IEnumerable<TEntity> FindAll();
 
         IEnumerable<TEntity> Find(Expression<Func<TEntity, bool>> predicate);

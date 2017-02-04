@@ -81,7 +81,7 @@ namespace CMS.Dashboard.Controllers
 
             using (var uow = new UnitOfWork(new WorkContext()))
             {
-                var product = uow.Product.Get(id);
+                var product =  uow.Product.Get(id);
                 var tags = await tagRepository.GetTagsByObjectIdentityId(product.IdentityCode, Constants.ObjectName.Product);
 
                 var editProductModel = new EditProductModel
