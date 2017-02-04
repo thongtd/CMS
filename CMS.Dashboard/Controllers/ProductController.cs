@@ -48,7 +48,7 @@ namespace CMS.Dashboard.Controllers
         }
 
         [Route("product")]
-        public ActionResult Index(string pageIndex)
+        public ActionResult Index()
         {
             ViewBag.Product = "active";
 
