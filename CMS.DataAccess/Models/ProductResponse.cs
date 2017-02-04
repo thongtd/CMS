@@ -28,7 +28,7 @@ namespace CMS.DataAccess.Models
 
         public string Target { get; set; }
 
-        public int Click { get; set; }
+        public double View { get; set; }
 
         public Guid IdentityCode { get; set; }
 
@@ -47,6 +47,10 @@ namespace CMS.DataAccess.Models
         public decimal Discount { get; set; }
 
         public bool DiscountIsPercent { get; set; }
+
+        public decimal NumberOfProduct { get; set; }
+
+        public decimal SellingOfProduct { get; set; }
 
         public bool IsActive { get; set; }
         

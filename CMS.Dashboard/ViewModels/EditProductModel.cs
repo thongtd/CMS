@@ -28,7 +28,7 @@ namespace CMS.Dashboard.ViewModels
 
         public string Target { get; set; }
 
-        public int Click { get; set; }
+        public double View { get; set; }
 
         public Guid IdentityCode { get; set; }
 

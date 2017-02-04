@@ -32,7 +32,7 @@ namespace CMS.DataAccess.Persistence.Repositories
             product.SubContent = model.SubContent;
             product.BodyContent = model.BodyContent;
             product.Target = model.Target;
-            product.Click = model.Click;
+            product.View = model.Click;
             product.Title = model.Title;
             product.Description = model.Description;
             product.Keyword = model.Keyword;
@@ -61,7 +61,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                     s.SubContent,
                     s.BodyContent,
                     s.Target,
-                    s.Click,
+                    s.View,
                     s.IdentityCode,
                     s.PinToTop,
                     s.Title,
@@ -88,7 +88,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 ProductCategoryId = s.ProductCategoryId,
                 Name = s.Name,
                 BodyContent = s.BodyContent,
-                Click = s.Click,
+                View = s.View,
                 ModeifiedDate = s.ModeifiedDate,
                 CreatedDate = s.CreatedDate,
                 CultureCode = s.CultureCode,
@@ -129,7 +129,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                         ProductCategoryId = s.ProductCategoryId,
                         Name = s.Name,
                         BodyContent = s.BodyContent,
-                        Click = s.Click,
+                        View = s.View,
                         ModeifiedDate = s.ModeifiedDate,
                         CreatedDate = s.CreatedDate,
                         CultureCode = s.CultureCode,
@@ -179,7 +179,7 @@ namespace CMS.DataAccess.Persistence.Repositories
                 ProductCategoryId = product.ProductCategoryId,
                 Images = product.Images != null ? JsonConvert.DeserializeObject<IList<string>>(product.Images) : null,
                 BodyContent = product.BodyContent,
-                Click = product.Click,
+                View = product.View,
                 CreatedDate = product.CreatedDate,
                 CultureCode = product.CultureCode,
                 Discount = product.Discount,

@@ -33,7 +33,7 @@ namespace CMS.DataAccess.Core.Domain
 
         public string Target { get; set; }
 
-        public int Click { get; set; }
+        public double View { get; set; }
 
         public Guid IdentityCode { get; set; }
 
@@ -52,6 +52,10 @@ namespace CMS.DataAccess.Core.Domain
         public decimal Discount { get; set; }
 
         public bool DiscountIsPercent { get; set; }
+
+        public decimal NumberOfProduct { get; set; }
+
+        public decimal SellingOfProduct { get; set; }
 
         public bool IsActive { get; set; }
 
@@ -78,7 +82,7 @@ namespace CMS.DataAccess.Core.Domain
                 SubContent = model.SubContent,
                 BodyContent = model.BodyContent,
                 Target = model.Target,
-                Click = model.Click,
+                View = model.Click,
                 Description = model.Description,
                 Keyword = model.Keyword,
                 CultureCode = model.CultureCode,
@@ -108,7 +112,7 @@ namespace CMS.DataAccess.Core.Domain
             Property(x => x.SubContent);
             Property(x => x.BodyContent);
             Property(x => x.Target).HasMaxLength(10);
-            Property(x => x.Click);
+            Property(x => x.View);
             Property(x => x.Title).HasMaxLength(255);
             Property(x => x.Description).HasMaxLength(512);
             Property(x => x.Keyword).HasMaxLength(512);

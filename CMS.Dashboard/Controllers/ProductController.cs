@@ -97,7 +97,7 @@ namespace CMS.Dashboard.Controllers
                     SubContent = product.SubContent,
                     BodyContent = product.BodyContent,
                     Target = product.Target,
-                    Click = product.Click,
+                    View = product.View,
                     IdentityCode = product.IdentityCode,
                     PinToTop = product.PinToTop,
                     Title = product.Title,
