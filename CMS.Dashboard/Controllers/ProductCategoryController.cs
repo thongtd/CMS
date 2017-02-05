@@ -14,7 +14,7 @@ namespace CMS.Dashboard.Controllers
 {
     [RoutePrefix("admin")]
     [DashboardActionFilter(IndexPageTile = "Danh sách nhóm sản phẩm", EditPageTile = "Sửa thông tin nhóm sản phẩm", CreatePageTile = "Thêm mới nhóm sản phẩm")]
-    public class ProductCategoryController : Controller
+    public abstract class ProductCategoryController : Controller
     {
         private readonly IProductCategoryRepository productCategoryRepository = new ProductCategoryRepository(new WorkContext());
         
@@ -47,7 +47,7 @@ namespace CMS.Dashboard.Controllers
         }
 
         [Route("product-category")]
-        public ActionResult Index(string pageIndex)
+        public virtual ActionResult Index(string pageIndex)
         {
             ViewBag.Product = "active";
 
