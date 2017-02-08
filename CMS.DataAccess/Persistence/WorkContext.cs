@@ -1,5 +1,6 @@
 ﻿using System.Data.Entity;
 using CMS.DataAccess.Core.Domain;
+using CMS.DataAccess.Persistence.Repositories;
 
 namespace CMS.DataAccess.Persistence
 {
@@ -35,6 +36,8 @@ namespace CMS.DataAccess.Persistence
 
         public DbSet<ProductSetting> ProductSettings { get; set; }
 
+        public DbSet<SiteSettingRepository> SiteSettingRepositories { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -51,6 +54,7 @@ namespace CMS.DataAccess.Persistence
             modelBuilder.Configurations.Add(new ProductCategoryMap());
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new ProductSettingMap());
+            modelBuilder.Configurations.Add(new SiteSettingMap());
         }
     }
 }

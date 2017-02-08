@@ -92,6 +92,7 @@
     <Compile Include="Core\Domain\GalleryCategory.cs" />
     <Compile Include="Core\Domain\Menu.cs" />
     <Compile Include="Core\Domain\ProductSetting.cs" />
+    <Compile Include="Core\Domain\SiteSetting.cs" />
     <Compile Include="Core\Domain\Tag.cs" />
     <Compile Include="Core\Domain\TagCategory.cs" />
     <Compile Include="Core\Domain\Video.cs" />
@@ -110,6 +111,7 @@
     <Compile Include="Core\Repositories\IContactRepository.cs" />
     <Compile Include="Core\Repositories\IGalleryCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IGalleryRepository.cs" />
+    <Compile Include="Core\Repositories\ISiteSettingRepository.cs" />
     <Compile Include="Core\Repositories\ITagCategoryRepository.cs" />
     <Compile Include="Core\Repositories\ITagRepository.cs" />
     <Compile Include="Core\Repositories\IVideoCategoryRepository.cs" />
@@ -143,6 +145,7 @@
     <Compile Include="Persistence\Repositories\GalleryCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\GalleryRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductSettingRepository.cs" />
+    <Compile Include="Persistence\Repositories\SiteSettingRepository.cs" />
     <Compile Include="Persistence\Repositories\TagCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\TagRepository.cs" />
     <Compile Include="Persistence\Repositories\VideoCategoryRepository.cs" />

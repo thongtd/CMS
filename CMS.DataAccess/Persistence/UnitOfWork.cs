@@ -23,6 +23,7 @@ namespace CMS.DataAccess.Persistence
             ProductCategory = new ProductCategoryRepository(WorkContext);
             Product = new ProductRepository(WorkContext);
             ProductSetting= new ProductSettingRepository(WorkContext);
+            SettingRepository = new SiteSettingRepository(WorkContext);
         }
 
         public IBlogCategoryRepository BlogCategory { get; private set; }
@@ -48,6 +49,8 @@ namespace CMS.DataAccess.Persistence
         public IProductRepository Product { get; private set; }
 
         public IProductSettingRepository ProductSetting { get; private set; }
+
+        public ISiteSettingRepository SettingRepository { get; private set; }
 
         public WorkContext GetWorkContext()
         {

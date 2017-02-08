@@ -3,14 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 using CMS.DataAccess.Core.Domain;
-using CMS.DataAccess.Core.Extension;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
-using MvcConnerstore.Collections;
 using System.Data.Entity;
-using System.Threading.Tasks;
-using CMS.DataAccess.Core.Linqkit;
-using Newtonsoft.Json;
 
 namespace CMS.DataAccess.Persistence.Repositories
 {
