@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity.ModelConfiguration;
+using CMS.DataAccess.Models;
 
 namespace CMS.DataAccess.Core.Domain
 {
@@ -13,6 +14,22 @@ namespace CMS.DataAccess.Core.Domain
         public string Value { get; set; }
 
         public string Group { get; set; }
+
+        public static implicit operator SiteSetting(SiteSettingRequest model)
+        {
+            if (model == null)
+            {
+                return null;
+            }
+
+            return new SiteSetting
+            {
+                Id = model.Id,
+                Group = model.Group,
+                Value = model.Value,
+                Key = model.Key
+            };
+        }
     }
 
     public class SiteSettingMap : EntityTypeConfiguration<SiteSetting>

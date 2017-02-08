@@ -206,11 +206,13 @@
     <Compile Include="Code\Unitities.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
+    <Compile Include="Controllers\BaseDashboardController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\BlogCategoryController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ProductSettingController.cs" />
+    <Compile Include="Controllers\SiteSettingController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Extentions\ListExtentions.cs" />
     <Compile Include="Filters\DashboardActionFilter.cs" />
@@ -1912,6 +1914,8 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\FlatShop\Models\" />
     <Folder Include="ViewModels\" />
+    <Folder Include="Views\BaseDashboard\" />
+    <Folder Include="Views\SiteSetting\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

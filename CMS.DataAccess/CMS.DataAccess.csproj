@@ -130,6 +130,7 @@
     <Compile Include="Models\ContactRequest.cs" />
     <Compile Include="Models\GalleryCategoryRequest.cs" />
     <Compile Include="Models\GalleryRequest.cs" />
+    <Compile Include="Models\SiteSettingRequest.cs" />
     <Compile Include="Models\StudentModel.cs" />
     <Compile Include="Models\TagCategoryRequest.cs" />
     <Compile Include="Models\TagHtmlResponse.cs" />
