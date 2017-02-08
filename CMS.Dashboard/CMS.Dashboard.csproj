@@ -200,12 +200,12 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\FlatShop\Controllers\HomeController.cs" />
+    <Compile Include="Areas\FlatShop\FlatShopAreaRegistration.cs" />
     <Compile Include="Code\Models\Breadcurmb.cs" />
     <Compile Include="Code\Unitities.cs" />
     <Compile Include="Controllers\AuthBaseController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
-    <Compile Include="Controllers\CartController.cs" />
-    <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ProductController.cs" />
     <Compile Include="Controllers\ProductCategoryController.cs" />
     <Compile Include="Controllers\BlogCategoryController.cs" />
@@ -1765,6 +1765,8 @@
     <Content Include="Content\Frontend\fonts\utmavo.ttf" />
     <Content Include="Content\Frontend\fonts\utmavo.woff" />
     <Content Include="Content\Frontend\fonts\UVNSangSong_N.TTF" />
+    <Content Include="Areas\FlatShop\Views\web.config" />
+    <Content Include="Areas\FlatShop\Views\Home\Index.cshtml" />
     <None Include="Content\Dashboard\_references.js" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
@@ -1821,9 +1823,6 @@
     <Content Include="Views\Product\Index.cshtml" />
     <None Include="Properties\PublishProfiles\WebPublish.pubxml" />
     <Content Include="Views\Shared\_LayoutFrontend.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\Home\ProductCategory.cshtml" />
-    <Content Include="Views\Home\ProductDetail.cshtml" />
     <Content Include="Views\Shared\Breadcrumb.cshtml" />
     <Content Include="Views\ProductSetting\Index.cshtml" />
     <Content Include="Views\ProductSetting\Create.cshtml" />
@@ -1831,10 +1830,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\FlatShop\Models\" />
+    <Folder Include="Areas\FlatShop\Views\Shared\" />
     <Folder Include="ViewModels\" />
-    <Folder Include="Views\BaseDashboard\" />
-    <Folder Include="Views\Cart\" />
-    <Folder Include="Views\Tag\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
