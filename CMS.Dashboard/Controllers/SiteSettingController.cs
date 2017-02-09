@@ -40,7 +40,7 @@ namespace CMS.Dashboard.Controllers
         [Route("site-setting")]
         public ActionResult Index(string pageIndex)
         {
-            ViewBag.News = "active";
+            ViewBag.SiteSetting = "active";
 
             return View();
         }
@@ -48,7 +48,7 @@ namespace CMS.Dashboard.Controllers
         [HttpGet, Route("site-setting/create")]
         public ActionResult Create()
         {
-            ViewBag.News = "active";
+            ViewBag.SiteSetting = "active";
 
             return View();
         }
@@ -69,7 +69,7 @@ namespace CMS.Dashboard.Controllers
         [HttpGet, Route("site-setting/edit/{id}")]
         public ActionResult Edit(int id)
         {
-            ViewBag.News = "active";
+            ViewBag.SiteSetting = "active";
 
             return View(siteSettingRepository.Get(id));
         }
