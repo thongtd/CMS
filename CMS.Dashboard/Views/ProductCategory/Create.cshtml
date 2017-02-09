@@ -1,8 +1,6 @@
 ﻿@using CMS.Dashboard.Code
-@using CMS.Dashboard.Extentions
 @model CMS.DataAccess.Models.ProductCategoryRequest
 @{
-    ViewBag.Title = "Thêm mới nhóm sản phẩm";
     Layout = "/Views/Shared/_LayoutIframe.cshtml";
 }
 <div class="iframe-content">
@@ -11,13 +9,13 @@
         <div class="row-fluid">
             <div class="span12">
                 <div class="head">
-                    <span class="title">Thêm Mới Nhóm Sản Phẩm</span>
+                    <span class="title">Thêm mới nhóm sản phẩm</span>
                 </div>
                 <div class="block-fluid form-body">
                     <div class="row-form">
                         <div class="span12">
-                            <label for="">Tên nhóm tin:<em>*</em></label>
-                            @Html.TextBoxFor(m => m.Name, new { @placeholder = "Tên nhóm tin" })
+                            <label for="">Tên nhóm sản phẩm:<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Name, new { @placeholder = "Tên nhóm sản phẩm" })
                             @Html.ValidationMessageFor(model => model.Name)
                         </div>
                         <div class="clear"></div>
@@ -46,16 +44,8 @@
                     <div class="row-form">
                         <div class="span12">
                             <label for="">Nhóm cha:</label>
-                            @Html.DropDownList("ParentId", Unitities.BlogCategorys())
+                            @Html.DropDownList("ParentId", Unitities.ProductCategorys())
                             @Html.ValidationMessageFor(model => model.ParentId)
-                        </div>
-                        <div class="clear"></div>
-                    </div>
-                    <div class="row-form">
-                        <div class="span12">
-                            <label for="">Ngôn ngữ:</label>
-                            @Html.DropDownList("CultureCode", ListExtentions.BinDdlLang())
-                            @Html.ValidationMessageFor(model => model.CultureCode)
                         </div>
                         <div class="clear"></div>
                     </div>

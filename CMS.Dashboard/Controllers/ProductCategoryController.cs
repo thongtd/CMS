@@ -14,7 +14,7 @@ namespace CMS.Dashboard.Controllers
 {
     [RoutePrefix("admin")]
     [DashboardActionFilter(IndexPageTile = "Danh sách nhóm sản phẩm", EditPageTile = "Sửa thông tin nhóm sản phẩm", CreatePageTile = "Thêm mới nhóm sản phẩm")]
-    public abstract class ProductCategoryController : Controller
+    public class ProductCategoryController : Controller
     {
         private readonly IProductCategoryRepository productCategoryRepository = new ProductCategoryRepository(new WorkContext());
         
