@@ -1,10 +1,7 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using System.Web.Mvc;
 using CMS.Dashboard.Filters;
 using CMS.Dashboard.Models;
-using CMS.DataAccess.Core.Domain;
-using CMS.DataAccess.Core.Linqkit;
 using CMS.DataAccess.Core.Repositories;
 using CMS.DataAccess.Models;
 using CMS.DataAccess.Persistence;
@@ -14,7 +11,7 @@ using MvcConnerstore.Collections;
 namespace CMS.Dashboard.Controllers
 {
     [RoutePrefix("admin")]
-    [DashboardActionFilter(IndexPageTile = "Danh sách nhóm bài viết", EditPageTile = "Sửa thông tin nhóm bài viết", CreatePageTile = "Thêm mới nhóm bài viết")]
+    [DashboardActionFilter(IndexPageTile = "Danh sách SiteSetting", EditPageTile = "Sửa thông tin SiteSetting", CreatePageTile = "Thêm mới SiteSetting")]
     public class SiteSettingController : Controller
     {
         private readonly ISiteSettingRepository siteSettingRepository = new SiteSettingRepository(new WorkContext());
@@ -24,12 +21,19 @@ namespace CMS.Dashboard.Controllers
         {
             using (var uow = new UnitOfWork(new WorkContext()))
             {
-                int total;
-                var siteSettings = uow.SiteSetting.Paging(PagedExtention.TryGetPageIndex(filter.page.ToString()), filter.pageSize, out total, null);
+                int totalRecord = 0;
+                var siteSettings = uow.SiteSetting.Paging(PagedExtention.TryGetPageIndex(filter.page.ToString()), filter.pageSize, out totalRecord, null).ToList();
 
                 if (!siteSettings.Any()) return Json(siteSettings, JsonRequestBehavior.AllowGet);
 
-                return Json(siteSettings, JsonRequestBehavior.AllowGet);
+                return Json(new
+                {
+                    data = siteSettings.Select(s => new
+                    {
+                        s.Id, s.Key, s.Value, s.Group
+                    }),
+                    total = totalRecord
+                }, JsonRequestBehavior.AllowGet);
             }
         }
 
@@ -53,7 +57,7 @@ namespace CMS.Dashboard.Controllers
         public ActionResult Create(SiteSettingRequest model)
         {
             if (!ModelState.IsValid) return View();
-            
+
             using (var uow = new UnitOfWork(new WorkContext()))
             {
                 uow.SiteSetting.Add(model);
@@ -86,7 +90,7 @@ namespace CMS.Dashboard.Controllers
                 return View();
             }
         }
-        
+
         [HttpPost, Route("site-setting/delete")]
         public ActionResult Delete(int id)
         {

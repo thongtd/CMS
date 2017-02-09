@@ -1909,13 +1909,15 @@
     <Content Include="Views\ProductSetting\Index.cshtml" />
     <Content Include="Views\ProductSetting\Create.cshtml" />
     <Content Include="Views\ProductSetting\Edit.cshtml" />
+    <Content Include="Views\SiteSetting\Create.cshtml" />
+    <Content Include="Views\SiteSetting\Edit.cshtml" />
+    <Content Include="Views\SiteSetting\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\FlatShop\Models\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\BaseDashboard\" />
-    <Folder Include="Views\SiteSetting\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

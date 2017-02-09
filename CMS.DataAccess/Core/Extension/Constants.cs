@@ -64,5 +64,10 @@
 
             public static string Unit = "UNIT";
         }
+
+        public static class SiteSetting
+        {
+            public static string WebSeo = "WebSeo";
+        }
     }
 }

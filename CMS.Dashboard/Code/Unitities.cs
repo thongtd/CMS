@@ -123,5 +123,30 @@ namespace CMS.Dashboard.Code
                 return result;
             }
         }
+
+        public static IList<SelectListItem> GetSiteSettingGroups()
+        {
+            var result = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Chọn loại cấu hình", Value = ""},
+                new SelectListItem {Text = "Website & SEO", Value = "WebSeo"}
+            };
+
+            return result;
+        }
+
+        public static IList<SelectListItem> GetSiteSettingKeys()
+        {
+            var result = new List<SelectListItem>
+            {
+                new SelectListItem {Text = "Title", Value = "Title"},
+                new SelectListItem {Text = "Keyword", Value = "Keyword"},
+                new SelectListItem {Text = "Description", Value = "Description"},
+                new SelectListItem {Text = "Google Analytic", Value = "Google Analytic"},
+                new SelectListItem {Text = "Facebook", Value = "Facebook"},
+            };
+
+            return result;
+        }
     }
 }
