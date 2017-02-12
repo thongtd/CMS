@@ -15,7 +15,7 @@
                 <div class="block-fluid form-body">
                     <div class="row-form">
                         <div class="span12">
-                            <label for="">Nhóm cha:<em>*</em></label>
+                            <label for="">Nhóm:<em>*</em></label>
                             @Html.DropDownList("Group", Unitities.GetSiteSettingGroups())
                             @Html.ValidationMessageFor(model => model.Group)
                         </div>

@@ -209,6 +209,7 @@
     <Compile Include="App_Start\IdentityConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\FlatShop\Controllers\BaseController.cs" />
     <Compile Include="Areas\FlatShop\Controllers\HomeController.cs" />
     <Compile Include="Areas\FlatShop\FlatShopAreaRegistration.cs" />
     <Compile Include="Code\CacheManager.cs" />
@@ -1926,6 +1927,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\FlatShop\Models\" />
+    <Folder Include="Areas\FlatShop\Views\Base\" />
     <Folder Include="ViewModels\" />
     <Folder Include="Views\BaseDashboard\" />
   </ItemGroup>

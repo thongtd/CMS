@@ -24,14 +24,29 @@ namespace CMS.Dashboard
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            builder.RegisterGeneric(typeof(MemoryCacheRepository<>))
-                .As(typeof(ICacheRepository<>))
-                .InstancePerDependency();
+            builder.RegisterGeneric(typeof(MemoryCacheRepository<>)).As(typeof(ICacheRepository<>));
+
+            // Register your MVC controllers. (MvcApplication is the name of
+            // the class in Global.asax.)
             builder.RegisterControllers(typeof(MvcApplication).Assembly);
+
+            // OPTIONAL: Register model binders that require DI.
+            builder.RegisterModelBinders(typeof(MvcApplication).Assembly);
+            builder.RegisterModelBinderProvider();
+
+            // OPTIONAL: Register web abstractions like HttpContextBase.
+            builder.RegisterModule<AutofacWebTypesModule>();
+
+            // OPTIONAL: Enable property injection in view pages.
+            builder.RegisterSource(new ViewRegistrationSource());
+
+            // OPTIONAL: Enable property injection into action filters.
+            builder.RegisterFilterProvider();
 
             builder.RegisterType<CacheManager>().SingleInstance();
 
             var container = builder.Build();
+            DependencyResolver.SetResolver(new AutofacDependencyResolver(container));
 
             var cacheManager = container.Resolve<CacheManager>();
             cacheManager.BuildToCache();

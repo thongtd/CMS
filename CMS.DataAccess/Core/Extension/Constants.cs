@@ -24,7 +24,7 @@
         public static class CultureCode
         {
             public const string English = "en-US";
-            
+
             public const string Vietnamese = "vi-VN";
 
             public const string EnglishName = "English";
@@ -68,6 +68,16 @@
         public static class SiteSetting
         {
             public static string WebSeo = "WebSeo";
+
+            public static string Title = "Title";
+
+            public static string Keywords = "Keywords";
+
+            public static string Description = "Description";
+
+            public static string GoogleAnalytic = "Google Analytic";
+
+            public static string Facebook = "Facebook";
         }
     }
 }

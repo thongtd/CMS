@@ -140,9 +140,9 @@ namespace CMS.Dashboard.Code
             var result = new List<SelectListItem>
             {
                 new SelectListItem {Text = "Title", Value = "Title"},
-                new SelectListItem {Text = "Keyword", Value = "Keyword"},
+                new SelectListItem {Text = "Keywords", Value = "Keywords"},
                 new SelectListItem {Text = "Description", Value = "Description"},
-                new SelectListItem {Text = "Google Analytic", Value = "Google Analytic"},
+                new SelectListItem {Text = "Google Analytic", Value = "GoogleAnalytic"},
                 new SelectListItem {Text = "Facebook", Value = "Facebook"},
             };
 
