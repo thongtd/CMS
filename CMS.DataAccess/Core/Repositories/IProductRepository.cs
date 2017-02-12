@@ -15,7 +15,7 @@ namespace CMS.DataAccess.Core.Repositories
 
         IEnumerable<ProductResponse> GetByTop(int top, Expression<Func<Product, bool>> predicate);
 
-        IEnumerable<ProductResponse> GetTagByProductId(int blogId);
+        ProductResponse GetTagByProductId(int id);
 
         ProductResponse GetBySlug(string slug);
 

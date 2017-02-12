@@ -95,43 +95,18 @@ namespace CMS.DataAccess.Persistence.Repositories
             {
                 var products = uow.Product.Find(predicate).Take(top).ToList();
 
-                if (products.Any())
-                {
-                    return products.Select(s => new ProductResponse
-                    {
-                        ProductCategory = s.ProductCategory,
-                        IsActive = s.IsActive,
-                        ProductCategoryId = s.ProductCategoryId,
-                        Name = s.Name,
-                        BodyContent = s.BodyContent,
-                        View = s.View,
-                        ModeifiedDate = s.ModeifiedDate,
-                        CreatedDate = s.CreatedDate,
-                        CultureCode = s.CultureCode,
-                        Description = s.Description,
-                        Id = s.Id,
-                        Title = s.Title,
-                        Slug = s.Slug,
-                        Images = s.Images != null ? JsonConvert.DeserializeObject<IList<string>>(s.Images) : null,
-                        Keyword = s.Keyword,
-                        Thumbnail = s.Thumbnail,
-                        PinToTop = s.PinToTop,
-                        SubContent = s.SubContent,
-                        IdentityCode = s.IdentityCode,
-                        Target = s.Target,
-                        Tags = WorkContext.Tags.Where(t => s.IdentityCode == t.ObjectIdentityId).ToList(),
-                        Price = s.Price,
-                        Discount = s.Discount,
-                        DiscountIsPercent = s.DiscountIsPercent
-                    }).ToList();
-                }
-                return new List<ProductResponse>();
+                return products.Any() ? products.Select(ConvertToProductResponse).ToList() : new List<ProductResponse>();
             }
         }
 
-        public IEnumerable<ProductResponse> GetTagByProductId(int blogId)
+        public ProductResponse GetTagByProductId(int id)
         {
-            throw new NotImplementedException();
+            using (var uow = new UnitOfWork(new WorkContext()))
+            {
+                var product = uow.Product.Get(id);
+
+                return ConvertToProductResponse(product);
+            }
         }
 
         public ProductResponse GetBySlug(string slug)
@@ -144,32 +119,8 @@ namespace CMS.DataAccess.Persistence.Repositories
             {
                 return new ProductResponse();
             }
-            return new ProductResponse
-            {
-                ProductCategory = product.ProductCategory,
-                Name = product.Name,
-                Id = product.Id,
-                IsActive = product.IsActive,
-                Description = product.Description,
-                ProductCategoryId = product.ProductCategoryId,
-                Images = product.Images != null ? JsonConvert.DeserializeObject<IList<string>>(product.Images) : null,
-                BodyContent = product.BodyContent,
-                View = product.View,
-                CreatedDate = product.CreatedDate,
-                CultureCode = product.CultureCode,
-                Discount = product.Discount,
-                DiscountIsPercent = product.DiscountIsPercent,
-                IdentityCode = product.IdentityCode,
-                Keyword = product.Keyword,
-                ModeifiedDate = product.ModeifiedDate,
-                PinToTop = product.PinToTop,
-                Price = product.Price,
-                Slug = product.Slug,
-                SubContent = product.SubContent,
-                Target = product.Target,
-                Thumbnail = product.Thumbnail,
-                Title = product.Title
-            };
+
+            return ConvertToProductResponse(product);
         }
 
         public async Task Add(ProductRequest model)
@@ -224,6 +175,44 @@ namespace CMS.DataAccess.Persistence.Repositories
         public WorkContext WorkContext
         {
             get { return Context as WorkContext; }
+        }
+
+        private ProductResponse ConvertToProductResponse(Product product)
+        {
+            if (product == null)
+            {
+                return new ProductResponse();
+            }
+
+            return new ProductResponse
+            {
+                Name = product.Name,
+                BodyContent = product.BodyContent,
+                CreatedDate = product.CreatedDate,
+                CultureCode = product.CultureCode,
+                Description = product.Description,
+                Discount = product.Discount,
+                DiscountIsPercent = product.DiscountIsPercent,
+                Id = product.Id,
+                IdentityCode = product.IdentityCode,
+                Images = product.Images != null ? JsonConvert.DeserializeObject<IList<string>>(product.Images) : null,
+                IsActive = product.IsActive,
+                Keyword = product.Keyword,
+                ModeifiedDate = product.ModeifiedDate,
+                NumberOfProduct = product.NumberOfProduct,
+                PinToTop = product.PinToTop,
+                Price = product.Price,
+                ProductCategory = product.ProductCategory,
+                ProductCategoryId = product.ProductCategoryId,
+                SellingOfProduct = product.SellingOfProduct,
+                Slug = product.Slug,
+                SubContent = product.SubContent,
+                Target = product.Target,
+                Thumbnail = product.Thumbnail,
+                Title = product.Title,
+                View = product.View,
+                Tags = WorkContext.Tags.Where(t => product.IdentityCode == t.ObjectIdentityId).ToList()
+            };
         }
     }
 }
