@@ -7,29 +7,38 @@ namespace MvcConnerstore.Cache.Persistance
 {
     public class MemoryCacheRepository<T> : ICacheRepository<T> where T : class
     {
-        private readonly MemoryCache memoryCache = new MemoryCache("MicroCMS.Cache");
-        static readonly object lockObj = new object();
-        
+        private static MemoryCacheRepository<T> instance = null;
+        //private readonly ObjectCache memoryCache = null;
+        static readonly object padlock = new object();
+
+        public MemoryCacheRepository()
+        {
+            
+        }
+
         public void Add(string key, T item)
         {
-            lock (lockObj)
+            lock (padlock)
             {
+                MemoryCache memoryCache = MemoryCache.Default;
                 memoryCache.Add(key, item, DateTimeOffset.MaxValue);
             }
         }
 
         public void Add(string key, IEnumerable<T> items)
         {
-            lock (lockObj)
+            lock (padlock)
             {
+                MemoryCache memoryCache = MemoryCache.Default;
                 memoryCache.Add(key, items, DateTimeOffset.MaxValue);
             }
         }
 
         public void Add(string key, object item)
         {
-            lock (lockObj)
+            lock (padlock)
             {
+                MemoryCache memoryCache = MemoryCache.Default;
                 memoryCache.Add(key, item, DateTimeOffset.MaxValue);
             }
         }
@@ -41,8 +50,9 @@ namespace MvcConnerstore.Cache.Persistance
 
         public T Gets(string key)
         {
-            lock (lockObj)
+            lock (padlock)
             {
+                MemoryCache memoryCache = MemoryCache.Default;
                 return (T)memoryCache[key];
             }
         }

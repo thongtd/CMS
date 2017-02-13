@@ -16,8 +16,7 @@ namespace CMS.Dashboard.Code
         {
             this.componentContext = componentContext;
         }
-
-
+        
         public void BuildToCache()
         {
             var siteSettingCache = componentContext.Resolve<ICacheRepository<SiteSetting>>();

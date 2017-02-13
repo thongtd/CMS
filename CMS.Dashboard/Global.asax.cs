@@ -4,10 +4,6 @@ using System.Web.Routing;
 using Autofac;
 using Autofac.Integration.Mvc;
 using CMS.Dashboard.Code;
-using CMS.DataAccess.Core.Repositories;
-using CMS.DataAccess.Models;
-using CMS.DataAccess.Persistence;
-using CMS.DataAccess.Persistence.Repositories;
 using MvcConnerstore.Cache.Persistance;
 using MvcConnerstore.Cache.Repositories;
 
@@ -24,7 +20,7 @@ namespace CMS.Dashboard
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
 
-            builder.RegisterGeneric(typeof(MemoryCacheRepository<>)).As(typeof(ICacheRepository<>));
+            builder.RegisterGeneric(typeof(MemoryCacheRepository<>)).As(typeof(ICacheRepository<>)).InstancePerLifetimeScope();
 
             // Register your MVC controllers. (MvcApplication is the name of
             // the class in Global.asax.)
