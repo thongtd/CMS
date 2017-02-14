@@ -223,6 +223,7 @@
     <Compile Include="Controllers\BlogCategoryController.cs" />
     <Compile Include="Controllers\BlogController.cs" />
     <Compile Include="Controllers\ProductSettingController.cs" />
+    <Compile Include="Controllers\QuestionLibrariesController.cs" />
     <Compile Include="Controllers\SiteSettingController.cs" />
     <Compile Include="Controllers\TagController.cs" />
     <Compile Include="Extentions\ListExtentions.cs" />
@@ -312,7 +313,7 @@
     <Content Include="Areas\FlatShop\Content\js\script.min.js" />
     <Content Include="Content\Dashboard\img\icons\ws\ic_delete.png" />
     <Content Include="Content\Dashboard\js\angular.min.js" />
-    <Content Include="Content\Dashboard\js\controller\dashboardController.js" />
+    <Content Include="Content\Dashboard\js\controllers\dashboardController.js" />
     <Content Include="Content\Dashboard\plugins\kendo\css\default\sprite_2x.png" />
     <Content Include="Content\Frontend\bootstrap\css\bootstrap.css" />
     <Content Include="Content\Frontend\bootstrap\fonts\glyphicons-halflings-regular.svg" />
@@ -1923,6 +1924,9 @@
     <Content Include="Views\SiteSetting\Create.cshtml" />
     <Content Include="Views\SiteSetting\Edit.cshtml" />
     <Content Include="Views\SiteSetting\Index.cshtml" />
+    <Content Include="Views\QuestionLibraries\Index.cshtml" />
+    <Content Include="Views\QuestionLibraries\Create.cshtml" />
+    <Content Include="Views\QuestionLibraries\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

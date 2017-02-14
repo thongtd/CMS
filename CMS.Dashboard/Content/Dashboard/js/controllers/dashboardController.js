@@ -10,6 +10,7 @@
     function dashboardController($scope, options) {
         $scope.productImages = [];
         $scope.tags = [];
+        $scope.questions = [];
 
         //For image upload
         $scope.browseImage = function (textField) {
@@ -77,6 +78,28 @@
             $scope.discountPrice = val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
             $('#Discount').val(val);
         }
+
+        $scope.initQuestions = function () {
+            for (var i = 0; i < 1; i++) {
+                $scope.questions.push("");
+            }
+
+            return $scope.questions;
+        }
+
+        $scope.bindingQuestion = function () {
+            $scope.questions = options.questions;
+        }
+
+        $scope.addQuestion = function () {
+            $scope.questions.push("");
+            if (!$scope.$$phase) $scope.$apply();
+        }
+
+        $scope.removeQuestions = function (index) {
+            $scope.questions.splice(index, 1);
+            if (!$scope.$$phase) $scope.$apply();
+        }
     }
 
     app.directive("ckfinderBrowse", [function () {
@@ -102,6 +125,28 @@
             link: function (scope, element, attrs) {
                 CKEDITOR.replace(attrs.refId, {
                     toolbar: 'Full'
+                });
+            }
+        }
+    }]);
+
+    app.directive("ngCkEditorMini", [function () {
+        return {
+            restrict: 'A',
+            scope: {},
+            link: function (scope, element, attrs) {
+                CKEDITOR.replace(attrs.refId, {
+                    toolbar: [
+	                    { name: 'links', items: ['Link', 'Unlink'] },
+	                    { name: 'insert', items: ['Image', 'Table', 'SpecialChar'] },
+	                    { name: 'tools', items: ['Maximize'] },
+	                    { name: 'document', groups: ['mode', 'document', 'doctools'] },
+	                    { name: 'others', items: ['-'] },
+	                    { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
+	                    { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+	                    { name: 'styles', items: ['Styles', 'Format'] }
+                    ],
+                    height: '100px'
                 });
             }
         }

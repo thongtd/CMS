@@ -102,6 +102,28 @@
                     </li>
                 </ul>
             </li>
+            <li class="openable @ViewBag.Question">
+                <a href="#">
+                    <span class="isw-list"></span><span class="text">Đề thi</span>
+                </a>
+                <ul>
+                    <li>
+                        <a href="@Url.Action("Index", "ExameCategory")">
+                            <span class="icon-chevron-right"></span><span class="text">Nhóm đề thi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Exam")">
+                            <span class="icon-chevron-right"></span><span class="text">Đề thi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "QuestionLibraries")">
+                            <span class="icon-chevron-right"></span><span class="text">Thư viện câu hỏi</span>
+                        </a>
+                    </li>
+                </ul>
+            </li>
             <li class="openable @ViewBag.SiteSetting">
                 <a href="#">
                     <span class="isw-list"></span><span class="text">Cấu hình</span>
@@ -205,7 +227,7 @@
     <script src="~/Content/Dashboard/js/actions.js"></script>
 
     <script src="~/Content/Dashboard/js/angular.min.js"></script>
-    <script src="~/Content/Dashboard/js/controller/dashboardController.js"></script>
+    <script src="~/Content/Dashboard/js/controllers/dashboardController.js"></script>
     @RenderSection("scripts", required: false)
 </body>
 </html>

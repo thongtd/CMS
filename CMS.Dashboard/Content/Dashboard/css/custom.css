@@ -230,3 +230,7 @@ span.field-validation-error span, .field-validation-error{
 .list-checkbox .lb-checkbox{
     margin: 0 5px 0 0 !important;
 }
+.btn-del {
+    background: #ff5b57;
+    border-color: #ff5b57;
+}

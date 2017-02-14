@@ -1,0 +1,93 @@
+﻿@model CMS.DataAccess.Models.QuestionLibrariesRequest
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<form action="@Url.Action("Create", "QuestionLibraries")" method="post" id="validate" class="form-content">
+    @Html.ValidationSummary(true)
+    <div class="workplace">
+        @Html.Partial("Breadcrumb")
+        <div class="row-fluid">
+            <div class="span12 no-margin">
+                <div class="span8">
+                    <div class="head head-custom">
+                        <div class="isw-grid"></div>
+                        <h1>Thông tin</h1>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="block-fluid" ng-init="initQuestions()">
+                        <div class="row-form" ng-ck-editor-mini data-ref-id="Question">
+                            <label for="">Tiêu đề câu hỏi (phục vụ cho tìm kiếm):<em>*</em></label>
+                            @Html.TextBoxFor(m => m.Title, new { placeholder = "Tiêu đề câu hỏi" })
+                            @Html.ValidationMessageFor(m => m.Question)
+                        </div>
+                        <div class="row-form" ng-ck-editor-mini data-ref-id="Question">
+                            <label for="">Nội dung câu hỏi:<em>*</em></label>
+                            @Html.TextAreaFor(m => m.Question, new {placeholder = "Nội dung câu hỏi"})
+                            @Html.ValidationMessageFor(m => m.Question)
+                        </div>
+                        <h4 style="margin-left: 20px; text-decoration: underline;">Câu trả lời</h4>
+                        <div class="row-form">
+                            <div class="" ng-repeat="item in questions track by $index">
+                                <label for="">Đáp án số: {{$index + 1}}</label>
+                                <div class="span12 no-margin">
+                                    <div class="span8">
+                                        <textarea cols="20" data-val="true" data-val-required="Các trường bắt buộc không được bỏ trống."
+                                                  id="Answers_{{$index}}__AnswerContent" name="Answers[{{$index}}].AnswerContent" placeholder="Câu trả lời" rows="2"
+                                                  style="min-height: 60px; max-height: 60px" class="input-validation-error"></textarea>
+                                        <span class="field-validation-error" data-valmsg-for="Answers[{{$index}}].AnswerContent" data-valmsg-replace="true"></span>
+                                    </div>
+                                    <div class="span4">
+                                        <input type="button" class="btn btn-create btn-flat btn-del" value="Xoá" ng-click="questions.splice($index, 1)" ng-show="$index == questions.length - 1 && questions.length > 1"/>
+                                        <br/>
+                                        <label class="checkbox inline lb-checkbox no-padding">
+                                            <input data-val="true" data-val-required="The IsCorrect field is required."
+                                                   id="Answers_{{$index}}__IsCorrect" name="Answers[{{$index}}].IsCorrect" type="checkbox" value="true" class="valid">
+                                            Câu trả lời đúng
+                                            <input name="Answers[{{$index}}].IsCorrect" type="hidden" value="false">
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="row-form">
+                            <input type="button" class="btn btn-create btn-flat right" value="Thêm câu trả lời" ng-click="addQuestion()"/>
+                        </div>
+                    </div>
+                </div>
+                <div class="span4">
+                    <div class="head head-custom">
+                        <div class="isw-grid"></div>
+                        <h1>###</h1>
+                        <div class="clear"></div>
+                    </div>
+                    <div class="span12 no-margin-left">
+                        <div class="block-fluid">
+                            <div class="row-form">
+                                <div class="span12">
+                                    <span class="span6">
+                                        <label class="checkbox inline lb-checkbox no-padding">
+                                            @Html.CheckBoxFor(model => model.IsActive)
+                                            Cho phép hiển thị
+                                        </label>
+                                    </span>
+                                </div>
+                                <input type="submit" class="btn btn-create btn-flat" value="Đồng Ý"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section scripts{
+    <script type="text/javascript">
+        (function () {
+            "use strict";
+
+            angular.module("microCMS").constant("options", {});
+        })();
+    </script>
+}
+

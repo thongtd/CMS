@@ -37,6 +37,8 @@ namespace CMS.DataAccess.Persistence
 
         public DbSet<SiteSetting> SiteSettingRepositories { get; set; }
 
+        public DbSet<QuestionLibraries> QuestionLibraries { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -54,6 +56,7 @@ namespace CMS.DataAccess.Persistence
             modelBuilder.Configurations.Add(new ProductMap());
             modelBuilder.Configurations.Add(new ProductSettingMap());
             modelBuilder.Configurations.Add(new SiteSettingMap());
+            modelBuilder.Configurations.Add(new QuestionLibrariesMap());
         }
     }
 }
