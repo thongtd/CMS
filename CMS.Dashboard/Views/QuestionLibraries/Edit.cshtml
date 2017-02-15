@@ -6,6 +6,7 @@
     @Html.ValidationSummary(true)
     <div class="workplace">
         @Html.Partial("Breadcrumb")
+        @Html.HiddenFor(m => m.Id)
         <div class="row-fluid">
             <div class="span12 no-margin">
                 <div class="span8">
@@ -40,10 +41,10 @@
                                         <input type="button" class="btn btn-create btn-flat btn-del" value="Xoá" ng-click="questions.splice($index, 1)" ng-show="$index == questions.length - 1 && questions.length > 1" />
                                         <br />
                                         <label class="checkbox inline lb-checkbox no-padding">
-                                            <input data-val="true" data-val-required="Các trường bắt buộc không được bỏ trống."
-                                                   id="Answers_{{$index}}__IsCorrect" name="Answers[{{$index}}].IsCorrect" type="checkbox" ng-checked="{{item.IsCorrect}}" class="valid">
+                                            <input data-val="true" data-val-required="Các trường bắt buộc không được bỏ trống." id="Answers_{{$index}}__IsCorrect"
+                                                   name="Answers[{{$index}}].IsCorrect" type="checkbox" ng-checked="{{item.IsCorrect}}" value="true">
                                             Câu trả lời đúng
-                                            <input name="Answers[{{$index}}].IsCorrect" type="hidden" value="{{item.IsCorrect}}">
+                                            <input name="Answers[{{$index}}].IsCorrect" type="hidden" value="false">
                                         </label>
                                     </div>
                                 </div>
@@ -89,7 +90,7 @@
             angular.module("microCMS").constant("options",
             {
                 questions: @Html.Raw(Json.Encode(Model.Answers))
-            });
+                });
         })();
     </script>
 }

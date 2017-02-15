@@ -123,9 +123,12 @@
             restrict: 'A',
             scope: {},
             link: function (scope, element, attrs) {
-                CKEDITOR.replace(attrs.refId, {
-                    toolbar: 'Full'
-                });
+                var editor = CKEDITOR.instances[attrs.refId];
+                if (!editor) {
+                    CKEDITOR.replace(attrs.refId, {
+                        toolbar: 'Full'
+                    });
+                }
             }
         }
     }]);
@@ -135,19 +138,22 @@
             restrict: 'A',
             scope: {},
             link: function (scope, element, attrs) {
-                CKEDITOR.replace(attrs.refId, {
-                    toolbar: [
-	                    { name: 'links', items: ['Link', 'Unlink'] },
-	                    { name: 'insert', items: ['Image', 'Table', 'SpecialChar'] },
-	                    { name: 'tools', items: ['Maximize'] },
-	                    { name: 'document', groups: ['mode', 'document', 'doctools'] },
-	                    { name: 'others', items: ['-'] },
-	                    { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
-	                    { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
-	                    { name: 'styles', items: ['Styles', 'Format'] }
-                    ],
-                    height: '100px'
-                });
+                var editor = CKEDITOR.instances[attrs.refId];
+                if (!editor) {
+                    CKEDITOR.replace(attrs.refId, {
+                        toolbar: [
+                            { name: 'links', items: ['Link', 'Unlink'] },
+                            { name: 'insert', items: ['Image', 'Table', 'SpecialChar'] },
+                            { name: 'tools', items: ['Maximize'] },
+                            { name: 'document', groups: ['mode', 'document', 'doctools'] },
+                            { name: 'others', items: ['-'] },
+                            { name: 'basicstyles', groups: ['basicstyles', 'cleanup'], items: ['Bold', 'Italic', 'Strike', '-', 'RemoveFormat'] },
+                            { name: 'paragraph', groups: ['list', 'indent', 'blocks', 'align', 'bidi'], items: ['NumberedList', 'BulletedList', '-', 'Outdent', 'Indent', '-', 'Blockquote'] },
+                            { name: 'styles', items: ['Styles', 'Format'] }
+                        ],
+                        height: '100px'
+                    });
+                }
             }
         }
     }]);

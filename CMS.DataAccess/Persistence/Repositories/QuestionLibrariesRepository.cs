@@ -34,7 +34,9 @@ namespace CMS.DataAccess.Persistence.Repositories
                 Question = s.Question,
                 Answers = s.Answers != null ? JsonConvert.DeserializeObject<IList<Answer>>(s.Answers) : null,
                 IsActive = s.IsActive,
-                Title = s.Title
+                Title = s.Title,
+                ExamCategoryId = s.ExamCategoryId,
+                ExamCategoryName = WorkContext.ExamCategorys.Find(s.ExamCategoryId)?.Name
             }).ToList();
 
             return responses;

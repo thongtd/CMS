@@ -19,6 +19,11 @@ namespace CMS.DataAccess.Core.Domain
 
         public bool IsActive { get; set; }
 
+        public int ExamCategoryId { get; set; }
+
+        [JsonIgnore]
+        public virtual ExamCategory ExamCategory { get; set; }
+
         public static implicit operator QuestionLibraries(QuestionLibrariesRequest model)
         {
             if (model == null)
@@ -31,7 +36,8 @@ namespace CMS.DataAccess.Core.Domain
                 Answers = (model.Answers !=null && model.Answers.Any()) ? JsonConvert.SerializeObject(model.Answers) : string.Empty,
                 Question = model.Question,
                 Title = model.Title,
-                IsActive = model.IsActive
+                IsActive = model.IsActive,
+                ExamCategoryId = model.ExamCategoryId
             };
         }
     }
@@ -46,6 +52,7 @@ namespace CMS.DataAccess.Core.Domain
             Property(x => x.Question).HasMaxLength(512).IsRequired();
             Property(x => x.Answers).IsRequired();
             Property(x => x.IsActive).IsRequired();
+            Property(x => x.ExamCategoryId).IsRequired();
         }
     }
 }

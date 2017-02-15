@@ -25,6 +25,7 @@ namespace CMS.DataAccess.Persistence
             ProductSetting= new ProductSettingRepository(WorkContext);
             SiteSetting = new SiteSettingRepository(WorkContext);
             QuestionLibraries = new QuestionLibrariesRepository(WorkContext);
+            ExamCategorys = new ExamCategoryRepository(WorkContext);
         }
 
         public IBlogCategoryRepository BlogCategory { get; private set; }
@@ -54,6 +55,8 @@ namespace CMS.DataAccess.Persistence
         public ISiteSettingRepository SiteSetting { get; private set; }
 
         public IQuestionLibrariesRepository QuestionLibraries { get; private set; }
+
+        public IExamCategoryRepository ExamCategorys { get; private set; }
 
         public WorkContext GetWorkContext()
         {

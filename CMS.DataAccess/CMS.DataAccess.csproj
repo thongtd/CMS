@@ -107,6 +107,7 @@
     <Compile Include="Core\IUnitOfWork.cs" />
     <Compile Include="Core\Linqkit\PredicateBuilder.cs" />
     <Compile Include="Core\Repositories\IBaseRepository.cs" />
+    <Compile Include="Core\Repositories\IExamCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IProductRepository.cs" />
     <Compile Include="Core\Repositories\IProductCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IBlogCategoryRepository.cs" />
@@ -147,6 +148,7 @@
     <Compile Include="Models\VideoCategoryRequest.cs" />
     <Compile Include="Models\VideoRequest.cs" />
     <Compile Include="Persistence\Repositories\BaseRepository.cs" />
+    <Compile Include="Persistence\Repositories\ExamCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\BlogCategoryRepository.cs" />

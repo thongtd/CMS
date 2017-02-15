@@ -34,7 +34,8 @@ namespace CMS.Dashboard.Controllers
                         Id = s.Id,
                         Question = new MvcHtmlString(s.Question),
                         IsActive = s.IsActive,
-                        Title = s.Title
+                        Title = s.Title,
+                        ExamCategoryName = s.ExamCategoryName
                     }),
                     total = totalRecord
                 });

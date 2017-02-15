@@ -16,5 +16,7 @@ namespace CMS.DataAccess.Models
         public IList<Answer> Answers { get; set; }
 
         public bool IsActive { get; set; }
+
+        public int ExamCategoryId { get; set; }
     }
 }
