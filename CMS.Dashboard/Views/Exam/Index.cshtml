@@ -1,0 +1,102 @@
+﻿@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="workplace">
+    @Html.Partial("Breadcrumb")
+    <div class="row-fluid">
+        <form action="" method="post">
+            <div class="span12">
+                <div class="block-fluid table-sorting" style="display: inline-block; width: 100%;">
+                    <div class="head">
+                        <a href="@Url.Action("Create", "Exam")" class="btn btn-flat btn-create">Thêm mới</a>
+                    </div>
+                    <div id="example">
+                        <div id="gridSource"></div>
+                        @section scripts{
+                            <script>
+                                (function () {
+                                    "use strict";
+
+                                    angular.module("microCMS").constant("options", {
+
+                                    });
+                                })();
+
+                                $(document).ready(function () {
+                                    $("#gridSource").kendoGrid({
+                                        dataSource: {
+                                            transport: {
+                                                read: {
+                                                    url: "@Url.Action("Get", "Exam")",
+                                                    contentType: 'application/json; charset=utf-8',
+                                                    type: "POST",
+                                                    dataType: "json"
+                                                },
+                                                parameterMap: function (options, type) {
+                                                    console.log(options);
+                                                    return JSON.stringify(options);
+                                                }
+                                            },
+                                            pageSize: 20,
+                                            schema: {
+                                                data: "data",
+                                                total: "total"
+                                            },
+                                            serverPaging: true,
+                                            serverFiltering: true,
+                                            serverSorting: true
+                                        },
+                                        pageable: {
+                                            refresh: true,
+                                            pageSizes: true,
+                                            buttonCount: 5
+                                        },
+                                        filterable: {
+                                            operators: {
+                                                string: {
+                                                    contains: "Contains",
+                                                    doesnotcontain: "Does not contain",
+                                                    eq: "Is equal to",
+                                                    neq: "Is not equal to",
+                                                    startswith: "Starts with",
+                                                    endswith: "Ends with"
+                                                }
+                                            }
+                                        },
+                                        columns: [
+                                            { field: "Id", title: "ID", width: "50px", filterable: false },
+                                            { field: "Name", title: "Tên đề thi" },
+                                            { field: "NumberOfQuestions", title: "Số câu hỏi", filterable: false },
+                                            { field: "TimeToTest", title: "Giời gian làm bài (phút)", filterable: false },
+                                            {
+                                                field: "CreatedDate", title: "Ngày tạo", filterable: false,
+                                                template: "#= kendo.toString(kendo.parseDate(CreatedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
+                                            },
+                                            {
+                                                field: "ModeifiedDate", title: "Ngày chỉnh sửa", filterable: false,
+                                                template: "#= kendo.toString(kendo.parseDate(ModeifiedDate, 'yyyy-MM-dd'), 'dd-MM-yyyy') #"
+                                            },
+                                            { field: "ExamCategoryName", title: "Nhóm đề thi", width: "150px", },
+                                            {
+                                                title: "Chức năng",
+                                                template:
+                                                    "<a data-href=\"@Url.Action("Active", "Exam")\" onclick=\"setActive(this, #= Id #);\"># if( IsActive == true) {#<img src='/Content/Dashboard/img/icons/func/active.png' /># } else {#<img src='/Content/Dashboard/img/icons/func/not-active.png' />#} #</a>" +
+                                                    "<a href='@Url.Action("Edit", "Exam")/#= Id #'><img src='/Content/Dashboard/img/icons/func/edit.png' /></a>" +
+                                                    "<a data-href=\"@Url.Action("Delete", "Exam")\" onclick=\"onDelete(this, #= Id #);\"><img src='/Content/Dashboard/img/icons/func/trash.png' /></a>",
+                                                attributes: { "class": "td-func" },
+                                                width: "110px",
+                                                filterable: false
+                                            }
+                                        ]
+                                    });
+                                });
+                            </script>
+                        }
+                    </div>
+                    <div class="clear"></div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+

@@ -41,6 +41,8 @@ namespace CMS.DataAccess.Persistence
 
         public DbSet<ExamCategory> ExamCategorys { get; set; }
 
+        public DbSet<Exam> Exams { get; set; }
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -60,6 +62,7 @@ namespace CMS.DataAccess.Persistence
             modelBuilder.Configurations.Add(new SiteSettingMap());
             modelBuilder.Configurations.Add(new QuestionLibrariesMap());
             modelBuilder.Configurations.Add(new ExamCategoryMap());
+            modelBuilder.Configurations.Add(new ExamMap());
         }
     }
 }

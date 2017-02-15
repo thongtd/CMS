@@ -108,6 +108,7 @@
     <Compile Include="Core\Linqkit\PredicateBuilder.cs" />
     <Compile Include="Core\Repositories\IBaseRepository.cs" />
     <Compile Include="Core\Repositories\IExamCategoryRepository.cs" />
+    <Compile Include="Core\Repositories\IExamRepository.cs" />
     <Compile Include="Core\Repositories\IProductRepository.cs" />
     <Compile Include="Core\Repositories\IProductCategoryRepository.cs" />
     <Compile Include="Core\Repositories\IBlogCategoryRepository.cs" />
@@ -125,6 +126,7 @@
     <Compile Include="IDependency.cs" />
     <Compile Include="Models\Answer.cs" />
     <Compile Include="Models\ExamCategoryRequest.cs" />
+    <Compile Include="Models\ExamResponse.cs" />
     <Compile Include="Models\ExamRequest.cs" />
     <Compile Include="Models\ProductSettingResponse.cs" />
     <Compile Include="Models\ProductSettingRequest.cs" />
@@ -149,6 +151,7 @@
     <Compile Include="Models\VideoRequest.cs" />
     <Compile Include="Persistence\Repositories\BaseRepository.cs" />
     <Compile Include="Persistence\Repositories\ExamCategoryRepository.cs" />
+    <Compile Include="Persistence\Repositories\ExamRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductRepository.cs" />
     <Compile Include="Persistence\Repositories\ProductCategoryRepository.cs" />
     <Compile Include="Persistence\Repositories\BlogCategoryRepository.cs" />
